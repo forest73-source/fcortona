@@ -3,125 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcani - Cortona Francesca</title>
+    <title>Arcani Maggiori | Cortona Francesca</title>
+
+    <!-- Importazione identica dei Font da Google Fonts usati nella Home -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        /* Stili generali coerenti con la Home */
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+        :root {
+            --bg-dark: #0b0c10;
+            --bg-card: #121318;
+            --gold-primary: #C5A059;
+            --gold-bright: #D4AF37;
+            --gold-light: #e6ca85;
+            --text-light: #e0e0e0;
+            --text-white: #ffffff;
+            --text-muted: #9a9a9a;
+            --font-serif: 'Cinzel', serif;
+            --font-quote: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVIGATION (Identico alla Home) */
         header {
-            background-color: #0b0b0b;
-            padding: 20px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(11, 12, 16, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            z-index: 1000;
+            padding: 1.2rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #222;
-        }
-        .logo {
-            font-family: 'Cinzel', serif;
-            color: #d4af37;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            text-decoration: none;
-        }
-        .logo span {
-            display: block;
-            font-size: 0.7rem;
-            color: #888;
-            letter-spacing: 4px;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-            margin: 0;
-            padding: 0;
-        }
-        nav a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-        nav a:hover, nav a.active {
-            color: #d4af37;
-        }
-        
-        /* Sezioni riprese dalla Home */
-        .section-title {
-            text-align: center;
-            padding: 60px 20px 20px 20px;
-        }
-        .section-title h1 {
-            color: #d4af37;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-        .section-title p {
-            color: #999;
-            font-size: 1.1rem;
         }
 
-        /* Griglia delle immagini degli Arcani */
-        .gallery-container {
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo span.sub {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--gold-primary);
+        }
+
+        /* SEZIONE TITOLO ARCANI */
+        main {
+            padding-top: 9rem;
+            padding-bottom: 5rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--text-white);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section-description {
+            font-family: var(--font-quote);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 4rem;
+            font-weight: 300;
+        }
+
+        /* GRIGLIA CARTE ARCANI */
+        .arcani-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 2.5rem;
+            margin-bottom: 3.5rem;
         }
-        .card-arcano {
-            background: #1a1a1a;
-            border: 1px solid #333;
+
+        .arcanum-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.15);
             border-radius: 4px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            text-align: center;
+            padding-bottom: 1.8rem;
         }
-        .card-arcano:hover {
-            transform: translateY(-5px);
-            border-color: #d4af37;
+
+        .arcanum-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
         }
-        .card-arcano img {
+
+        .arcanum-card img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 390px;
             object-fit: cover;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
         }
-        .card-info {
-            padding: 20px;
-            text-align: center;
+
+        .arcanum-card h3 {
+            font-family: var(--font-serif);
+            color: var(--gold-primary);
+            margin: 1.4rem 0 0.4rem;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
         }
-        .card-info h3 {
-            color: #d4af37;
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
+
+        .arcanum-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
-        
+
+        /* FOOTER (Identico alla Home) */
         footer {
-            background-color: #0b0b0b;
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+            padding: 4rem 2rem 3rem;
+            background: var(--bg-dark);
             text-align: center;
-            padding: 30px;
-            color: #666;
+            color: var(--text-muted);
             font-size: 0.85rem;
-            border-top: 1px solid #222;
-            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header con il menu completo -->
+    <!-- Header / Menu Navigazione -->
     <header>
         <a href="index.html" class="logo">
             CORTONA
-            <span>FRANCESCA</span>
+            <span class="sub">FRANCESCA</span>
         </a>
         <nav>
             <ul>
@@ -135,28 +212,33 @@
         </nav>
     </header>
 
-    <!-- Sezione Principale Arcani -->
-    <section class="section-title">
-        <h1>ARCANI DI FRANCESCA CORTONA</h1>
-        <p>I 22 Arcani Maggiori dipinti a mano ispirati alle leggi universali e alle virtù.</p>
-    </section>
+    <main>
+        <span class="section-tag">Collezione Esclusiva</span>
+        <h1 class="section-title">Arcani Maggiori</h1>
+        <p class="section-description">"22 opere dipinte a mano ispirate alle leggi universali e alla ricerca spirituale."</p>
 
-    <!-- Griglia delle foto: Assicurati che i nomi dei file in 'src' corrispondano esattamente a quelli nella cartella del sito -->
-    <div class="gallery-container">
-        <div class="card-arcano">
-            <img src="images/arcano1.jpg" alt="Il Matto">
-            <div class="card-info">
-                <h3>0 - Il Matto</h3>
+        <!-- Griglia delle Carte -->
+        <div class="arcani-grid">
+            <!-- NOTA SUL PERCORSO IMMAGINE: Assicurati che le immagini si trovino nella cartella 'assets/' oppure cambia 'assets/' con il nome della tua cartella -->
+            <div class="arcanum-card">
+                <img src="assets/il-matto.jpg" alt="Il Matto">
+                <h3>0 • IL MATTO</h3>
+                <p>Inizio & Inno all'Invisibile</p>
+            </div>
+
+            <div class="arcanum-card">
+                <img src="assets/il-bagatto.jpg" alt="Il Bagatto">
+                <h3>I • IL BAGATTO</h3>
+                <p>Volontà & Creazione</p>
+            </div>
+
+            <div class="arcanum-card">
+                <img src="assets/la-papessa.jpg" alt="La Papessa">
+                <h3>II • LA PAPESSA</h3>
+                <p>Mistero & Intuizione</p>
             </div>
         </div>
-        <div class="card-arcano">
-            <img src="images/arcano2.jpg" alt="Il Mago">
-            <div class="card-info">
-                <h3>I - Il Mago</h3>
-            </div>
-        </div>
-        <!-- Aggiungi qui gli altri arcani seguendo lo stesso blocco -->
-    </div>
+    </main>
 
     <footer>
         <p>&copy; 2026 Francesca Cortona. Tutti i diritti riservati.</p>
