@@ -25,6 +25,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -70,13 +74,13 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2.2rem;
+            gap: 2rem;
         }
 
         nav a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             transition: color 0.3s ease;
@@ -268,11 +272,11 @@
             color: var(--text-light);
         }
 
-        /* SEZIONE ARCHETIPI */
+        /* SEZIONE ARCHETIPI & GALLERIA OPERE */
         .archetypes-section {
             text-align: center;
             padding: 5rem 1.5rem;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -290,21 +294,45 @@
             letter-spacing: 1px;
         }
 
-        .list-archetypes {
+        /* GRIGLIA CARTE CON IMMAGINI */
+        .cards-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            text-align: left;
-            max-width: 900px;
-            margin: 0 auto 3rem auto;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .list-archetypes div {
-            padding: 0.5rem 1rem;
-            border-left: 2px solid var(--gold-primary);
+        .card-item {
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+        }
+
+        .card-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+            margin-bottom: 1rem;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            background-color: #1a1a1a;
+        }
+
+        .card-item span {
+            font-family: var(--font-serif);
             font-size: 0.9rem;
-            letter-spacing: 1px;
-            color: var(--text-light);
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         /* FOOTER NEWSLETTER */
@@ -415,16 +443,33 @@
             color: var(--gold-primary);
             border-radius: 50%;
         }
+
+        @media(max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- HEADER MENU COMPLETO CON LINK ALLE SEZIONI -->
     <header>
         <a href="#" class="logo">Arcani<span class="sub">Collezione</span></a>
         <nav>
             <ul>
-                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#edizioni" class="active">Arcani</a></li>
+                <li><a href="#dettagli">Opere</a></li>
+                <li><a href="#archetipi">22 Archetipi</a></li>
+                <li><a href="#contatti">Contatti</a></li>
             </ul>
         </nav>
     </header>
@@ -439,98 +484,100 @@
     </div>
 
     <!-- EDIZIONI (STANDARD & LIMITATA) -->
-    <div class="editions-container">
-        <!-- Edizione Standard -->
-        <div class="edition-card">
-            <div>
-                <h3>Edizione Standard</h3>
-                <div class="price">57 €</div>
-                <ul>
-                    <li>22 Arcani illustrati</li>
-                    <li>Volume illustrato «Arcani»</li>
-                    <li>Accesso alle composizioni sonore originali</li>
-                    <li>Spedizione gratuita</li>
-                </ul>
+    <section id="edizioni">
+        <div class="editions-container">
+            <!-- Edizione Standard -->
+            <div class="edition-card">
+                <div>
+                    <h3>Edizione Standard</h3>
+                    <div class="price">57 €</div>
+                    <ul>
+                        <li>22 Arcani illustrati</li>
+                        <li>Volume illustrato «Arcani»</li>
+                        <li>Accesso alle composizioni sonore originali</li>
+                        <li>Spedizione gratuita</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/393922731473" class="btn-gold" target="_blank">Acquista via WhatsApp</a>
             </div>
-            <a href="https://wa.me/" class="btn-gold" target="_blank">Acquista via WhatsApp</a>
-        </div>
 
-        <!-- Edizione Limitata -->
-        <div class="edition-card" style="border-color: var(--gold-primary);">
-            <div>
-                <span class="edition-tag">Esclusiva</span>
-                <h3>Edizione Limitata</h3>
-                <div class="price">290 €</div>
-                <ul>
-                    <li>Cofanetto da collezione</li>
-                    <li>Mazzo completo: 22 Arcani firmati con la sigla FC</li>
-                    <li>Volume illustrato «Arcani»</li>
-                    <li>Accesso alle composizioni sonore originali</li>
-                    <li>Certificato di Autenticità numerato e firmato a mano</li>
-                    <li>Stampa Fine Art di un Arcano a scelta, firmata e datata</li>
-                    <li>Spedizione gratuita</li>
-                </ul>
+            <!-- Edizione Limitata -->
+            <div class="edition-card" style="border-color: var(--gold-primary);">
+                <div>
+                    <span class="edition-tag">Esclusiva</span>
+                    <h3>Edizione Limitata</h3>
+                    <div class="price">290 €</div>
+                    <ul>
+                        <li>Cofanetto da collezione</li>
+                        <li>Mazzo completo: 22 Arcani firmati con la sigla FC</li>
+                        <li>Volume illustrato «Arcani»</li>
+                        <li>Accesso alle composizioni sonore originali</li>
+                        <li>Certificato di Autenticità numerato e firmato a mano</li>
+                        <li>Stampa Fine Art di un Arcano a scelta, firmata e datata</li>
+                        <li>Spedizione gratuita</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/393922731473" class="btn-gold" target="_blank">Prenota Edizione Limitata</a>
             </div>
-            <a href="https://wa.me/" class="btn-gold" target="_blank">Prenota Edizione Limitata</a>
         </div>
-    </div>
+    </section>
 
     <!-- BLOCCHI INFORMATIVI -->
-    <div class="info-grid">
-        <div class="info-box">
-            <h4>Il Mazzo d'Arte</h4>
-            <p>Cofanetto speciale da collezione con il mazzo completo, 22 Arcani illustrati e firmati con la sigla FC.</p>
+    <section id="dettagli">
+        <div class="info-grid">
+            <div class="info-box">
+                <h4>Il Mazzo d'Arte</h4>
+                <p>Cofanetto speciale da collezione con il mazzo completo, 22 Arcani illustrati e firmati con la sigla FC.</p>
+            </div>
+            <div class="info-box">
+                <h4>Contenuti Editoriali</h4>
+                <p>Volume illustrato ARCANI e accesso esclusivo alle composizioni sonore originali dell'opera.</p>
+            </div>
+            <div class="info-box">
+                <h4>Autenticità & Stampe</h4>
+                <p>Certificato di Autenticità compilato a mano e una stampa Fine Art di un Arcano a scelta, firmata e datata.</p>
+            </div>
+            <div class="info-box">
+                <h4>Esclusività & Invio</h4>
+                <p>Edizione limitata a soli 33 esemplari numerati, con spedizione gratuita inclusa per ogni ordine.</p>
+            </div>
         </div>
-        <div class="info-box">
-            <h4>Contenuti Editoriali</h4>
-            <p>Volume illustrato ARCANI e accesso esclusivo alle composizioni sonore originali dell'opera.</p>
-        </div>
-        <div class="info-box">
-            <h4>Autenticità & Stampe</h4>
-            <p>Certificato di Autenticità compilato a mano e una stampa Fine Art di un Arcano a scelta, firmata e datata.</p>
-        </div>
-        <div class="info-box">
-            <h4>Esclusività & Invio</h4>
-            <p>Edizione limitata a soli 33 esemplari numerati, con spedizione gratuita inclusa per ogni ordine.</p>
-        </div>
-    </div>
 
-    <div class="section-note">
-        Edizione limitata a soli 33 cofanetti numerati. Ogni esemplare è preparato, numerato e firmato personalmente da Francesca Cortona, rendendo ogni cofanetto un'opera unica da collezione, pensata per accompagnare il tuo percorso attraverso i 22 arcani.
-    </div>
+        <div class="section-note">
+            Edizione limitata a soli 33 cofanetti numerati. Ogni esemplare è preparato, numerato e firmato personalmente da Francesca Cortona, rendendo ogni cofanetto un'opera unica da collezione, pensata per accompagnare il tuo percorso attraverso i 22 arcani.
+        </div>
+    </section>
 
-    <!-- I 22 ARCHETIPI -->
-    <div class="archetypes-section">
+    <!-- I 22 ARCHETIPI CON GALLERIA IMMAGINI -->
+    <section id="archetipi" class="archetypes-section">
         <h2>I 22 Archetipi dell'Anima</h2>
         <p>Ogni Arcano custodisce un nome, un simbolo e un messaggio nel viaggio della coscienza.</p>
         
-        <div class="list-archetypes">
-            <div>01 · UNITAS</div>
-            <div>02 · MATER</div>
-            <div>03 · CREATIO</div>
-            <div>04 · FIRMAS</div>
-            <div>05 · FIDES</div>
-            <div>06 · LUX ET UMBRIA</div>
-            <div>07 · UNIVERSUM</div>
-            <div>08 · STATERA SUBLIME</div>
-            <div>09 · SAPIENTIA</div>
-            <div>10 · INFINITUM</div>
-            <div>11 · VIRTUS</div>
-            <div>12 · LUMEN</div>
-            <div>13 · MORTEM</div>
-            <div>14 · ANGELUS</div>
-            <div>15 · MATERIA</div>
-            <div>16 · SANCTUARIUM</div>
-            <div>17 · SPES</div>
-            <div>18 · MYSTERIUM</div>
-            <div>19 · NUCLEO SOLARIS</div>
-            <div>20 · RESURGERE</div>
-            <div>21 · CONCRETIO</div>
-            <div>22 · LIBERTAS</div>
+        <div class="cards-gallery">
+            <div class="card-item"><img src="images/01-unitas.jpg" alt="01 · UNITAS"><span>01 · UNITAS</span></div>
+            <div class="card-item"><img src="images/02-mater.jpg" alt="02 · MATER"><span>02 · MATER</span></div>
+            <div class="card-item"><img src="images/03-creatio.jpg" alt="03 · CREATIO"><span>03 · CREATIO</span></div>
+            <div class="card-item"><img src="images/04-firmas.jpg" alt="04 · FIRMAS"><span>04 · FIRMAS</span></div>
+            <div class="card-item"><img src="images/05-fides.jpg" alt="05 · FIDES"><span>05 · FIDES</span></div>
+            <div class="card-item"><img src="images/06-lux-et-umbria.jpg" alt="06 · LUX ET UMBRIA"><span>06 · LUX ET UMBRIA</span></div>
+            <div class="card-item"><img src="images/07-universum.jpg" alt="07 · UNIVERSUM"><span>07 · UNIVERSUM</span></div>
+            <div class="card-item"><img src="images/08-statera-sublime.jpg" alt="08 · STATERA SUBLIME"><span>08 · STATERA SUBLIME</span></div>
+            <div class="card-item"><img src="images/09-sapientia.jpg" alt="09 · SAPIENTIA"><span>09 · SAPIENTIA</span></div>
+            <div class="card-item"><img src="images/10-infinitum.jpg" alt="10 · INFINITUM"><span>10 · INFINITUM</span></div>
+            <div class="card-item"><img src="images/11-virtus.jpg" alt="11 · VIRTUS"><span>11 · VIRTUS</span></div>
+            <div class="card-item"><img src="images/12-lumen.jpg" alt="12 · LUMEN"><span>12 · LUMEN</span></div>
+            <div class="card-item"><img src="images/13-mortem.jpg" alt="13 · MORTEM"><span>13 · MORTEM</span></div>
+            <div class="card-item"><img src="images/14-angelus.jpg" alt="14 · ANGELUS"><span>14 · ANGELUS</span></div>
+            <div class="card-item"><img src="images/15-materia.jpg" alt="15 · MATERIA"><span>15 · MATERIA</span></div>
+            <div class="card-item"><img src="images/16-sanctuarium.jpg" alt="16 · SANCTUARIUM"><span>16 · SANCTUARIUM</span></div>
+            <div class="card-item"><img src="images/17-spes.jpg" alt="17 · SPES"><span>17 · SPES</span></div>
+            <div class="card-item"><img src="images/18-mysterium.jpg" alt="18 · MYSTERIUM"><span>18 · MYSTERIUM</span></div>
+            <div class="card-item"><img src="images/19-nucleo-solaris.jpg" alt="19 · NUCLEO SOLARIS"><span>19 · NUCLEO SOLARIS</span></div>
+            <div class="card-item"><img src="images/20-resurgere.jpg" alt="20 · RESURGERE"><span>20 · RESURGERE</span></div>
+            <div class="card-item"><img src="images/21-concretio.jpg" alt="21 · CONCRETIO"><span>21 · CONCRETIO</span></div>
+            <div class="card-item"><img src="images/22-libertas.jpg" alt="22 · LIBERTAS"><span>22 · LIBERTAS</span></div>
         </div>
-
-        <a href="#" class="btn-gold" style="display: inline-block; padding: 1rem 3rem;">Scopri le 22 Opere →</a>
-    </div>
+    </section>
 
     <!-- NEWSLETTER -->
     <div class="newsletter-section">
@@ -543,7 +590,7 @@
     </div>
 
     <!-- FOOTER -->
-    <footer>
+    <footer id="contatti">
         <div class="col" style="max-width: 320px;">
             <h4>CORTONA FRANCESCA</h4>
             <p>Artista contemporanea, pittrice e ricercatrice spirituale. L'arte come Guarigione.</p>
@@ -551,19 +598,18 @@
         <div class="col">
             <h4>NAVIGA</h4>
             <a href="#">Home</a>
-            <a href="#">Arcani</a>
-            <a href="#">Opere</a>
-            <a href="#">Mostre & Critica</a>
-            <a href="#">7 Chakra Collection</a>
-            <a href="#">Contatti</a>
+            <a href="#edizioni">Arcani</a>
+            <a href="#dettagli">Opere</a>
+            <a href="#archetipi">22 Archetipi</a>
+            <a href="#contatti">Contatti</a>
         </div>
         <div class="col">
             <h4>SEGUIMI</h4>
             <div class="social-icons">
                 <a href="https://www.facebook.com/CortonaFrancescaArcani" target="_blank">f</a>
                 <a href="https://www.instagram.com/francescacortona" target="_blank">i</a>
-                <a href="#">💬</a>
-                <a href="#">✉</a>
+                <a href="https://wa.me/393922731473" target="_blank">💬</a>
+                <a href="mailto:cortonaitalianpainter@gmail.com">✉</a>
             </div>
             <p>cortonaitalianpainter@gmail.com</p>
         </div>
