@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcani di Francesca Cortona</title>
+    <title>Arcani di Francesca Cortona - Collezione d'Arte Maggiore</title>
     <style>
         :root {
             --bg-dark: #0b0c10;
@@ -86,7 +86,7 @@
             color: var(--gold-primary);
         }
 
-        /* MAIN HERO TITLE */
+        /* HERO HEADER */
         .arcani-header {
             padding-top: 10rem;
             padding-bottom: 3rem;
@@ -150,9 +150,276 @@
             text-transform: uppercase;
             font-weight: 400;
         }
+
+        /* SEZIONE PREZZI / EDIZIONI */
+        .editions-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .edition-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 3rem 2.5rem;
+            flex: 1;
+            min-width: 320px;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .edition-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .edition-card .price {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--gold-primary);
+            margin-bottom: 2rem;
+        }
+
+        .edition-card ul {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .edition-card ul li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .edition-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold-primary);
+        }
+
+        .btn-gold {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        /* BLOCCHI INFORMATIVI */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .info-box {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            padding: 2.5rem;
+        }
+
+        .info-box h4 {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .info-box p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .section-note {
+            text-align: center;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            font-size: 1.1rem;
+            font-family: var(--font-quote);
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        /* SEZIONE ARCHETIPI */
+        .archetypes-section {
+            text-align: center;
+            padding: 5rem 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .archetypes-section h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--text-white);
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .archetypes-section p {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+        }
+
+        .list-archetypes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .list-archetypes div {
+            padding: 0.5rem 1rem;
+            border-left: 2px solid var(--gold-primary);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        /* FOOTER NEWSLETTER */
+        .newsletter-section {
+            background-color: var(--bg-card);
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            text-align: center;
+            padding: 5rem 1.5rem;
+            margin-top: 5rem;
+        }
+
+        .newsletter-section h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            background-color: var(--bg-dark);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 1rem;
+            color: var(--text-light);
+            flex: 1;
+            min-width: 260px;
+            font-family: var(--font-sans);
+        }
+
+        .newsletter-form button {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 1rem 2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        /* FOOTER FINALE */
+        footer {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer .col h4 {
+            font-family: var(--font-serif);
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        footer .col p, footer .col a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.6rem;
+            transition: color 0.3s;
+        }
+
+        footer .col a:hover {
+            color: var(--gold-primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
+
+    <!-- HEADER -->
     <header>
         <a href="#" class="logo">Arcani<span class="sub">Collezione</span></a>
         <nav>
@@ -162,12 +429,145 @@
         </nav>
     </header>
 
+    <!-- HERO SECTION -->
     <div class="arcani-header">
-        <span class="edition-tag">Prima Edizione</span>
+        <span class="edition-tag">Di Cortona Francesca</span>
         <h1>ARCANI</h1>
         <div class="divider-symbol">♦</div>
-        <div class="subtitle-gold">Collezione d'Arte</div>
-        <h2>Maggiore</h2>
+        <div class="subtitle-gold">Il Cofanetto d'Autore</div>
+        <h2>22 Arcani Maggiori dipinti a mano</h2>
     </div>
+
+    <!-- EDIZIONI (STANDARD & LIMITATA) -->
+    <div class="editions-container">
+        <!-- Edizione Standard -->
+        <div class="edition-card">
+            <div>
+                <h3>Edizione Standard</h3>
+                <div class="price">57 €</div>
+                <ul>
+                    <li>22 Arcani illustrati</li>
+                    <li>Volume illustrato «Arcani»</li>
+                    <li>Accesso alle composizioni sonore originali</li>
+                    <li>Spedizione gratuita</li>
+                </ul>
+            </div>
+            <a href="https://wa.me/" class="btn-gold" target="_blank">Acquista via WhatsApp</a>
+        </div>
+
+        <!-- Edizione Limitata -->
+        <div class="edition-card" style="border-color: var(--gold-primary);">
+            <div>
+                <span class="edition-tag">Esclusiva</span>
+                <h3>Edizione Limitata</h3>
+                <div class="price">290 €</div>
+                <ul>
+                    <li>Cofanetto da collezione</li>
+                    <li>Mazzo completo: 22 Arcani firmati con la sigla FC</li>
+                    <li>Volume illustrato «Arcani»</li>
+                    <li>Accesso alle composizioni sonore originali</li>
+                    <li>Certificato di Autenticità numerato e firmato a mano</li>
+                    <li>Stampa Fine Art di un Arcano a scelta, firmata e datata</li>
+                    <li>Spedizione gratuita</li>
+                </ul>
+            </div>
+            <a href="https://wa.me/" class="btn-gold" target="_blank">Prenota Edizione Limitata</a>
+        </div>
+    </div>
+
+    <!-- BLOCCHI INFORMATIVI -->
+    <div class="info-grid">
+        <div class="info-box">
+            <h4>Il Mazzo d'Arte</h4>
+            <p>Cofanetto speciale da collezione con il mazzo completo, 22 Arcani illustrati e firmati con la sigla FC.</p>
+        </div>
+        <div class="info-box">
+            <h4>Contenuti Editoriali</h4>
+            <p>Volume illustrato ARCANI e accesso esclusivo alle composizioni sonore originali dell'opera.</p>
+        </div>
+        <div class="info-box">
+            <h4>Autenticità & Stampe</h4>
+            <p>Certificato di Autenticità compilato a mano e una stampa Fine Art di un Arcano a scelta, firmata e datata.</p>
+        </div>
+        <div class="info-box">
+            <h4>Esclusività & Invio</h4>
+            <p>Edizione limitata a soli 33 esemplari numerati, con spedizione gratuita inclusa per ogni ordine.</p>
+        </div>
+    </div>
+
+    <div class="section-note">
+        Edizione limitata a soli 33 cofanetti numerati. Ogni esemplare è preparato, numerato e firmato personalmente da Francesca Cortona, rendendo ogni cofanetto un'opera unica da collezione, pensata per accompagnare il tuo percorso attraverso i 22 arcani.
+    </div>
+
+    <!-- I 22 ARCHETIPI -->
+    <div class="archetypes-section">
+        <h2>I 22 Archetipi dell'Anima</h2>
+        <p>Ogni Arcano custodisce un nome, un simbolo e un messaggio nel viaggio della coscienza.</p>
+        
+        <div class="list-archetypes">
+            <div>01 · UNITAS</div>
+            <div>02 · MATER</div>
+            <div>03 · CREATIO</div>
+            <div>04 · FIRMAS</div>
+            <div>05 · FIDES</div>
+            <div>06 · LUX ET UMBRIA</div>
+            <div>07 · UNIVERSUM</div>
+            <div>08 · STATERA SUBLIME</div>
+            <div>09 · SAPIENTIA</div>
+            <div>10 · INFINITUM</div>
+            <div>11 · VIRTUS</div>
+            <div>12 · LUMEN</div>
+            <div>13 · MORTEM</div>
+            <div>14 · ANGELUS</div>
+            <div>15 · MATERIA</div>
+            <div>16 · SANCTUARIUM</div>
+            <div>17 · SPES</div>
+            <div>18 · MYSTERIUM</div>
+            <div>19 · NUCLEO SOLARIS</div>
+            <div>20 · RESURGERE</div>
+            <div>21 · CONCRETIO</div>
+            <div>22 · LIBERTAS</div>
+        </div>
+
+        <a href="#" class="btn-gold" style="display: inline-block; padding: 1rem 3rem;">Scopri le 22 Opere →</a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter-section">
+        <h3>Resta in Contatto</h3>
+        <p>Iscriviti alla newsletter per ricevere novità su mostre, nuove opere ed edizioni.</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="La tua email">
+            <button type="submit">Iscriviti</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="col" style="max-width: 320px;">
+            <h4>CORTONA FRANCESCA</h4>
+            <p>Artista contemporanea, pittrice e ricercatrice spirituale. L'arte come Guarigione.</p>
+        </div>
+        <div class="col">
+            <h4>NAVIGA</h4>
+            <a href="#">Home</a>
+            <a href="#">Arcani</a>
+            <a href="#">Opere</a>
+            <a href="#">Mostre & Critica</a>
+            <a href="#">7 Chakra Collection</a>
+            <a href="#">Contatti</a>
+        </div>
+        <div class="col">
+            <h4>SEGUIMI</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/CortonaFrancescaArcani" target="_blank">f</a>
+                <a href="https://www.instagram.com/francescacortona" target="_blank">i</a>
+                <a href="#">💬</a>
+                <a href="#">✉</a>
+            </div>
+            <p>cortonaitalianpainter@gmail.com</p>
+        </div>
+    </footer>
+
 </body>
 </html>
