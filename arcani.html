@@ -3,32 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La mia pagina</title>
+    <title>Arcani di Francesca Cortona</title>
     <style>
-        /* Impostiamo colori fissi per evitare che il browser decida per conto suo */
-        body {
-            background-color: #ffffff; /* Sfondo bianco (cambialo in #f4f4f4 se lo vuoi grigio chiaro) */
-            color: #333333;            /* Testo grigio scuro/nero leggibile */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Benvenuto nella mia pagina</h1>
-    <p>Questo testo ora sarà sempre ben leggibile, indipendentemente dal browser.</p>
-</body>
-</html>
         :root {
-            --bg-dark: #0b0c10;
-            --bg-card: #121318;
-            --gold-primary: #C5A059;
-            --gold-bright: #D4AF37;
-            --gold-light: #e6ca85;
-            --text-light: #e0e0e0;
-            --text-white: #ffffff;
-            --text-muted: #9a9a9a;
+            /* Sfondi chiari e luminosi anziché neri */
+            --bg-dark: #fcfbf9;
+            --bg-card: #f2efe9;
+            
+            /* Toni dorati e scuri per il testo */
+            --gold-primary: #a88338;
+            --gold-bright: #8c6c2b;
+            --gold-light: #6e5320;
+            --text-light: #4a4a4a;
+            --text-white: #1a1a1a;
+            --text-muted: #737373;
+            
             --font-serif: 'Cinzel', serif;
             --font-quote: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -54,9 +43,9 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(11, 12, 16, 0.92);
+            background-color: rgba(252, 251, 249, 0.92);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            border-bottom: 1px solid rgba(168, 131, 56, 0.2);
             z-index: 1000;
             padding: 1.2rem 3rem;
             display: flex;
@@ -136,7 +125,7 @@
             display: inline-block;
             width: 50px;
             height: 1px;
-            background: rgba(197, 160, 89, 0.4);
+            background: rgba(168, 131, 56, 0.4);
         }
 
         .arcani-header .subtitle-gold {
@@ -163,4 +152,26 @@
             color: var(--text-white);
             letter-spacing: 3px;
             text-transform: uppercase;
-            font-weight:
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Arcani<span class="sub">Collezione</span></a>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="arcani-header">
+        <span class="edition-tag">Prima Edizione</span>
+        <h1>ARCANI</h1>
+        <div class="divider-symbol">♦</div>
+        <div class="subtitle-gold">Collezione d'Arte</div>
+        <h2>Maggiore</h2>
+    </div>
+</body>
+</html>
