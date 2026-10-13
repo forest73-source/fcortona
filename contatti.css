@@ -1,0 +1,34 @@
+/* Pagina Contatti — si aggiunge a arcani.css */
+.hero--short{padding-bottom:1rem}
+.hero--short .divider{margin:2rem auto}
+.intro{max-width:640px;margin:0 auto;color:var(--muted);font-size:clamp(1.15rem,2.4vw,1.5rem)}
+
+.contact{max-width:720px;margin:0 auto;padding:3rem 1.5rem 2rem;text-align:center}
+.contact h2{font-family:var(--display);font-weight:400;font-variant:small-caps;letter-spacing:.14em;color:var(--gold-soft);font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:2.5rem}
+
+.form{display:grid;gap:1.8rem;text-align:left}
+.field{display:grid;gap:.7rem}
+.field label{font-family:var(--sans);font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea{width:100%;padding:1rem 1.2rem;background:#0d0d12;border:1px solid rgba(255,255,255,.12);color:var(--cream);font-family:var(--sans);font-size:1rem;transition:border-color .2s}
+.field input{height:3.4rem}
+.field textarea{min-height:11rem;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+.form .btn{align-self:auto;margin-top:.6rem;width:100%;background:transparent;cursor:pointer}
+.form .btn svg{width:1.3rem;height:1.3rem}
+
+.follow{max-width:720px;margin:0 auto;padding:1rem 1.5rem 5rem;text-align:center}
+.follow .divider{margin:2rem auto 2.5rem}
+.follow h3{font-family:var(--sans);font-weight:400;font-size:.85rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+.social{display:flex;justify-content:center;gap:.8rem;margin:1.8rem 0}
+.social a{display:grid;place-items:center;width:3.2rem;height:3.2rem;border:1px solid rgba(255,255,255,.15);color:var(--cream);transition:border-color .2s,color .2s}
+.social a:hover{border-color:var(--gold);color:var(--gold-soft)}
+.social svg,.btn svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.social svg{width:1.4rem;height:1.4rem}
+.reach{font-family:var(--sans);font-size:1rem;color:var(--muted)}
+.reach a:hover{color:var(--gold-soft)}
+
+.band{background:#10101a;border-top:1px solid rgba(201,162,74,.15)}
+.band .newsletter{border-top:0}
+
+.site-footer .social{justify-content:flex-start;margin:0}
+.site-footer .social a{width:2.8rem;height:2.8rem}
