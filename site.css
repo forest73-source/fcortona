@@ -40,3 +40,14 @@
 
 /* Cinese: niente spaziatura larga tra i caratteri */
 html[lang="zh"] body{font-family:"Cormorant Garamond","PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",serif}
+
+/* Barra in alto identica alla Home su tutte le pagine */
+.site-header{position:sticky;top:0;z-index:1000;max-width:none;margin:0;padding:1.2rem 3rem;
+  background:rgba(11,12,16,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(197,160,89,.15)}
+.site-header .logo{display:flex;flex-direction:column;font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:3px;line-height:1.1;color:#C5A059}
+.site-header .logo small{display:block;margin-top:2px;padding-left:0;font-size:.65rem;letter-spacing:2px;color:#9a9a9a}
+.site-header .nav{gap:2.2rem;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:400;letter-spacing:1.5px}
+.site-header .nav a{color:#e0e0e0}
+.site-header .nav a:hover,.site-header .nav a[aria-current]{color:#C5A059}
+.lang-btn{font-family:'Montserrat','Jost',sans-serif}
+@media (max-width:1024px){ .site-header{position:sticky;padding:1rem 1.5rem} }
