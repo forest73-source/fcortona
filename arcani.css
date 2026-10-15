@@ -31,13 +31,13 @@ a{color:inherit;text-decoration:none}
 .hero{position:relative;text-align:center;padding:5rem 1.5rem 3rem;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;margin:auto;width:min(520px,80vw);aspect-ratio:1;background:
   radial-gradient(circle,rgba(201,162,74,.07),transparent 65%);pointer-events:none}
-.hero h1{position:relative;font-family:var(--display);font-weight:400;font-size:clamp(3.5rem,13vw,9rem);letter-spacing:.08em;line-height:1;color:var(--cream)}
+.hero h1{position:relative;font-family:var(--display);font-weight:400;font-size:clamp(3.2rem,11vw,7.5rem);letter-spacing:.08em;line-height:1;color:var(--cream)}
 .divider{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin:2.5rem auto;max-width:480px;color:var(--gold)}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .divider::after{transform:scaleX(-1)}
-.byline{font-family:var(--display);color:var(--gold-soft);font-size:clamp(1rem,2.6vw,1.9rem);letter-spacing:.5em}
-.kicker{margin-top:5rem;font-family:var(--sans);color:var(--gold);font-size:.8rem;letter-spacing:.45em;text-transform:uppercase}
-.hero h2{margin-top:1.2rem;font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,4vw,2.8rem);font-variant:small-caps;letter-spacing:.04em}
+.byline{font-family:var(--display);color:var(--gold-soft);font-size:clamp(.9rem,1.8vw,1.3rem);letter-spacing:.45em}
+.kicker{margin-top:3.5rem;font-family:var(--sans);color:var(--gold);font-size:.8rem;letter-spacing:.45em;text-transform:uppercase}
+.hero h2{margin-top:1rem;font-family:var(--display);font-weight:400;font-size:clamp(1.25rem,2.8vw,2rem);font-variant:small-caps;letter-spacing:.04em}
 
 /* Edizioni */
 .editions{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1180px;margin:3rem auto 0;padding:0 1.5rem}

@@ -17,7 +17,7 @@
 .si-count{margin-top:auto;font-style:italic;font-size:.95rem;color:var(--muted)}
 
 /* Serie */
-.serie{max-width:1180px;margin:0 auto;padding:6rem 1.5rem 2rem;border-top:1px solid rgba(201,162,74,.15);scroll-margin-top:1rem}
+.serie{max-width:1180px;margin:0 auto;padding:6rem 1.5rem 2rem;border-top:1px solid rgba(201,162,74,.15);scroll-margin-top:5.5rem}
 .serie-head{text-align:center}
 .serie-head .kicker{margin:0}
 .serie-head h2{margin-top:1rem;font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,8vw,5.5rem);letter-spacing:.1em;line-height:1.05;font-variant:small-caps;color:var(--cream)}

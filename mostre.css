@@ -1,5 +1,5 @@
 /* mostre.css — si carica dopo arcani.css */
-.mostre-title{font-size:clamp(2.6rem,9vw,6.5rem)!important;letter-spacing:.06em!important}
+.mostre-title{font-size:clamp(2.2rem,6.5vw,5rem)!important;letter-spacing:.06em!important}
 .mostre-title .amp{color:var(--gold-soft)}
 .hero .byline{margin-top:0}
 
