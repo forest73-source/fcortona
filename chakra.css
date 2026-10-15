@@ -1,0 +1,37 @@
+/* chakra.css — si carica dopo arcani.css */
+.chakra-hero .kicker{margin:0 0 1.4rem}
+.chakra-hero h1{font-size:clamp(3rem,10vw,7rem)}
+.chakra-hero h1 small{display:block;margin-top:.6rem;font-size:.28em;letter-spacing:.6em;padding-left:.6em;color:var(--gold-soft)}
+.chakra-hero .intro{position:relative;max-width:760px;margin:0 auto;font-size:clamp(1.2rem,2.4vw,1.5rem);line-height:1.7;color:#e1ddd3}
+
+.facts{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);max-width:900px;margin:2rem auto 0;padding:0 1.5rem;text-align:center}
+.facts li{padding:1.6rem 1rem;border:1px solid rgba(201,162,74,.2);margin-left:-1px}
+.facts strong{display:block;font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,3vw,2rem);color:var(--gold-soft)}
+.facts span{display:block;margin-top:.3rem;font-family:var(--sans);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+
+.project{max-width:760px;margin:5rem auto 0;padding:0 1.5rem;text-align:center}
+.project h2,.chakras h2,.opensea h2{font-family:var(--display);font-weight:400;font-variant:small-caps;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:.08em;color:var(--cream)}
+.project p{margin-top:1.3rem;color:#d8d4ca;font-size:1.3rem;line-height:1.75}
+
+.chakras{max-width:1180px;margin:6rem auto 0;padding:0 1.5rem;text-align:center}
+.chakra-list{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:3rem}
+.chakra-list li{flex:0 1 calc(25% - 1.125rem);min-width:240px}
+@media (max-width:600px){.chakra-list li{flex-basis:100%}}
+.chakra-list li{position:relative;padding:2.6rem 1.6rem 2.2rem;background:var(--card);border:1px solid rgba(201,162,74,.18);overflow:hidden;transition:border-color .3s,transform .3s}
+.chakra-list li::before{content:"";position:absolute;inset:-40% -40% auto;height:80%;background:radial-gradient(circle,var(--c),transparent 65%);opacity:.12;pointer-events:none}
+.chakra-list li:hover{border-color:var(--c);transform:translateY(-3px)}
+.orb{position:relative;display:grid;place-items:center;width:4.2rem;height:4.2rem;margin:0 auto 1.4rem;border-radius:50%;border:1px solid var(--c);color:var(--cream);font-family:var(--display);font-size:1.4rem;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 70%,#fff 10%),color-mix(in srgb,var(--c) 35%,#000));box-shadow:0 0 28px color-mix(in srgb,var(--c) 55%,transparent)}
+.chakra-list h3{position:relative;font-family:var(--display);font-weight:400;font-size:1.5rem;letter-spacing:.14em;color:var(--cream)}
+.chakra-list .it{position:relative;margin-top:.4rem;font-family:var(--sans);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--c)}
+.chakra-list .mean{position:relative;margin-top:1rem;font-style:italic;color:#d8d4ca}
+
+.opensea{max-width:860px;margin:6rem auto;padding:3.5rem 3rem;text-align:center;background:var(--card);border:1px solid var(--gold)}
+.opensea p{margin:1.2rem auto 2.2rem;max-width:620px;color:#d8d4ca;font-size:1.3rem;line-height:1.7}
+.opensea .btn{margin:0;align-self:center}
+.band{background:#10101a;border-top:1px solid rgba(201,162,74,.15)}
+.band .newsletter{border-top:0}
+@media (max-width:600px){
+  .facts{grid-template-columns:1fr}
+  .facts li{margin-left:0;margin-top:-1px}
+  .opensea{margin:4rem 1rem;padding:2.4rem 1.4rem}
+}
