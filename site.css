@@ -52,5 +52,3 @@ html[lang="zh"] body{font-family:"Cormorant Garamond","PingFang SC","Hiragino Sa
 .lang-btn{font-family:'Montserrat','Jost',sans-serif}
 @media (max-width:1024px){ .site-header{position:sticky;padding:1rem 1.5rem} }
 
-/* Le immagini hanno width/height nel codice (per non far "saltare" la pagina): l'altezza resta proporzionale */
-img[width][height]{height:auto}
