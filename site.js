@@ -32,4 +32,13 @@
     if (e.key !== 'Escape') return;
     document.querySelectorAll('.lang-switch.open, .js-header.open').forEach(function (el) { el.classList.remove('open'); });
   });
+
+  /* Link a una sezione (es. opere.html#arcani-maggiori): quando la pagina ha finito di caricare,
+     riporta la vista sulla sezione giusta anche se le immagini sopra hanno cambiato l'altezza */
+  function goToHash() {
+    if (!location.hash) return;
+    var t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (t) t.scrollIntoView({ block: 'start' });
+  }
+  window.addEventListener('load', function () { setTimeout(goToHash, 50); });
 })();
