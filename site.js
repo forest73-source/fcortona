@@ -8,6 +8,7 @@
       t.setAttribute('aria-expanded', open);
     });
     h.querySelectorAll('nav a').forEach(function (a) {
+      if (a.parentNode.classList && a.parentNode.classList.contains('dd')) return;
       a.addEventListener('click', function () {
         h.classList.remove('open');
         t.setAttribute('aria-expanded', 'false');
@@ -62,5 +63,28 @@
       window.location.href = 'mailto:cortonafrancescapainter@gmail.com?subject=' +
         encodeURIComponent(t[0]) + '&body=' + encodeURIComponent(t[1] + m.value);
     });
+  });
+})();
+
+
+/* Menu a tendina "Opere": su computer si apre col mouse, su telefono col primo tocco */
+(function () {
+  var mobile = window.matchMedia('(max-width:1024px)');
+  document.querySelectorAll('.dd').forEach(function (d) {
+    var link = d.querySelector(':scope > a'), btn = d.querySelector('.dd-toggle');
+    function set(o) { d.classList.toggle('open', o); btn.setAttribute('aria-expanded', o); }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); set(!d.classList.contains('open')); });
+    link.addEventListener('click', function (e) {
+      if (mobile.matches) { e.preventDefault(); set(!d.classList.contains('open')); }
+    });
+    d.addEventListener('mouseleave', function () { if (!mobile.matches) set(false); });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.dd.open').forEach(function (d) {
+      if (!d.contains(e.target)) { d.classList.remove('open'); d.querySelector('.dd-toggle').setAttribute('aria-expanded', 'false'); }
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') document.querySelectorAll('.dd.open').forEach(function (d) { d.classList.remove('open'); d.querySelector('.dd-toggle').setAttribute('aria-expanded', 'false'); });
   });
 })();

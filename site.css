@@ -356,3 +356,27 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 
 /* 7 Chakra: titoli dei blocchi in giallo oro, come in Opere */
 .block-c h2,.chakras > h2,.benefits > h2,.buy-grid h2{color:var(--gold-soft)}
+
+/* Menu a tendina "Opere" */
+.dd{position:relative;display:inline-flex;align-items:center;gap:.25rem}
+.dd-toggle{display:inline-grid;place-items:center;width:1.2rem;height:1.2rem;padding:0;background:none;border:0;color:#c9a24a;cursor:pointer}
+.dd-toggle svg{width:.7rem;height:.7rem;fill:none;stroke:currentColor;stroke-width:2;transition:transform .2s}
+.dd.open .dd-toggle svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;left:50%;top:100%;z-index:1300;display:none;flex-direction:column;min-width:19rem;margin-top:1.1rem;padding:.4rem 0;transform:translateX(-50%);background:#121318;border:1px solid rgba(201,162,74,.3);box-shadow:0 14px 34px rgba(0,0,0,.55);text-align:left}
+.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-1.2rem;height:1.2rem}
+.dd-menu a{display:flex!important;align-items:baseline;justify-content:space-between;gap:1rem;padding:.7rem 1.2rem!important;border:0!important;color:#d8d4ca!important;font-family:'Montserrat','Jost',sans-serif;font-size:.8rem!important;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.dd-menu a small{font-size:.68rem;letter-spacing:.18em;color:#9a9a9a}
+.dd-menu a:hover{background:rgba(201,162,74,.1);color:#e2c777!important}
+.dd-menu .dd-all{display:none!important}
+@media (hover:hover) and (min-width:1025px){.dd:hover .dd-menu{display:flex}}
+.dd.open .dd-menu{display:flex}
+@media (max-width:1024px){
+  .dd{display:grid;grid-template-columns:1fr auto;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
+  .js-header > nav .dd > a{border-bottom:0!important}
+  .dd-toggle{width:2.4rem;height:2.4rem}
+  .dd-menu{position:static;grid-column:1 / -1;min-width:0;margin:0 0 .6rem;transform:none;background:rgba(255,255,255,.03);box-shadow:none;border:0;border-left:1px solid rgba(201,162,74,.35)}
+  .dd-menu::before{display:none}
+  .dd-menu a{white-space:normal;padding:.65rem 1rem!important}
+  .dd-menu .dd-all{display:flex!important}
+}
+@media (max-width:1024px){.js-header > nav{flex-wrap:nowrap}.js-header > nav > *{flex:none}}
