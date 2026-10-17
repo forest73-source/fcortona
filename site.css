@@ -388,3 +388,7 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 /* Dopo di Noi: "Disponibile" è un link al modulo di contatto */
 .lb-text .wt-avail a{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:.25rem .8rem;margin:0 0 1.2rem;text-decoration:none;transition:background .2s,color .2s}
 .lb-text .wt-avail a:hover,.lb-text .wt-avail a:focus-visible{background:var(--gold);color:#0b0c10}
+
+/* Home: il modulo newsletter non deve sforare su telefono (lingue con parole lunghe) */
+.newsletter-form input[type="email"]{min-width:0}
+@media (max-width:480px){.newsletter-form{flex-direction:column;align-items:stretch}.newsletter-form .btn-subscribe{width:100%}}
