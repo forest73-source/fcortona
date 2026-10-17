@@ -397,3 +397,22 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 /* Home: "Resta in contatto" con lo stesso carattere dei titoli di sezione */
 .newsletter-section h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.7rem,3.6vw,2.3rem);letter-spacing:.16em;line-height:1.2}
 html[lang="zh"] .newsletter-section h2{letter-spacing:.08em}
+
+/* ===== Telefono: niente parole o titoli che escono dallo schermo ===== */
+@media (max-width:900px){
+  .hero h1{font-size:min(3rem,10vw)}
+}
+@media (max-width:600px){
+  .hero h1{letter-spacing:.05em}
+  h1,h2,h3,p,li,figcaption,.kicker{overflow-wrap:break-word;hyphens:auto}
+  .page-hero h1,.opere-hero h1,.hero--short h1{letter-spacing:.06em;font-size:clamp(1.9rem,9vw,2.6rem)}
+  .page-hero h1.mostre-title{font-size:clamp(1.9rem,9vw,2.6rem)!important;letter-spacing:.05em!important}
+  .facts{grid-template-columns:repeat(2,1fr)!important;max-width:100%}
+  .facts li{margin-left:0;margin-top:-1px;padding:1.2rem .6rem}
+  .facts li:last-child:nth-child(odd){grid-column:1/-1}
+  .facts span{letter-spacing:.12em;font-size:.7rem}
+}
+.cards-feat li{min-width:min(280px,100%)}
+html,body{overflow-x:clip}
+@media (max-width:800px){.cards-3{grid-template-columns:minmax(0,1fr)!important}}
+@media (max-width:380px){.edition{padding:2rem 1rem}}
