@@ -397,3 +397,7 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 .lb-share{position:absolute;top:1rem;right:4.4rem;width:2.8rem;height:2.8rem;display:flex;align-items:center;justify-content:center;padding:0}
 .lb-share svg{width:1.3rem;height:1.3rem;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .lb-toast{position:fixed;left:50%;bottom:2rem;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:.6rem 1.2rem;font-family:var(--sans);font-size:.85rem;letter-spacing:.08em;z-index:5}
+
+/* Home: "Resta in contatto" con lo stesso carattere dei titoli di sezione */
+.newsletter-section h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(1.7rem,3.6vw,2.3rem);letter-spacing:.16em;line-height:1.2}
+html[lang="zh"] .newsletter-section h2{letter-spacing:.08em}
