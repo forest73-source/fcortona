@@ -234,11 +234,3 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 .chakra-hero::before{width:auto;aspect-ratio:auto;margin:0;height:auto}
 .chakra-hero-grid{display:block!important;justify-items:start}
 @media (max-width:900px){.chakra-hero-grid{justify-items:center}.chakra-hero-text{margin:0 auto}}
-
-/* 7 Chakra — hero a tutta larghezza con foto di sottofondo, identico alla Home */
-.chakra-hero{min-height:calc(100vh - 74px);padding:7rem 3rem 5rem;justify-content:center;
-  background:linear-gradient(180deg,rgba(11,12,16,.5) 0%,rgba(11,12,16,.82) 100%),url('chakra/7-chakra-principale.jpg') center 38%/cover no-repeat,#0b0c10}
-.chakra-hero::before,.chakra-hero::after{display:none}
-@media (max-width:900px){
-  .chakra-hero{min-height:auto;padding:4.5rem 1.5rem 4.5rem;background:linear-gradient(180deg,rgba(11,12,16,.55),rgba(11,12,16,.85)),url('chakra/7-chakra-principale.jpg') center 30%/cover no-repeat,#0b0c10}
-}
