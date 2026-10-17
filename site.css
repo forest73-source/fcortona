@@ -342,3 +342,6 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 .chakra-hero::after{background:radial-gradient(ellipse 48% 62% at 50% 50%,rgba(0,0,0,.78),rgba(0,0,0,.55) 55%,transparent 82%),linear-gradient(180deg,#0b0c10 0,transparent 9%,transparent 90%,#0b0c10 100%)}
 .chakra-hero-text .intro,.chakra-hero-text .kicker,.chakra-hero-text h1{text-shadow:0 0 18px #000,0 2px 6px #000}
 @media (max-width:900px){.chakra-hero::after{background:linear-gradient(180deg,#0b0c10 0,transparent 8%,transparent 92%,#0b0c10 100%)}}
+
+/* Opere: testi di introduzione delle serie in giallo oro */
+.serie-text p,.serie-text .lead,.serie-text strong{color:var(--gold-soft)}
