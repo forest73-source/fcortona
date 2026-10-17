@@ -353,3 +353,6 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 .series-index a{display:grid;grid-row:span 4;grid-template-rows:subgrid;height:auto;align-content:stretch}
 .series-index .si-count{align-self:end}
 .series-index .si-title{align-self:start}
+
+/* 7 Chakra: titoli dei blocchi in giallo oro, come in Opere */
+.block-c h2,.chakras > h2,.benefits > h2,.buy-grid h2{color:var(--gold-soft)}
