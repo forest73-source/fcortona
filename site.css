@@ -312,3 +312,20 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 .contact-page .contact{padding-top:1.3rem}
 .contact-page .form{gap:.95rem}
 .contact-page .field textarea{min-height:5.6rem}
+
+/* 7 Chakra — immagine perfettamente al centro, scritte grandi e centrate come all'inizio */
+.chakra-hero{align-items:center;justify-content:center;text-align:center;min-height:max(820px,calc(100vh - 74px))}
+.chakra-hero-grid{text-align:center;display:flex!important;flex-direction:column;align-items:center}
+.chakra-hero-text{max-width:900px;margin:0 auto;text-align:center}
+.chakra-hero-text h1{text-align:center;font-size:clamp(3rem,9vw,7rem);white-space:nowrap}
+.chakra-hero-text h1 small{padding-left:.5em;letter-spacing:.6em;font-size:.28em}
+.chakra-hero-text .divider{justify-content:center;margin-left:auto;margin-right:auto}
+.chakra-hero-text .intro{text-align:center;margin-left:auto;margin-right:auto;max-width:760px;font-size:clamp(1.2rem,2.4vw,1.5rem);line-height:1.7;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.chakra-hero-text h1,.chakra-hero-text .kicker{text-shadow:0 2px 20px rgba(0,0,0,.9)}
+.chakra-hero::before{background-position:center center;-webkit-mask-position:center,center;mask-position:center,center}
+.chakra-hero::after{display:block;background:radial-gradient(ellipse 55% 60% at 50% 50%,rgba(0,0,0,.55),transparent 75%),linear-gradient(180deg,#0b0c10 0,transparent 9%,transparent 90%,#0b0c10 100%)}
+@media (max-width:900px){
+  .chakra-hero-text h1{font-size:clamp(2.4rem,11vw,4rem)}
+  .chakra-hero::before{background-position:center bottom}
+  .chakra-hero::after{background:linear-gradient(180deg,#0b0c10 0,transparent 8%,transparent 92%,#0b0c10 100%)}
+}
