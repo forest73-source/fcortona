@@ -191,3 +191,13 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 @media (max-width:900px){.chakra-hero-art{width:min(60%,230px)}}
 .benefit-photo{max-width:520px}
 .benefit-photo figcaption{font-size:1rem}
+
+/* 7 Chakra — foto sotto le scritte */
+.chakra-hero-grid{grid-template-columns:1fr;justify-items:center;text-align:center;max-width:860px}
+.chakra-hero-text h1,.chakra-hero-text .intro{text-align:center}
+.chakra-hero-text .divider{justify-content:center;margin-left:auto;margin-right:auto}
+.chakra-hero-text .intro{margin-left:auto;margin-right:auto}
+.chakra-hero-text h1 small{padding-left:.5em}
+.chakra-hero-art{width:min(70%,260px);margin-top:1rem}
+.benefit-photo + .cards,.cards + .benefit-photo{margin-top:2.4rem}
+.cards + .benefit-photo{margin-bottom:0}
