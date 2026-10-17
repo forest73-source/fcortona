@@ -278,3 +278,37 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 /* Separatore ✦ sopra i titoli di sezione (Arcani, Mostre) */
 .gallery > .divider,.block > .divider{margin:0 auto 2.2rem}
 .block > .divider{margin-bottom:1.8rem}
+
+/* Titoli delle pagine (Arcani, Opere, Mostre, Contatti) più piccoli */
+.page-hero{padding-top:3.2rem}
+.page-hero h1,.opere-hero h1,.hero--short h1{font-size:clamp(2.2rem,6vw,4.2rem)}
+.page-hero .divider{margin:1.6rem auto}
+
+/* Contatti: pagina più compatta, il form si vede per intero */
+.contact-page .hero--short{padding-top:2rem;padding-bottom:0}
+.contact-page .hero--short .divider{margin:1rem auto}
+.contact-page .intro{font-size:1.05rem;line-height:1.5}
+.contact-page .contact{padding-top:1.4rem;padding-bottom:1.2rem}
+.contact-page .contact h2{margin-bottom:1.2rem}
+.contact-page .form{gap:1rem}
+.contact-page .field{gap:.4rem}
+.contact-page .field input{height:2.9rem;padding:.6rem 1rem}
+.contact-page .field textarea{min-height:6.2rem;padding:.7rem 1rem}
+.contact-page .form .btn{margin-top:.2rem}
+.contact-page .hero--short{padding-top:1.2rem}
+.contact-page .hero--short h1{font-size:clamp(2rem,5vw,3.4rem)}
+.contact-page .hero--short .divider{margin:.7rem auto}
+.contact-page .intro{max-width:820px;font-size:.98rem;line-height:1.4}
+.contact-page .contact{padding-top:.9rem;padding-bottom:.8rem}
+.contact-page .contact h2{font-size:clamp(1.3rem,2.4vw,1.6rem);margin-bottom:.8rem}
+.contact-page .form{gap:.7rem}
+.contact-page .field{gap:.3rem}
+.contact-page .field label{font-size:.7rem}
+.contact-page .field input{height:2.6rem}
+.contact-page .field textarea{min-height:4.6rem}
+.contact-page .form .btn{padding-top:.8rem;padding-bottom:.8rem}
+@media (max-width:700px){.contact-page .intro{font-size:.95rem}}
+.contact-page .hero--short{padding-top:1.8rem}
+.contact-page .contact{padding-top:1.3rem}
+.contact-page .form{gap:.95rem}
+.contact-page .field textarea{min-height:5.6rem}
