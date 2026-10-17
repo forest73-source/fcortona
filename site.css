@@ -85,3 +85,9 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 @media (prefers-reduced-motion:reduce){
   .arcani-preview-grid .arcanum-card,.grid figure,#arcani-maggiori .work{transition:none}
 }
+
+/* Arcani Maggiori in Opere: griglia al posto delle colonne, così l'ingrandimento non sfarfalla sugli Arcani a fine colonna */
+#arcani-maggiori .works{columns:auto;column-gap:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+#arcani-maggiori .works li{margin-bottom:0}
+@media (max-width:900px){ #arcani-maggiori .works{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:560px){ #arcani-maggiori .works{grid-template-columns:1fr} }
