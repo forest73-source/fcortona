@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORTONA FRANCESCA | Künstlerin • Malerin • Spirituelle Forscherin</title>
+    <!-- Font per rispecchiare lo stile tipografico dell'originale -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b0c10;
+            --bg-card: #121318;
+            --gold-primary: #C5A059;
+            --gold-bright: #D4AF37;
+            --gold-light: #e6ca85;
+            --text-light: #e0e0e0;
+            --text-white: #ffffff;
+            --text-muted: #9a9a9a;
+            --font-serif: 'Cinzel', serif;
+            --font-quote: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(11, 12, 16, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            z-index: 1000;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo span.sub {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--gold-primary);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, rgba(11, 12, 16, 0.75) 0%, rgba(11, 12, 16, 0.92) 100%), url('../images/foto.jpg') center/cover no-repeat;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .hero-subtitle::before, .hero-subtitle::after {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background: var(--gold-primary);
+            opacity: 0.6;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: var(--text-white);
+            letter-spacing: 6px;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--gold-primary);
+        }
+
+        .hero-quote {
+            font-family: var(--font-quote);
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--text-light);
+            max-width: 750px;
+            margin: 0 auto 0.5rem;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .hero-author {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-gold-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.2rem;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: rgba(11, 12, 16, 0.4);
+        }
+
+        .btn-gold-outline:hover {
+            background-color: var(--gold-primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn-dark-outline {
+            display: inline-block;
+            padding: 1rem 2.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-dark-outline:hover {
+            border-color: var(--text-white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 35px;
+            background: linear-gradient(180deg, var(--gold-primary) 0%, transparent 100%);
+        }
+
+        /* SECTION STYLES */
+        section {
+            padding: 7rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--text-white);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+        }
+
+        /* BIOGRAFIA SECTION */
+        .bio-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4.5rem;
+            align-items: flex-start;
+        }
+
+        .bio-img img {
+            width: 100%;
+            border-radius: 2px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        .bio-text p {
+            color: var(--text-light);
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
+            line-height: 1.85;
+            font-weight: 300;
+        }
+
+        .quote-box {
+            border-left: 2px solid var(--gold-primary);
+            padding-left: 1.5rem;
+            margin: 2.2rem 0;
+        }
+
+        .quote-box p {
+            font-family: var(--font-quote);
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--text-white);
+            margin-bottom: 0.4rem;
+        }
+
+        .quote-box span {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* ARCANI PREVIEW SECTION */
+        .arcani-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .arcanum-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-align: center;
+            padding-bottom: 1.8rem;
+        }
+
+        .arcanum-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
+        }
+
+        .arcanum-card img {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+        }
+
+        .arcanum-card h3 {
+            font-family: var(--font-serif);
+            color: var(--gold-primary);
+            margin: 1.4rem 0 0.4rem;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .arcanum-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .center-btn {
+            text-align: center;
+        }
+
+        /* NEWSLETTER SECTION */
+        .newsletter-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 4.5rem 2rem;
+            text-align: center;
+            border-radius: 4px;
+            margin-top: 2rem;
+        }
+
+        .mail-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--gold-primary);
+        }
+
+        .newsletter-section h2 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .newsletter-section p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 0.9rem 1.4rem;
+            background: var(--bg-dark);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: var(--text-white);
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            border-color: var(--gold-primary);
+        }
+
+        .btn-subscribe {
+            padding: 0.9rem 2rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-subscribe:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+            padding: 4rem 2rem 3rem;
+            background: var(--bg-dark);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .footer-brand p.sub {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-brand p.desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            max-width: 320px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-col a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold-primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .footer-email {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .bio-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .scroll-down {
+                display: none;
+            }
+        }
+
+        /* HERO allineato a sinistra (stessa altezza, testo a sinistra in linea con il logo) */
+        .hero {
+            align-items: flex-start;
+            text-align: left;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+        .hero-subtitle::before { display: none; }
+        .hero-quote { margin: 0 0 0.5rem; }
+        .hero-buttons { justify-content: flex-start; }
+        @media (max-width: 600px) {
+            .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .hero-subtitle::after { display: none; }
+        }
+    </style>
+<link rel="stylesheet" href="../site.css?v=20261017c">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="js-header">
+        <a href="index.html" class="logo">
+            CORTONA
+            <span class="sub">FRANCESCA</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+        <nav aria-label="Hauptmenü">
+            <ul>
+                <li><a href="index.html" class="active">Start</a></li>
+                <li><a href="arcani.html">Arkana</a></li>
+                <li><span class="dd"><a href="opere.html">Werke</a><button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Das Menü „Werke“ öffnen"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button><span class="dd-menu" role="menu"><a class="dd-all" href="opere.html" role="menuitem">Alle Werke</a><a href="opere.html#innocence-1" role="menuitem"><span>Innocence</span><small>Serie I</small></a><a href="opere.html#innocence-2" role="menuitem"><span>Innocence</span><small>Serie II</small></a><a href="opere.html#innocence-3" role="menuitem"><span>Innocence</span><small>Serie III</small></a><a href="opere.html#maestri-di-marmo" role="menuitem"><span>Maestri di Marmo</span></a><a href="opere.html#frammenti" role="menuitem"><span>Frammenti</span></a><a href="opere.html#dopo-di-noi" role="menuitem"><span>Dopo di Noi</span></a><a href="opere.html#arcani-maggiori" role="menuitem"><span>Große Arkana</span></a></span></span></li>
+                <li><a href="mostre.html">Ausstellungen &amp; Kritiken</a></li>
+                <li><a href="chakra.html">7-Chakra-Kollektion</a></li>
+                <li><a href="contatti.html">Kontakt</a></li>
+            </ul>
+            <div class="lang-switch"><button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Lingua / Language / Sprache">DE<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button><ul class="lang-menu"><li><a href="../index.html" hreflang="it" lang="it">Italiano</a></li><li><a href="../en/index.html" hreflang="en" lang="en">English</a></li><li><a href="../fr/index.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../pt/index.html" hreflang="pt" lang="pt">Português</a></li><li><a href="../zh/index.html" hreflang="zh" lang="zh">中文</a></li><li><a href="index.html" hreflang="de" lang="de" aria-current="true">Deutsch</a></li></ul></div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <span class="hero-subtitle">KÜNSTLERIN • MALERIN • SPIRITUELLE FORSCHERIN</span>
+        <h1>CORTONA<br><span>FRANCESCA</span></h1>
+        <p class="hero-quote">«Die Essenz liegt in der Vereinigung des Geistes in der Materie. Die Essenz im ALL.»</p>
+        <p class="hero-author">— Cortona</p>
+        <div class="hero-buttons">
+            <a href="arcani.html" class="btn-gold-outline">DAS ARKANA-BOXSET →</a>
+            <a href="opere.html" class="btn-dark-outline">DIE WERKE ENTDECKEN</a>
+        </div>
+        <div class="scroll-down">
+            SCROLLEN
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- BIOGRAFIA SECTION -->
+    <section id="biografia">
+        <span class="section-tag">BIOGRAFIE</span>
+        <h2 class="section-title">Die Kunst und ihre Essenz</h2>
+        <div class="bio-container">
+            <div class="bio-img">
+                <img src="../images/foto.jpg" alt="Francesca Cortona bei der Arbeit in ihrem Atelier">
+            </div>
+            <div class="bio-text">
+                <p>Cortonas künstlerischer Ausdruck ist von Natur aus spirituell. Durch eine ganzheitliche und esoterische Kommunikation versucht sie, mit der Malerei eine tiefere Botschaft zu vermitteln und den Betrachter zu ermutigen, den Blick auf sein eigenes innerstes SELBST zu richten. Ihre Forschung gilt der Erkenntnis und dem Bewusstsein des Selbst und der Sinne, um wieder mit dem eigenen inneren Licht in Verbindung zu treten: Für Cortona ist Kunst Heilung.</p>
+                
+                <div class="quote-box">
+                    <p>"Kunst, die nicht der Heilung dient, ist keine Kunst"</p>
+                    <span>— Alejandro Jodorowsky</span>
+                </div>
+
+                <p>Geboren 1984 in Rom und 2008 am Central Saint Martins in London ausgebildet, zeichnet sich Francesca in der zeitgenössischen Szene durch ihren innovativen Einsatz photolumineszenter Pigmente in Verbindung mit klassischer Ölmalerei aus. Diese Materialien erzeugen Licht im Dunkeln und werden zur Metapher für eine innere Schönheit, die sich ausbreitet. 2021 von Vittorio Sgarbi ausgezeichnet, hat sie ihre Forschung auf die Krypto-Kunst ausgeweitet und die NFT-Kollektion „7CHAKRA CONNECTION“ mit humanitärem Zweck ins Leben gerufen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANTEPRIMA ARCANI SECTION -->
+    <section id="arcani-preview">
+        <span class="section-tag">DAS BOXSET</span>
+        <h2 class="section-title">Die Großen Arkana</h2>
+        <div class="arcani-preview-grid">
+            <div class="arcanum-card">
+                <img src="../images/1-unitas.jpg" alt="I. UNITAS">
+                <h3>I. UNITAS</h3>
+                <p>Das ursprüngliche Eine</p>
+            </div>
+            <div class="arcanum-card">
+                <img src="../images/2-mater.jpg" alt="II. MATER">
+                <h3>II. MATER</h3>
+                <p>Die kosmische Mutter</p>
+            </div>
+            <div class="arcanum-card">
+                <img src="../images/3-creatio.jpg" alt="III. CREATIO">
+                <h3>III. CREATIO</h3>
+                <p>Das schöpferische Prinzip</p>
+            </div>
+        </div>
+        <div class="center-btn">
+            <a href="opere.html#arcani-maggiori" class="btn-gold-outline">ALLE 22 ARKANA ENTDECKEN →</a>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section id="contatti">
+        <div class="newsletter-section">
+            <div class="mail-icon">&#9993;</div>
+            <h2>IN KONTAKT BLEIBEN</h2>
+            <p>Abonnieren Sie den Newsletter für Neuigkeiten zu Ausstellungen, neuen Werken und Editionen.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Ihre E-Mail" required>
+                <button type="submit" class="btn-subscribe">ABONNIEREN</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>CORTONA</h3>
+                <p class="sub">FRANCESCA</p>
+                <p class="desc">Zeitgenössische Künstlerin, Malerin und spirituelle Forscherin. Kunst als Heilung.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>NAVIGATION</h4>
+                <ul>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="arcani.html">Arkana</a></li>
+                    <li><a href="opere.html">Werke</a></li>
+                    <li><a href="mostre.html">Ausstellungen &amp; Kritiken</a></li>
+                    <li><a href="chakra.html">7-Chakra-Kollektion</a></li>
+                    <li><a href="contatti.html">Kontakt</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>FOLGE MIR</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/CortonaFrancescaArcani" target="_blank" class="social-btn" title="Facebook">f</a>
+                    <a href="https://www.instagram.com/francescacortona/" target="_blank" class="social-btn" title="Instagram">i</a>
+                    <a href="https://wa.me/393922731473" target="_blank" class="social-btn" title="WhatsApp">&phone;</a>
+                    <a href="mailto:cortonaitalianpainter@gmail.com" class="social-btn" title="E-Mail">&#9993;</a>
+                </div>
+                <p class="footer-email">cortonaitalianpainter@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="../site.js?v=20261017c" defer></script>
+</body>
+</html>

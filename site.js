@@ -51,7 +51,8 @@
     en: ['Newsletter subscription', 'I would like to subscribe to the newsletter.\nMy email: '],
     fr: ['Inscription à la newsletter', 'Je souhaite m’inscrire à la newsletter.\nMon e-mail : '],
     pt: ['Inscrição na newsletter', 'Gostaria de me inscrever na newsletter.\nMeu e-mail: '],
-    zh: ['订阅简报', '我想订阅简报。\n我的邮箱：']
+    zh: ['订阅简报', '我想订阅简报。\n我的邮箱：'],
+    de: ['Newsletter-Anmeldung', 'Ich möchte den Newsletter abonnieren.\nMeine E-Mail: ']
   };
   var lang = (document.documentElement.lang || 'it').slice(0, 2);
   var t = T[lang] || T.it;
