@@ -234,3 +234,34 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 .chakra-hero::before{width:auto;aspect-ratio:auto;margin:0;height:auto}
 .chakra-hero-grid{display:block!important;justify-items:start}
 @media (max-width:900px){.chakra-hero-grid{justify-items:center}.chakra-hero-text{margin:0 auto}}
+
+/* 7 Chakra — miniature: foto intera di sottofondo, scritte sopra */
+.benefit-band{position:relative;isolation:isolate;padding-bottom:64.3%;max-width:1000px;margin:0 auto}
+.benefit-band::before{content:"";position:absolute;left:0;right:0;bottom:0;aspect-ratio:3195/2055;z-index:-1;background:var(--band) center/100% 100% no-repeat;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 90%,transparent 100%)}
+.band-cap{position:absolute;left:0;right:0;bottom:.2rem;margin:0;text-align:center;font-style:italic;font-size:1rem;color:var(--muted)}
+.benefit-band + .cards{margin-top:2rem}
+
+/* 7 Chakra — telefono: foto principale intera sotto le scritte */
+@media (max-width:900px){
+  .chakra-hero{padding-bottom:calc(min(100vw,460px) * 1.2 + 2rem)}
+  .chakra-hero::before{inset:auto 0 0 0;margin:0 auto;width:min(100vw,460px);height:calc(min(100vw,460px) * 1.2);background-size:contain;background-position:center bottom;opacity:1;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 100%);mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 100%)}
+  .chakra-hero::after{background:none}
+}
+
+/* 7 Chakra — rifiniture: bordi della foto sfumati sulla foto stessa */
+.chakra-hero{background:#0b0c10}
+.chakra-hero::before{background-position:80% center;background-size:auto 100%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%,#000 76%,transparent 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 86%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+  -webkit-mask-size:auto 100%,100% 100%;mask-size:auto 100%,100% 100%;-webkit-mask-position:80% center,center;mask-position:80% center,center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.chakra-hero::after{background:linear-gradient(90deg,rgba(11,12,16,.75) 0%,rgba(11,12,16,.4) 40%,transparent 60%)}
+@media (max-width:900px){
+  .chakra-hero::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 92%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 92%,transparent 100%);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-position:center;mask-position:center;background-position:center bottom;background-size:contain}
+}
+/* miniature: didascalia sotto la foto, foto a tutta larghezza su telefono */
+.benefit-band{padding-bottom:calc(64.3% + 2.4rem)}
+.benefit-band::before{bottom:2.4rem}
+.band-cap{bottom:0}
+@media (max-width:700px){.benefit-band{margin-left:-1.4rem;margin-right:-1.4rem;padding-bottom:calc(64.3% + 3.6rem)}.benefit-band::before{bottom:3.6rem}.benefit-band>*:not(.band-cap){margin-left:1.4rem;margin-right:1.4rem}.band-cap{padding:0 1.4rem}}
