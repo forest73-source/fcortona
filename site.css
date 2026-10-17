@@ -345,3 +345,10 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 
 /* Opere: testi di introduzione delle serie in giallo oro */
 .serie-text p,.serie-text .lead,.serie-text strong{color:var(--gold-soft)}
+
+/* Opere: indice delle serie — titoli allineati sulla stessa riga in tutte le copertine */
+.series-index ul{row-gap:0}
+.series-index li{display:grid;grid-row:span 4;grid-template-rows:subgrid;margin-bottom:1.2rem}
+.series-index a{display:grid;grid-row:span 4;grid-template-rows:subgrid;height:auto;align-content:stretch}
+.series-index .si-count{align-self:end}
+.series-index .si-title{align-self:start}
