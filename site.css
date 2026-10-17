@@ -138,3 +138,16 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
   #maestri-di-marmo .works li:nth-child(3){width:100%}
   #maestri-di-marmo .work{outline-offset:5px}
 }
+
+/* Tutte le opere: rilievo al passaggio del mouse, come gli Arcani */
+@media (hover:hover){
+  .works li{position:relative}
+  .work{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+  .works li:hover,.works li:focus-within{z-index:5}
+  .work:hover,.work:focus-visible{transform:scale(1.06);border-color:var(--gold);box-shadow:0 22px 50px rgba(0,0,0,.7),0 0 0 1px rgba(201,162,74,.45)}
+  .work:hover img,.work:focus-visible img{transform:none}
+  #innocence-2 .work:hover,#innocence-2 .work:focus-visible{transform:scale(1.05)}
+  #maestri-di-marmo .work:hover{transform:scale(1.04)}
+  #dopo-di-noi .work:hover{transform:scale(1.04)}
+}
+@media (prefers-reduced-motion:reduce){.work{transition:none}}
