@@ -125,3 +125,16 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 @media (max-width:620px){#innocence-2 .works{gap:.6rem}#innocence-2 .work-cap{font-size:.8em}}
 #innocence-2 .work img{width:100%;height:auto;aspect-ratio:8/7;object-fit:cover}
 #innocence-2 .works li:nth-child(5) img,#innocence-2 .works li:nth-child(6) img,#innocence-2 .works li:nth-child(23) img,#innocence-2 .works li:nth-child(24) img{aspect-ratio:4/3}
+
+/* Maestri di Marmo — tre opere grandi, due sopra e la verticale al centro */
+#maestri-di-marmo .works{columns:auto;column-gap:0;display:grid;grid-template-columns:repeat(2,1fr);gap:2.2rem;max-width:1160px;margin-left:auto;margin-right:auto;align-items:start}
+#maestri-di-marmo .works li{margin-bottom:0}
+#maestri-di-marmo .works li:nth-child(3){grid-column:1 / -1;justify-self:center;width:calc(50% - 1.1rem)}
+#maestri-di-marmo .work{box-shadow:0 18px 50px rgba(0,0,0,.55);outline:1px solid rgba(201,162,74,.35);outline-offset:8px;transition:outline-color .3s,transform .4s}
+#maestri-di-marmo .work:hover{outline-color:var(--gold);transform:translateY(-3px)}
+#maestri-di-marmo .work img{width:100%;height:auto}
+@media (max-width:760px){
+  #maestri-di-marmo .works{grid-template-columns:1fr;gap:2rem}
+  #maestri-di-marmo .works li:nth-child(3){width:100%}
+  #maestri-di-marmo .work{outline-offset:5px}
+}
