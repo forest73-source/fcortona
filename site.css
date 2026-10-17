@@ -274,3 +274,7 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
   .chakra-hero{background:#000;min-height:auto}
   .chakra-hero::after{background:linear-gradient(180deg,#0b0c10 0,transparent 8%,transparent 92%,#0b0c10 100%)}
 }
+
+/* Separatore ✦ sopra i titoli di sezione (Arcani, Mostre) */
+.gallery > .divider,.block > .divider{margin:0 auto 2.2rem}
+.block > .divider{margin-bottom:1.8rem}
