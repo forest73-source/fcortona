@@ -61,7 +61,7 @@
       e.preventDefault();
       var m = f.querySelector('input[type="email"]');
       if (!m || !m.value) return;
-      window.location.href = 'mailto:cortonafrancescapainter@gmail.com?subject=' +
+      window.location.href = 'mailto:cortonaitalianpainter@gmail.com?subject=' +
         encodeURIComponent(t[0]) + '&body=' + encodeURIComponent(t[1] + m.value);
     });
   });
