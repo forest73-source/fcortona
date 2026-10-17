@@ -384,3 +384,7 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 /* Mostre & Critica: meno spazio tra il titolo e le citazioni */
 .page-hero:has(> .mostre-title){padding-bottom:.5rem}
 .page-hero:has(> .mostre-title) + .quotes{margin-top:1rem}
+
+/* Dopo di Noi: "Disponibile" è un link al modulo di contatto */
+.lb-text .wt-avail a{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:.25rem .8rem;margin:0 0 1.2rem;text-decoration:none;transition:background .2s,color .2s}
+.lb-text .wt-avail a:hover,.lb-text .wt-avail a:focus-visible{background:var(--gold);color:#0b0c10}

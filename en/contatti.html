@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:wght@400;500&family=Jost:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../arcani.css?v=20261017b">
-<link rel="stylesheet" href="../contatti.css?v=20261017b">
-<link rel="stylesheet" href="../site.css?v=20261017b">
+<link rel="stylesheet" href="../arcani.css?v=20261017c">
+<link rel="stylesheet" href="../contatti.css?v=20261017c">
+<link rel="stylesheet" href="../site.css?v=20261017c">
 </head>
 <body class="contact-page">
 
@@ -141,6 +141,14 @@
       encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   });
 </script>
-<script src="../site.js?v=20261017b" defer></script>
+<script src="../site.js?v=20261017c" defer></script>
+<script>
+  // Arrivo da una scheda opera: messaggio già preparato con il titolo dell'opera.
+  (function () {
+    var t = new URLSearchParams(location.search).get('opera');
+    var m = document.getElementById('messaggio');
+    if (t && m && !m.value) m.value = "Hello, I am interested in the work “{t}” from the series “Dopo di Noi”. I would like more information about its availability.".replace('{t}', t);
+  })();
+</script>
 </body>
 </html>
