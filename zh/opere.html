@@ -26,9 +26,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../arcani.css?v=20261017g">
-<link rel="stylesheet" href="../opere.css?v=20261017g">
-<link rel="stylesheet" href="../site.css?v=20261017g">
+<link rel="stylesheet" href="../arcani.css?v=20261017h">
+<link rel="stylesheet" href="../opere.css?v=20261017h">
+<link rel="stylesheet" href="../site.css?v=20261017h">
 </head>
 <body>
 
@@ -818,7 +818,6 @@
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="放大的作品" hidden>
   <button class="lb-close" type="button" aria-label="关闭">×</button>
-  <button class="lb-share" type="button" aria-label="分享" title="分享" data-done="链接已复制"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7.5 7.5 4.5-4.5 4.5 4.5"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg></button>
   <button class="lb-prev" type="button" aria-label="上一件作品">‹</button>
   <figure>
     <img src="../" alt="">
@@ -849,14 +848,6 @@
   function close(){ lb.hidden=true; img.src=''; lb.classList.remove('has-text'); document.body.style.overflow=''; if(last) last.focus(); }
   document.querySelectorAll('.work').forEach(function(b){ b.addEventListener('click',function(){open(b);}); });
   lb.querySelector('.lb-close').onclick=close;
-  var sh=lb.querySelector('.lb-share');
-  function toast(m){ var d=document.createElement('div'); d.className='lb-toast'; d.textContent=m; lb.appendChild(d); setTimeout(function(){d.remove();},1800); }
-  sh.onclick=function(){
-    var b=list[i], sec=b.closest('section[id]'), url=location.href.split('#')[0]+(sec?'#'+sec.id:''), title=b.dataset.title+' — Cortona Francesca';
-    if(navigator.share){ navigator.share({title:title,text:title,url:url}).catch(function(){}); }
-    else if(navigator.clipboard){ navigator.clipboard.writeText(url).then(function(){toast(sh.dataset.done);}); }
-    else { window.prompt('',url); }
-  };
   lb.querySelector('.lb-prev').onclick=function(){show(i-1);};
   lb.querySelector('.lb-next').onclick=function(){show(i+1);};
   lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
@@ -872,6 +863,6 @@
     if(Math.abs(dx)>50) show(i+(dx<0?1:-1)); x0=null; });
 })();
 </script>
-<script src="../site.js?v=20261017g" defer></script>
+<script src="../site.js?v=20261017h" defer></script>
 </body>
 </html>
