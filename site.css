@@ -380,3 +380,7 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
   .dd-menu .dd-all{display:flex!important}
 }
 @media (max-width:1024px){.js-header > nav{flex-wrap:nowrap}.js-header > nav > *{flex:none}}
+
+/* Mostre & Critica: meno spazio tra il titolo e le citazioni */
+.page-hero:has(> .mostre-title){padding-bottom:.5rem}
+.page-hero:has(> .mostre-title) + .quotes{margin-top:1rem}
