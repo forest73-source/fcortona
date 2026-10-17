@@ -91,3 +91,6 @@ html[lang="zh"] .section-title{letter-spacing:.08em}
 #arcani-maggiori .works li{margin-bottom:0}
 @media (max-width:900px){ #arcani-maggiori .works{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:560px){ #arcani-maggiori .works{grid-template-columns:1fr} }
+
+/* La finestra di visualizzazione delle opere passa sopra la barra in alto (prima copriva il pulsante di chiusura) */
+.lightbox{z-index:1200}
