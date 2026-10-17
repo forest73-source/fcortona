@@ -20,7 +20,8 @@
 .chakra-list li{position:relative;padding:2.6rem 1.6rem 2.2rem;background:var(--card);border:1px solid rgba(201,162,74,.18);overflow:hidden;transition:border-color .3s,transform .3s}
 .chakra-list li::before{content:"";position:absolute;inset:-40% -40% auto;height:80%;background:radial-gradient(circle,var(--c),transparent 65%);opacity:.12;pointer-events:none}
 .chakra-list li:hover{border-color:var(--c);transform:translateY(-3px)}
-.orb{position:relative;display:grid;place-items:center;width:4.2rem;height:4.2rem;margin:0 auto 1.4rem;border-radius:50%;border:1px solid var(--c);color:var(--cream);font-family:var(--display);font-size:1.4rem;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 70%,#fff 10%),color-mix(in srgb,var(--c) 35%,#000));box-shadow:0 0 28px color-mix(in srgb,var(--c) 55%,transparent)}
+.orb{position:relative;display:block;width:8.5rem;height:8.5rem;margin:0 auto 1.3rem;object-fit:contain;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--c) 45%,transparent));transition:transform .4s,filter .4s}
+.chakra-list li:hover .orb{transform:scale(1.06);filter:drop-shadow(0 0 22px color-mix(in srgb,var(--c) 70%,transparent))}
 .chakra-list h3{position:relative;font-family:var(--display);font-weight:400;font-size:1.5rem;letter-spacing:.14em;color:var(--cream)}
 .chakra-list .it{position:relative;margin-top:.4rem;font-family:var(--sans);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--c)}
 .chakra-list .mean{position:relative;margin-top:1rem;font-style:italic;color:#d8d4ca}
