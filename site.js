@@ -42,3 +42,25 @@
   }
   window.addEventListener('load', function () { setTimeout(goToHash, 50); });
 })();
+
+/* Resta in Contatto: apre il programma di posta con la richiesta di iscrizione già scritta */
+(function () {
+  var T = {
+    it: ['Iscrizione alla newsletter', 'Vorrei iscrivermi alla newsletter.\nLa mia email: '],
+    en: ['Newsletter subscription', 'I would like to subscribe to the newsletter.\nMy email: '],
+    fr: ['Inscription à la newsletter', 'Je souhaite m’inscrire à la newsletter.\nMon e-mail : '],
+    pt: ['Inscrição na newsletter', 'Gostaria de me inscrever na newsletter.\nMeu e-mail: '],
+    zh: ['订阅简报', '我想订阅简报。\n我的邮箱：']
+  };
+  var lang = (document.documentElement.lang || 'it').slice(0, 2);
+  var t = T[lang] || T.it;
+  document.querySelectorAll('.newsletter form, form.newsletter-form').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var m = f.querySelector('input[type="email"]');
+      if (!m || !m.value) return;
+      window.location.href = 'mailto:cortonafrancescapainter@gmail.com?subject=' +
+        encodeURIComponent(t[0]) + '&body=' + encodeURIComponent(t[1] + m.value);
+    });
+  });
+})();
