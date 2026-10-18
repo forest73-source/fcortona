@@ -425,3 +425,9 @@ html,body{overflow-x:clip}
 /* Opere: meno spazio tra la frase sotto OPERE e la prima serie */
 .opere-hero{padding-bottom:2rem}
 #innocence-1{padding-top:3rem}
+
+/* 7 Chakra: foto delle opere fisiche in mostra */
+.benefit-photo{max-width:900px;margin:2.4rem auto 2.6rem}
+.benefit-photo img{display:block;width:100%;height:auto;border:1px solid rgba(201,162,74,.25)}
+/* miniature: un poco più piccola */
+.benefit-band{max-width:900px}
