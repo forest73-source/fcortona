@@ -487,3 +487,6 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
 .zoom-box p{margin-top:1rem;font-family:'Jost','Montserrat',sans-serif;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:#e0c47a}
 .zoom-box button{position:absolute;top:1rem;right:1rem;width:2.8rem;height:2.8rem;background:none;border:1px solid rgba(201,162,74,.35);color:#e2c777;font-size:1.8rem;line-height:1;cursor:pointer}
 .zoom-box button:hover{background:#c9a24a;color:#0b0b10}
+
+/* Home: niente lineetta dopo "Artista • Pittrice • Ricercatrice spirituale" */
+.hero-subtitle::after{display:none!important}
