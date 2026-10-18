@@ -467,3 +467,21 @@ blockquote.hero-quote p{font-family:'Cormorant Garamond',serif;font-style:italic
 blockquote.hero-quote cite{justify-content:center;margin-top:.9rem}
 blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;background:linear-gradient(270deg,transparent,#C5A059)}
 @media (max-width:600px){ blockquote.hero-quote p{font-size:1.3rem} }
+
+/* ---- Mostre: critica di Sgarbi, tre immagini sulla stessa riga ---- */
+.sgarbi-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1.6rem;margin:0 auto}
+.sg-item{display:flex;flex-direction:column;align-items:center;margin:0;text-align:center}
+.sg-item a{display:block;padding:.45rem;border:1px solid rgba(201,162,74,.35);background:#10101a;cursor:zoom-in;transition:border-color .25s,transform .25s}
+.sg-item a:hover{border-color:var(--gold,#c9a24a);transform:translateY(-3px)}
+.sg-item img{display:block;height:240px;width:auto;max-width:100%}
+.sg-item figcaption{margin-top:.7rem;font-family:'Jost','Montserrat',sans-serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#e0c47a}
+.sgarbi-cap{max-width:720px;margin:1.6rem auto 0;text-align:center;font-style:italic;font-size:1rem;line-height:1.5;color:var(--muted,#b9b4a8)}
+.sgarbi-hint{margin-top:.4rem;text-align:center;font-family:'Jost','Montserrat',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#6f6c80}
+@media (max-width:700px){ .sg-item img{height:150px} .sgarbi-row{gap:.8rem;flex-wrap:nowrap;align-items:flex-start} .sg-item figcaption{font-size:.6rem;letter-spacing:.12em} }
+@media (max-width:420px){ .sg-item img{height:92px} .sg-item a{padding:.3rem} }
+/* Ingrandimento immagini (finestra sopra la pagina) */
+.zoom-box{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:2rem 1rem;background:rgba(6,6,10,.95);cursor:zoom-out}
+.zoom-box img{max-width:min(1100px,96vw);max-height:calc(100vh - 7rem);object-fit:contain;border:1px solid rgba(201,162,74,.3);cursor:default}
+.zoom-box p{margin-top:1rem;font-family:'Jost','Montserrat',sans-serif;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:#e0c47a}
+.zoom-box button{position:absolute;top:1rem;right:1rem;width:2.8rem;height:2.8rem;background:none;border:1px solid rgba(201,162,74,.35);color:#e2c777;font-size:1.8rem;line-height:1;cursor:pointer}
+.zoom-box button:hover{background:#c9a24a;color:#0b0b10}

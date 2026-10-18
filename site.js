@@ -88,4 +88,28 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') document.querySelectorAll('.dd.open').forEach(function (d) { d.classList.remove('open'); d.querySelector('.dd-toggle').setAttribute('aria-expanded', 'false'); });
   });
+
+  /* Ingrandimento: link con classe zoom-img aprono l'immagine grande sopra la pagina */
+  document.querySelectorAll('a.zoom-img').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var box = document.createElement('div');
+      box.className = 'zoom-box';
+      box.setAttribute('role', 'dialog');
+      var row = a.closest('[data-close]');
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.textContent = '×';
+      btn.setAttribute('aria-label', row ? row.getAttribute('data-close') : 'Chiudi');
+      var img = document.createElement('img');
+      img.src = a.getAttribute('href'); img.alt = a.getAttribute('data-cap') || '';
+      var cap = document.createElement('p'); cap.textContent = a.getAttribute('data-cap') || '';
+      box.appendChild(btn); box.appendChild(img); box.appendChild(cap);
+      function close() { box.remove(); document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; a.focus(); }
+      function onKey(ev) { if (ev.key === 'Escape') close(); }
+      box.addEventListener('click', function (ev) { if (ev.target !== img) close(); });
+      document.addEventListener('keydown', onKey);
+      document.body.style.overflow = 'hidden';
+      document.body.appendChild(box); btn.focus();
+    });
+  });
 })();
