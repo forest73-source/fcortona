@@ -431,3 +431,14 @@ html,body{overflow-x:clip}
 .benefit-photo img{display:block;width:100%;height:auto;border:1px solid rgba(201,162,74,.25)}
 /* miniature: un poco più piccola */
 .benefit-band{max-width:900px}
+
+/* Home: "Resta in contatto" identico alla pagina Contatti (senza riquadro, maiuscoletto, modulo largo) */
+.newsletter-section{background:transparent;border:0;border-top:1px solid rgba(201,162,74,.2);border-radius:0;max-width:760px;margin:2rem auto 0;padding:4rem 1.5rem 5rem}
+.newsletter-section .mail-icon{display:none}
+.newsletter-section h2{font-family:'Cinzel',Georgia,serif;font-weight:400;font-variant:small-caps;text-transform:none;letter-spacing:.14em;font-size:clamp(1.8rem,4vw,3rem);margin-bottom:0}
+.newsletter-section p{max-width:none;margin:.8rem 0 2rem;color:var(--muted,#b9b4a8);font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;font-weight:400}
+.newsletter-form{max-width:none;margin:0;gap:1rem}
+.newsletter-form input[type="email"]{background:transparent;padding:1rem 1.2rem;font-family:'Jost',system-ui,sans-serif;font-size:1rem}
+.newsletter-form input[type="email"]::placeholder{color:#6f6c80}
+.newsletter-form .btn-subscribe{font-family:'Jost',system-ui,sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.22em;padding:1.1rem 1.6rem;color:#e0c47a}
+html[lang="zh"] .newsletter-section h2{letter-spacing:.08em;font-variant:normal}
