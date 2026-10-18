@@ -454,3 +454,16 @@ html[lang="zh"] .newsletter-section h2{letter-spacing:.08em;font-variant:normal}
 .sgarbi-fig a:hover{border-color:var(--gold,#c9a24a)}
 .sgarbi-fig img{display:block;width:100%;height:auto}
 .sgarbi-fig figcaption{margin-top:1rem;font-style:italic;font-size:1rem;line-height:1.5;color:var(--muted,#b9b4a8)}
+
+/* ---- Citazioni di Cortona: stesso stile in Home e 7 Chakra ---- */
+/* Home: frase allineata a sinistra, sul bordo del testo come il titolo */
+p.hero-quote{margin:0 0 .9rem;max-width:860px;text-align:left}
+/* Firma: linea dorata + nome in Cinzel */
+.hero-author,blockquote.hero-quote cite{display:flex;align-items:center;gap:.9rem;font-family:'Cinzel',Georgia,serif;font-style:normal;font-size:.95rem;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:#e0c47a}
+.hero-author::before,blockquote.hero-quote cite::before{content:"";flex:none;width:2.4rem;height:1px;background:linear-gradient(90deg,transparent,#C5A059)}
+.hero-author{margin-bottom:3rem}
+/* 7 Chakra: frase uguale a quella della Home */
+blockquote.hero-quote p{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.6rem;line-height:1.5;color:#e0e0e0}
+blockquote.hero-quote cite{justify-content:center;margin-top:.9rem}
+blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;background:linear-gradient(270deg,transparent,#C5A059)}
+@media (max-width:600px){ blockquote.hero-quote p{font-size:1.3rem} }
