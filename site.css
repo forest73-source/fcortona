@@ -490,3 +490,4 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
 
 /* Home: niente lineetta dopo "Artista • Pittrice • Ricercatrice spirituale" */
 .hero-subtitle::after{display:none!important}
+.chakra-hero-text .divider + .intro{padding-top:1.4rem}
