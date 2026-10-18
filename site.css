@@ -447,3 +447,10 @@ html[lang="zh"] .newsletter-section h2{letter-spacing:.08em;font-variant:normal}
 .hero-quote{margin:1.4rem auto 1.6rem;max-width:760px;text-align:center}
 .hero-quote p{margin:0;font-style:italic;font-size:clamp(1.25rem,2.6vw,1.65rem);line-height:1.5;color:var(--cream,#f4f1ea);text-shadow:0 0 18px #000,0 2px 6px #000}
 .hero-quote cite{display:block;margin-top:.7rem;font-style:normal;font-family:'Cinzel',Georgia,serif;font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:#e0c47a}
+
+/* Mostre & Critica: critica di Vittorio Sgarbi */
+.sgarbi-fig{margin:0 auto;max-width:480px;text-align:center}
+.sgarbi-fig a{display:block;border:1px solid rgba(201,162,74,.35);padding:.5rem;background:#10101a;transition:border-color .25s}
+.sgarbi-fig a:hover{border-color:var(--gold,#c9a24a)}
+.sgarbi-fig img{display:block;width:100%;height:auto}
+.sgarbi-fig figcaption{margin-top:1rem;font-style:italic;font-size:1rem;line-height:1.5;color:var(--muted,#b9b4a8)}
