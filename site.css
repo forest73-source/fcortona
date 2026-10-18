@@ -421,3 +421,7 @@ html,body{overflow-x:clip}
 @media (max-width:560px), (hover:none){
   .work .work-cap,.work .zoom{display:none}
 }
+
+/* Opere: meno spazio tra la frase sotto OPERE e la prima serie */
+.opere-hero{padding-bottom:2rem}
+#innocence-1{padding-top:3rem}
