@@ -416,3 +416,8 @@ html[lang="zh"] .newsletter-section h2{letter-spacing:.08em}
 html,body{overflow-x:clip}
 @media (max-width:800px){.cards-3{grid-template-columns:minmax(0,1fr)!important}}
 @media (max-width:380px){.edition{padding:2rem 1rem}}
+
+/* Telefono / touch: sulle foto delle opere niente scritte sopra l'immagine (titolo e descrizione si leggono nell'immagine ingrandita) */
+@media (max-width:560px), (hover:none){
+  .work .work-cap,.work .zoom{display:none}
+}
