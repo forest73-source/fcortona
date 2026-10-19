@@ -531,3 +531,11 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
   p.hero-quote{font-size:clamp(1.3rem,6.2vw,1.6rem);line-height:1.45;-webkit-hyphens:manual;hyphens:manual;overflow-wrap:normal;word-break:normal;text-wrap:pretty}
   .hero-quote .nb{display:inline-block}
 }
+
+/* 7 Chakra — telefono: foto delle 7 miniature con spazio sopra e sotto (non copre più il testo) */
+@media (max-width:700px){
+  .benefit-band{display:flex;flex-direction:column;padding-bottom:0!important}
+  .benefit-band::before{content:"";position:static;order:4;display:block;width:100%;height:auto;aspect-ratio:3195/2055;margin:1.8rem 0 0}
+  .benefit-band .band-cap{position:static;order:5;margin:.9rem 0 0}
+  .benefit-band + .cards{margin-top:2.6rem}
+}
