@@ -524,3 +524,10 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
   .newsletter form,.newsletter-form{flex-direction:column;align-items:stretch}
   .newsletter button,.newsletter-form .btn-subscribe{width:100%;justify-content:center;text-align:center}
 }
+
+/* Home: frase iniziale — la seconda frase resta intera (mai "TUTTO" spezzato) */
+.hero-quote .nb{white-space:nowrap}
+@media (max-width:600px){
+  p.hero-quote{font-size:clamp(1.3rem,6.2vw,1.6rem);line-height:1.45;-webkit-hyphens:manual;hyphens:manual;overflow-wrap:normal;word-break:normal;text-wrap:pretty}
+  .hero-quote .nb{display:inline-block}
+}
