@@ -543,3 +543,5 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
 /* 7 Chakra: più stacco tra la striscia con la scintilla oro e il testo sotto */
 .chakra-hero-text .divider + .intro{padding-top:2.2rem}
 @media (max-width:900px){.chakra-hero-text .divider + .intro{padding-top:2.6rem}}
+/* 7 Chakra: un po di respiro tra il titolo e la citazione */
+.chakra-hero-text h1 + .hero-quote{margin-top:1.6rem}
