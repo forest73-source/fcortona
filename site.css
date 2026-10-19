@@ -539,3 +539,7 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
   .benefit-band .band-cap{position:static;order:5;margin:.9rem 0 0}
   .benefit-band + .cards{margin-top:2.6rem}
 }
+
+/* 7 Chakra: più stacco tra la striscia con la scintilla oro e il testo sotto */
+.chakra-hero-text .divider + .intro{padding-top:2.2rem}
+@media (max-width:900px){.chakra-hero-text .divider + .intro{padding-top:2.6rem}}
