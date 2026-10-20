@@ -113,3 +113,10 @@
     });
   });
 })();
+
+/* Protezione immagini: blocca tasto destro e trascinamento sulle immagini */
+(function(){
+  function isImg(t){return t && (t.tagName==='IMG' || (t.closest && t.closest('.zoom-box,.lightbox,.work,.zoom-img')));}
+  document.addEventListener('contextmenu',function(e){ if(isImg(e.target)) e.preventDefault(); },{capture:true});
+  document.addEventListener('dragstart',function(e){ if(e.target && e.target.tagName==='IMG') e.preventDefault(); },{capture:true});
+})();
