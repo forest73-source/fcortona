@@ -551,3 +551,11 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
 @media (max-width:700px){.contact-page .hero--short{padding:4.5rem 1.2rem 4rem!important;margin:0}}
 /* Home: titolo "L'Arte e la sua Essenza" un po' più piccolo */
 .section-title.section-title--sm{font-size:clamp(1.4rem,2.9vw,1.9rem)}
+/* Contatti (computer): la foto continua sotto la fascia e sfuma nel fondo, senza spostare il modulo */
+@media (min-width:701px){
+  .contact-page .hero--short{padding-bottom:calc(5.5rem + 120px)!important;margin-bottom:-120px;
+    background:linear-gradient(180deg,rgba(11,11,16,0) 0%,rgba(11,11,16,0) 62%,rgba(11,11,16,.85) 88%,#0b0b10 100%),
+               linear-gradient(180deg,rgba(11,12,16,.72) 0%,rgba(11,12,16,.82) 100%),
+               url('images/foto-contatti.jpg') 92% 52%/122% auto no-repeat}
+  .contact-page .hero--short + .contact{position:relative;z-index:1}
+}
