@@ -546,7 +546,7 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
 /* 7 Chakra: un po di respiro tra il titolo e la citazione */
 .chakra-hero-text h1 + .hero-quote{margin-top:1.6rem}
 /* Contatti: foto dello studio sotto il titolo, come nella home */
-.contact-page .hero--short{background:linear-gradient(180deg,rgba(11,12,16,.72) 0%,rgba(11,12,16,.9) 100%),url('images/foto.jpg') center 30%/cover no-repeat;padding:6.5rem 1.5rem 5.5rem!important;margin:0 1.25rem}
+.contact-page .hero--short{background:linear-gradient(180deg,rgba(11,12,16,.72) 0%,rgba(11,12,16,.9) 100%),url('images/foto-contatti.jpg') 60% 58%/cover no-repeat;padding:6.5rem 1.5rem 5.5rem!important;margin:0 1.25rem}
 .contact-page .hero--short + .contact{padding-top:4rem}
 @media (max-width:700px){.contact-page .hero--short{padding:4.5rem 1.2rem 4rem!important;margin:0}}
 /* Home: titolo "L'Arte e la sua Essenza" un po' più piccolo */
