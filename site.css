@@ -569,3 +569,8 @@ blockquote.hero-quote cite::after{content:"";flex:none;width:2.4rem;height:1px;b
 }
 /* Protezione immagini: niente "salva immagine" con pressione lunga o trascinamento */
 img{-webkit-touch-callout:none;-webkit-user-drag:none;user-drag:none;-webkit-user-select:none;user-select:none}
+/* Menu principale tutto oro (la voce attiva e al passaggio un oro più luminoso) */
+header.js-header > nav > a,header.js-header > nav > ul > li > a,header.js-header > nav > .dd > a,header.js-header > nav > ul > li > .dd > a{color:#C5A059!important}
+header.js-header > nav > a:hover,header.js-header > nav > a[aria-current],header.js-header > nav > ul > li > a:hover,header.js-header > nav > ul > li > a.active,header.js-header > nav .dd > a:hover,header.js-header > nav .dd > a[aria-current],header.js-header > nav .dd > a.active{color:#e2bd62!important}
+/* Menu su telefono: la prima voce (Bio) non deve restare nascosta sotto la barra */
+@media (max-width:1024px){.js-header > nav{justify-content:flex-start}.js-header > nav > *{flex-shrink:0}}
