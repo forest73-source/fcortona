@@ -575,5 +575,5 @@ header.js-header > nav > a:hover,header.js-header > nav > a[aria-current],header
 /* Menu su telefono: la prima voce (Bio) non deve restare nascosta sotto la barra */
 @media (max-width:1024px){.js-header > nav{justify-content:flex-start}.js-header > nav > *{flex-shrink:0}}
 /* Collegamento al sito di Lié Larousse */
-a.link-lie{color:#C5A059;text-decoration:none;border-bottom:1px solid rgba(197,160,89,.45);transition:color .25s,border-color .25s}
-a.link-lie:hover,a.link-lie:focus-visible{color:#e2bd62;border-bottom-color:#e2bd62}
+a.link-lie{color:#C5A059;text-decoration:none;border-bottom:0;transition:color .25s}
+a.link-lie:hover,a.link-lie:focus-visible{color:#e2bd62}
