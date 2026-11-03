@@ -577,3 +577,19 @@ header.js-header > nav > a:hover,header.js-header > nav > a[aria-current],header
 /* Collegamento al sito di Lié Larousse */
 a.link-lie{color:#C5A059;text-decoration:none;border-bottom:0;transition:color .25s}
 a.link-lie:hover,a.link-lie:focus-visible{color:#e2bd62}
+
+/* Link Privacy e Cookie nel footer */
+.footer-legal{max-width:1200px;margin:2.5rem auto 0;padding:1.5rem 1rem 0;border-top:1px solid rgba(197,160,89,.2);text-align:center;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#8a8697}
+.footer-legal a,.copy a{color:inherit;border-bottom:1px solid rgba(197,160,89,.35);transition:color .3s}
+.footer-legal a:hover,.copy a:hover{color:#C5A059}
+
+/* Pagina Privacy e Cookie */
+.policy{max-width:760px;margin:0 auto;padding:1rem 1.5rem 5rem}
+.policy h2{font-family:'Cinzel',serif;font-weight:400;font-size:clamp(1.15rem,2.4vw,1.4rem);letter-spacing:.12em;color:#C5A059;margin:2.8rem 0 .9rem}
+.policy p,.policy li{font-size:1.15rem;line-height:1.75;color:#d8d4cc}
+.policy ul{padding-left:1.2rem;margin:.6rem 0}
+.policy a{color:#C5A059;border-bottom:1px solid rgba(197,160,89,.35)}
+.policy .updated{margin-top:3rem;font-size:.95rem;color:#8a8697;font-style:italic}
+.policy{position:relative;z-index:2;padding-top:2rem}
+.policy p{margin:0 0 1rem}
+.policy h2:first-child{margin-top:0}
