@@ -47,7 +47,7 @@
 /* Invio dei moduli (Contatti e Newsletter).
    Con la chiave Web3Forms il messaggio arriva direttamente nella mail di Francesca
    e chi scrive vede la conferma sulla pagina. Senza chiave si apre il programma di posta. */
-var WEB3FORMS_KEY = '';
+var WEB3FORMS_KEY = 'c7d3a8ff-1bd2-4034-9028-22c1aad0d8ad';
 var SITE_MAIL = 'cortonaitalianpainter@gmail.com';
 (function () {
   var M = {
