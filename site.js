@@ -44,25 +44,65 @@
   window.addEventListener('load', function () { setTimeout(goToHash, 50); });
 })();
 
-/* Resta in Contatto: apre il programma di posta con la richiesta di iscrizione già scritta */
+/* Invio dei moduli (Contatti e Newsletter).
+   Con la chiave Web3Forms il messaggio arriva direttamente nella mail di Francesca
+   e chi scrive vede la conferma sulla pagina. Senza chiave si apre il programma di posta. */
+var WEB3FORMS_KEY = '';
+var SITE_MAIL = 'cortonaitalianpainter@gmail.com';
 (function () {
-  var T = {
-    it: ['Iscrizione alla newsletter', 'Vorrei iscrivermi alla newsletter.\nLa mia email: '],
-    en: ['Newsletter subscription', 'I would like to subscribe to the newsletter.\nMy email: '],
-    fr: ['Inscription à la newsletter', 'Je souhaite m’inscrire à la newsletter.\nMon e-mail : '],
-    pt: ['Inscrição na newsletter', 'Gostaria de me inscrever na newsletter.\nMeu e-mail: '],
-    zh: ['订阅简报', '我想订阅简报。\n我的邮箱：'],
-    de: ['Newsletter-Anmeldung', 'Ich möchte den Newsletter abonnieren.\nMeine E-Mail: ']
+  var M = {
+    it: { ok: 'Grazie! Il messaggio è stato inviato. Ti risponderò al più presto.', okNews: 'Grazie! Iscrizione ricevuta.', err: 'Invio non riuscito. Scrivimi direttamente a ', sending: 'Invio in corso…',
+          nl: ['Iscrizione alla newsletter', 'Vorrei iscrivermi alla newsletter.\nLa mia email: '] },
+    en: { ok: 'Thank you! Your message has been sent. I will reply as soon as possible.', okNews: 'Thank you! You are subscribed.', err: 'Sending failed. Please write to me directly at ', sending: 'Sending…',
+          nl: ['Newsletter subscription', 'I would like to subscribe to the newsletter.\nMy email: '] },
+    fr: { ok: 'Merci ! Votre message a bien été envoyé. Je vous répondrai au plus vite.', okNews: 'Merci ! Inscription reçue.', err: 'L’envoi a échoué. Écrivez-moi directement à ', sending: 'Envoi en cours…',
+          nl: ['Inscription à la newsletter', 'Je souhaite m’inscrire à la newsletter.\nMon e-mail : '] },
+    pt: { ok: 'Obrigada! A sua mensagem foi enviada. Responderei o mais breve possível.', okNews: 'Obrigada! Inscrição recebida.', err: 'O envio falhou. Escreva-me diretamente para ', sending: 'A enviar…',
+          nl: ['Inscrição na newsletter', 'Gostaria de me inscrever na newsletter.\nMeu e-mail: '] },
+    de: { ok: 'Danke! Deine Nachricht wurde gesendet. Ich antworte so bald wie möglich.', okNews: 'Danke! Anmeldung erhalten.', err: 'Senden fehlgeschlagen. Schreib mir direkt an ', sending: 'Wird gesendet…',
+          nl: ['Newsletter-Anmeldung', 'Ich möchte den Newsletter abonnieren.\nMeine E-Mail: '] },
+    zh: { ok: '谢谢！您的消息已发送，我会尽快回复。', okNews: '谢谢！订阅成功。', err: '发送失败，请直接写信至 ', sending: '发送中…',
+          nl: ['订阅简报', '我想订阅简报。\n我的邮箱：'] }
   };
   var lang = (document.documentElement.lang || 'it').slice(0, 2);
-  var t = T[lang] || T.it;
+  var t = M[lang] || M.it;
+
+  function note(form, text, isErr) {
+    var p = form.parentNode.querySelector('.form-note');
+    if (!p) { p = document.createElement('p'); p.className = 'form-note'; p.setAttribute('role', 'status'); form.parentNode.insertBefore(p, form.nextSibling); }
+    p.textContent = text;
+    if (isErr) { var a = document.createElement('a'); a.href = 'mailto:' + SITE_MAIL; a.textContent = SITE_MAIL; p.appendChild(a); }
+    p.classList.toggle('is-error', !!isErr);
+  }
+
+  /* subject: oggetto della mail; fields: dati del modulo; mailBody: testo per il programma di posta */
+  window.cfSend = function (form, subject, fields, mailBody, okText) {
+    if (!WEB3FORMS_KEY) {
+      window.location.href = 'mailto:' + SITE_MAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(mailBody);
+      return;
+    }
+    var btn = form.querySelector('[type="submit"]');
+    if (btn) btn.disabled = true;
+    note(form, t.sending);
+    var data = { access_key: WEB3FORMS_KEY, subject: subject, from_name: 'Sito cortonafrancesca.it', lingua: lang };
+    for (var k in fields) data[k] = fields[k];
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
+    }).then(function (r) { return r.json(); }).then(function (r) {
+      if (!r.success) throw new Error(r.message);
+      form.reset(); form.style.display = 'none'; note(form, okText || t.ok);
+    }).catch(function () {
+      if (btn) btn.disabled = false; note(form, t.err, true);
+    });
+  };
+
+  /* Resta in Contatto (newsletter) */
   document.querySelectorAll('.newsletter form, form.newsletter-form').forEach(function (f) {
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       var m = f.querySelector('input[type="email"]');
       if (!m || !m.value) return;
-      window.location.href = 'mailto:cortonaitalianpainter@gmail.com?subject=' +
-        encodeURIComponent(t[0]) + '&body=' + encodeURIComponent(t[1] + m.value);
+      window.cfSend(f, t.nl[0], { email: m.value, messaggio: t.nl[1] + m.value }, t.nl[1] + m.value, t.okNews);
     });
   });
 })();

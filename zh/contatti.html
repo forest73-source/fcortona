@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="../fonts.css?v=20261103a">
 <link rel="stylesheet" href="../arcani.css?v=20261018c">
 <link rel="stylesheet" href="../contatti.css?v=20261018c">
-<link rel="stylesheet" href="../site.css?v=20261103a">
+<link rel="stylesheet" href="../site.css?v=20261116a">
 </head>
 <body class="contact-page">
 
@@ -166,17 +166,16 @@
 </footer>
 
 <script>
-  // Il form apre il programma di posta con il messaggio già compilato.
+  // Invio del modulo: vedi cfSend in site.js.
   document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var f = e.target;
     var subject = '网站留言，来自 ' + f.nome.value;
     var body = f.messaggio.value + '\n\n— ' + f.nome.value + ' (' + f.email.value + ')';
-    window.location.href = 'mailto:cortonaitalianpainter@gmail.com?subject=' +
-      encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.cfSend(f, subject, { name: f.nome.value, email: f.email.value, replyto: f.email.value, messaggio: f.messaggio.value }, body);
   });
 </script>
-<script src="../site.js?v=20261020a" defer></script>
+<script src="../site.js?v=20261116a" defer></script>
 <script>
   // Arrivo da una scheda opera: messaggio già preparato con il titolo dell'opera.
   (function () {
