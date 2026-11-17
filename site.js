@@ -1,3 +1,6 @@
+/* Dispositivi touch: classe .touch su <html> (icone social colorate, ecc.) */
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) document.documentElement.classList.add('touch');
+
 /* site.js — menu per cellulare e selettore lingua */
 (function () {
   document.querySelectorAll('.js-header').forEach(function (h) {
