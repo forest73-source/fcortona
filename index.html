@@ -600,9 +600,8 @@
 .glow[data-state="buio"] .glow-frame{box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 90px rgba(110,205,235,.28)}
 .glow figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem;margin-top:1.2rem}
 .hero a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.glow-state{font-family:var(--font-quote);font-style:italic;font-size:1.1rem;color:var(--text-light)}
 .glow-cap{flex-basis:100%;margin:.3rem 0 0;font-family:var(--font-quote);font-style:italic;font-size:1.2rem;line-height:1.45;color:var(--text-light);max-width:34em}
-.glow-tech{display:block;margin-top:.5rem;font-family:var(--font-sans);font-style:normal;font-size:.8rem;color:var(--text-muted)}
-.glow-cap a{color:var(--gold-primary);text-decoration:none;border-bottom:1px solid rgba(197,160,89,.4)}
 .hero--glow .scroll-down{left:50%;right:auto;transform:translateX(-50%)}
 @media (max-width:900px){
   .hero.hero--glow{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:7rem 1.5rem 4rem;min-height:auto}
@@ -618,10 +617,11 @@
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   var g=document.querySelector('.glow'); if(!g) return;
-  var bs=g.querySelectorAll('.dn-switch button');
+  var bs=g.querySelectorAll('.dn-switch button'), st=g.querySelector('.glow-state');
   function set(dark){
     g.dataset.state=dark?'buio':'luce';
     bs.forEach(function(x){ x.setAttribute('aria-pressed',(x.dataset.v==='notte')===dark?'true':'false'); });
+    st.textContent=dark?'Di notte il pigmento si illumina.':'Di giorno il pigmento è neutro.';
   }
   // Ogni 3 secondi alterna giorno e notte, finché il ritratto è sullo schermo.
   // Se qualcuno tocca "Di giorno" o "Di notte", decide lui e il ciclo si ferma.
@@ -683,7 +683,8 @@ document.addEventListener('DOMContentLoaded',function(){
             </div>
             <figcaption>
                 <span class="dn-switch" role="group" aria-label="Guarda l'opera"><button type="button" data-v="giorno" aria-pressed="true">Di giorno</button><button type="button" data-v="notte" aria-pressed="false">Di notte</button></span>
-                <p class="glow-cap">Ritratti a olio con pigmenti fotoluminescenti: di giorno il colore resta nascosto, al buio la pittura si accende.<span class="glow-tech"><a href="opere.html#innocence-2">Innocence, Serie II</a> · olio e pigmento fotoluminescente celeste su lamiera zincata, 29×25 cm</span></p>
+                <span class="glow-state" aria-live="polite">Di giorno il pigmento è neutro.</span>
+                <p class="glow-cap">Ritratto a olio e pigmento fotoluminescente celeste su lamiera zincata, 29×25 cm: di giorno il colore resta nascosto, al buio la pittura si accende.</p>
             </figcaption>
         </figure>
         <div class="scroll-down">
