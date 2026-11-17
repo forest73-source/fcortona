@@ -602,6 +602,8 @@
 .hero a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
 .glow-state{font-family:var(--font-quote);font-style:italic;font-size:1.1rem;color:var(--text-light)}
 .glow-cap{flex-basis:100%;margin:.3rem 0 0;font-family:var(--font-quote);font-style:italic;font-size:1.2rem;line-height:1.45;color:var(--text-light);max-width:34em}
+.glow-cap a{color:var(--gold-primary);text-decoration:none;border-bottom:1px solid rgba(197,160,89,.45)}
+.glow-cap a:hover{border-bottom-color:var(--gold-primary)}
 .hero--glow .scroll-down{left:50%;right:auto;transform:translateX(-50%)}
 @media (max-width:900px){
   .hero.hero--glow{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:7rem 1.5rem 4rem;min-height:auto}
@@ -684,7 +686,7 @@ document.addEventListener('DOMContentLoaded',function(){
             <figcaption>
                 <span class="dn-switch" role="group" aria-label="Guarda l'opera"><button type="button" data-v="giorno" aria-pressed="true">Di giorno</button><button type="button" data-v="notte" aria-pressed="false">Di notte</button></span>
                 <span class="glow-state" aria-live="polite">Di giorno il pigmento è neutro.</span>
-                <p class="glow-cap">Ritratto a olio e pigmento fotoluminescente celeste su lamiera zincata, 29×25 cm</p>
+                <p class="glow-cap"><a href="opere.html#innocence-2">Innocence, Serie II</a> · ritratto a olio e pigmento fotoluminescente celeste su lamiera zincata, 29×25 cm</p>
             </figcaption>
         </figure>
         <div class="scroll-down">
