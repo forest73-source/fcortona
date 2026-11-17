@@ -616,26 +616,9 @@ a.link-lie:hover,a.link-lie:focus-visible{color:#e2bd62}
 .dn-switch button:hover:not([aria-pressed="true"]){background:rgba(197,160,89,.15)}
 .dn-switch button:focus-visible{outline:2px solid #e6ca85;outline-offset:2px}
 
-/* Icone social più visibili: tratto più spesso; su telefono/tablet (senza mouse) colori ufficiali sempre visibili */
+/* Icone social più visibili: più grandi e con tratto più spesso; dorate, si colorano al passaggio del mouse o al tocco */
 .site-footer .social a,.social-icons .social-btn{width:2.9rem;height:2.9rem}
 .site-footer .social svg,.social-icons .social-btn svg{width:1.4rem;height:1.4rem;stroke-width:1.8}
-@media (hover:none),(pointer:coarse){
-  .site-footer .social a,.social-icons .social-btn{color:#fff;border-color:transparent}
-  :is(.site-footer .social,.social-icons) a[href*="facebook.com"]{background:#1877F2}
-  :is(.site-footer .social,.social-icons) a[href*="instagram.com"]{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
-  :is(.site-footer .social,.social-icons) a[href*="tiktok.com"]{background:#010101;box-shadow:-2px -2px 0 #25F4EE,2px 2px 0 #FE2C55}
-  :is(.site-footer .social,.social-icons) a[href*="wa.me"]{background:#25D366}
-  :is(.site-footer .social,.social-icons) a[href*="pinterest."]{background:#E60023}
-  :is(.site-footer .social,.social-icons) a[href^="mailto:"]{background:#C5A059;color:#0b0c10}
-}
 
-/* Stessi colori quando lo schermo è touch (rilevato da site.js) */
-html.touch .site-footer .social a,html.touch .social-icons .social-btn{color:#fff;border-color:transparent}
-html.touch :is(.site-footer .social,.social-icons) a[href*="facebook.com"]{background:#1877F2}
-html.touch :is(.site-footer .social,.social-icons) a[href*="instagram.com"]{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
-html.touch :is(.site-footer .social,.social-icons) a[href*="tiktok.com"]{background:#010101;box-shadow:-2px -2px 0 #25F4EE,2px 2px 0 #FE2C55}
-html.touch :is(.site-footer .social,.social-icons) a[href*="wa.me"]{background:#25D366}
-html.touch :is(.site-footer .social,.social-icons) a[href*="pinterest."]{background:#E60023}
-html.touch :is(.site-footer .social,.social-icons) a[href^="mailto:"]{background:#C5A059;color:#0b0c10}
 .site-footer .social,.social-icons{flex-wrap:wrap}
 @media (max-width:900px){.site-footer .social,.social-icons{gap:.6rem}.site-footer .social a,.social-icons .social-btn{width:2.75rem;height:2.75rem}}

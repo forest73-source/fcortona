@@ -1,5 +1,7 @@
-/* Dispositivi touch: classe .touch su <html> (icone social colorate, ecc.) */
+/* Dispositivi touch: classe .touch su <html>; il listener vuoto attiva :active su iPhone,
+   così le icone social si colorano nel momento in cui si toccano */
 if ('ontouchstart' in window || navigator.maxTouchPoints > 0) document.documentElement.classList.add('touch');
+document.addEventListener('touchstart', function () {}, { passive: true });
 
 /* site.js — menu per cellulare e selettore lingua */
 (function () {
