@@ -34,6 +34,13 @@
 <link rel="stylesheet" href="arcani.css?v=20261018c">
 <link rel="stylesheet" href="opere.css?v=20261018d">
 <link rel="stylesheet" href="site.css?v=20261117s">
+<style>
+.lightbox .lb-ask{margin-top:.9rem;font-family:var(--sans);font-size:.85rem;color:var(--cream);text-decoration:none;border:1px solid rgba(201,162,74,.6);padding:.55rem 1.1rem;transition:background .2s,color .2s}
+.lightbox .lb-ask:hover{background:var(--gold);color:var(--bg)}
+.lightbox .lb-ask:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.lightbox img{max-height:calc(100vh - 15rem);max-height:calc(100dvh - 15rem)}
+@media (max-width:760px){.lightbox img{max-height:calc(100vh - 18rem);max-height:calc(100dvh - 18rem)}}
+</style>
 </head>
 <body>
 
@@ -828,7 +835,7 @@
   <button class="lb-prev" type="button" aria-label="Opera precedente">‹</button>
   <figure>
     <img src="" alt="">
-    <figcaption><span class="t"></span><span class="c"></span><span class="n"></span></figcaption>
+    <figcaption><span class="t"></span><span class="c"></span><span class="n"></span><a class="lb-ask" href="contatti.html#contact-form">Chiedi informazioni su quest'opera</a></figcaption>
   </figure>
   <aside class="lb-text" tabindex="0"></aside>
   <button class="lb-next" type="button" aria-label="Opera successiva">›</button>
@@ -837,13 +844,16 @@
 <script>
 (function(){
   var lb=document.getElementById('lightbox'), img=lb.querySelector('img'),
-      t=lb.querySelector('.t'), c=lb.querySelector('.c'), n=lb.querySelector('.n'), tx=lb.querySelector('.lb-text'),
+      t=lb.querySelector('.t'), c=lb.querySelector('.c'), n=lb.querySelector('.n'), tx=lb.querySelector('.lb-text'), ask=lb.querySelector('.lb-ask'),
       list=[], i=0, last=null;
   function show(k){
     i=(k+list.length)%list.length; var b=list[i];
     img.src=b.dataset.src; img.alt=b.dataset.title;
     t.textContent=b.dataset.title; c.textContent=b.dataset.cap;
     n.textContent=(i+1)+' / '+list.length;
+    var sec=b.closest('section.serie'), h=sec&&sec.querySelector('h2'), k=sec&&sec.querySelector('.kicker');
+    var serie=(h?h.textContent.trim():'')+(k&&/^Serie/.test(k.textContent.trim())?' '+k.textContent.trim():'');
+    ask.href='contatti.html?opera='+encodeURIComponent(b.dataset.title)+'&dettagli='+encodeURIComponent(b.dataset.cap.split(' · Effetto')[0])+'&serie='+encodeURIComponent(serie)+'#contact-form';
     var wt=b.parentNode.querySelector('.work-text');
     if(wt){ tx.innerHTML=wt.innerHTML; tx.scrollTop=0; lb.classList.add('has-text'); } else { tx.innerHTML=''; lb.classList.remove('has-text'); }
   }

@@ -179,9 +179,10 @@
 <script>
   // Arrivo da una scheda opera: messaggio già preparato con il titolo dell'opera.
   (function () {
-    var t = new URLSearchParams(location.search).get('opera');
+    var q = new URLSearchParams(location.search), t = q.get('opera');
+    var serie = q.get('serie') || 'Dopo di Noi', det = q.get('dettagli');
     var m = document.getElementById('messaggio');
-    if (t && m && !m.value) m.value = "Buongiorno, sono interessato/a all'opera «{t}» della serie «Dopo di Noi». Vorrei maggiori informazioni sulla disponibilità.".replace('{t}', t);
+    if (t && m && !m.value) m.value = "Buongiorno, sono interessato/a all'opera «" + t + "»" + (det ? " (" + det + ")" : "") + " della serie «" + serie + "». Vorrei maggiori informazioni sulla disponibilità e sul prezzo.";
   })();
 </script>
 <script data-goatcounter="https://cortonafrancesca.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

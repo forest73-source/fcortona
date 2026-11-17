@@ -585,6 +585,65 @@
         }
     </style>
 <link rel="stylesheet" href="site.css?v=20261117s">
+<style>
+/* Hero luce / buio */
+.hero.hero--glow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);align-items:center;gap:clamp(2rem,5vw,5rem);background:radial-gradient(ellipse at 75% 50%,#15171d 0%,var(--bg-dark) 65%);padding:8rem 3rem 6rem}
+.hero--glow .hero-text{max-width:640px}
+.hero--glow .hero-quote{font-size:1.45rem}
+.hero-lead{font-size:1.02rem;line-height:1.7;color:var(--text-light);max-width:34em;margin:1.4rem 0 2.6rem}
+.glow{margin:0;justify-self:center;width:min(100%,600px)}
+.glow-frame{position:relative;aspect-ratio:1200/1038;border:1px solid rgba(197,160,89,.35);box-shadow:0 30px 80px rgba(0,0,0,.7);transition:box-shadow 2.4s ease}
+.glow-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.glow-day{transition:opacity 2.4s ease,filter 2.4s ease}
+.glow-dark{opacity:0;transition:opacity 2.4s ease}
+.glow[data-state="buio"] .glow-day{opacity:0;filter:brightness(.3)}
+.glow[data-state="buio"] .glow-dark{opacity:1}
+.glow[data-state="buio"] .glow-frame{box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 90px rgba(110,205,235,.28)}
+.glow figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem;margin-top:1.2rem}
+.glow-toggle{font-family:var(--font-sans);font-size:.9rem;color:var(--text-white);background:transparent;border:1px solid rgba(197,160,89,.6);padding:.65rem 1.3rem;cursor:pointer;transition:background .3s,color .3s}
+.glow-toggle:hover{background:var(--gold-primary);color:var(--bg-dark)}
+.glow-toggle:focus-visible,.hero a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.glow-state{font-family:var(--font-quote);font-style:italic;font-size:1.1rem;color:var(--text-light)}
+.glow-cap{flex-basis:100%;font-size:.8rem;color:var(--text-muted)}
+.glow-cap a{color:var(--gold-primary);text-decoration:none;border-bottom:1px solid rgba(197,160,89,.4)}
+.hero--glow .scroll-down{left:50%;right:auto;transform:translateX(-50%)}
+@media (max-width:900px){
+  .hero.hero--glow{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:7rem 1.5rem 4rem;min-height:auto}
+  .hero--glow .hero-text{display:contents}
+  .hero--glow .hero-subtitle{order:1}.hero--glow h1{order:2;margin-bottom:1.6rem}
+  .glow{order:3;width:100%;margin-bottom:2.2rem}
+  .hero--glow .hero-quote{order:4}.hero-lead{order:5}.hero--glow .hero-buttons{order:6}
+}
+@media (prefers-reduced-motion:reduce){
+  .glow-day,.glow-dark,.glow-frame{transition:none}
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var g=document.querySelector('.glow'); if(!g) return;
+  var b=g.querySelector('.glow-toggle'), st=g.querySelector('.glow-state');
+  function set(dark){
+    g.dataset.state=dark?'buio':'luce';
+    b.textContent=dark?'Accendi la luce':'Spegni la luce';
+    b.setAttribute('aria-pressed',dark?'true':'false');
+    st.textContent=dark?'Al buio il pigmento si illumina.':'Alla luce il pigmento è neutro.';
+  }
+  var auto=null;
+  b.addEventListener('click',function(){ clearTimeout(auto); set(g.dataset.state!=='buio'); });
+  // Una sola volta, all'apertura: la luce si spegne da sola dopo un attimo.
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var dark=g.querySelector('.glow-dark');
+    var loaded=new Promise(function(r){ if(dark.complete) r(); else dark.addEventListener('load',r); });
+    // Parte quando il ritratto è ben visibile (su telefono è più in basso).
+    var io=new IntersectionObserver(function(es){
+      if(!es[0].isIntersecting) return; io.disconnect();
+      loaded.then(function(){ auto=setTimeout(function(){ set(true); },1400); });
+    },{threshold:.6});
+    io.observe(g.querySelector('.glow-frame'));
+  }
+});
+</script>
+
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://cortonafrancesca.it/#artist", "name": "Cortona Francesca", "alternateName": "Francesca Cortona", "jobTitle": "Pittrice", "birthPlace": {"@type": "Place", "name": "Roma"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Central Saint Martins"}, "url": "https://cortonafrancesca.it/", "image": ["https://cortonafrancesca.it/images/foto.jpg", "https://cortonafrancesca.it/images/og-foto.jpg"], "email": "mailto:cortonaitalianpainter@gmail.com", "description": "Cortona Francesca, pittrice romana formata alla Central Saint Martins: oli con pigmenti fotoluminescenti che si accendono al buio, Arcani e arte spirituale.", "sameAs": ["https://www.instagram.com/cortona.francesca.arcani/", "https://www.facebook.com/cortona.francesca"], "sibling": {"@type": "Person", "name": "Lié Larousse", "url": "https://lielarousse.it/", "jobTitle": "Scrittrice e poetessa"}}, {"@type": "WebSite", "@id": "https://cortonafrancesca.it/#website", "url": "https://cortonafrancesca.it/", "name": "Cortona Francesca", "inLanguage": "it", "publisher": {"@id": "https://cortonafrancesca.it/#artist"}}, {"@type": "WebPage", "@id": "https://cortonafrancesca.it/#webpage", "url": "https://cortonafrancesca.it/", "name": "CORTONA FRANCESCA | Artista • Pittrice • Ricercatrice Spirituale", "inLanguage": "it", "isPartOf": {"@id": "https://cortonafrancesca.it/#website"}, "about": {"@id": "https://cortonafrancesca.it/#artist"}, "primaryImageOfPage": {"@type": "ImageObject", "url": "https://cortonafrancesca.it/images/foto.jpg", "contentUrl": "https://cortonafrancesca.it/images/foto.jpg", "width": 1520, "height": 1034, "caption": "Francesca Cortona nel suo studio"}}]}</script>
 </head>
 <body>
@@ -610,15 +669,28 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section class="hero">
-        <span class="hero-subtitle">ARTISTA • PITTRICE • RICERCATRICE SPIRITUALE</span>
-        <h1>CORTONA<br><span>FRANCESCA</span></h1>
-        <p class="hero-quote">«L'Essenza sta nell'Unione dello Spirito nella Materia. <span class="nb">L'Essenza nel TUTTO.»</span></p>
-        <p class="hero-author">Cortona</p>
-        <div class="hero-buttons">
-            <a href="arcani.html" class="btn-gold-outline">IL COFANETTO DEGLI ARCANI&nbsp;&rarr;</a>
-            <a href="opere.html" class="btn-dark-outline">SCOPRI LE OPERE</a>
+    <section class="hero hero--glow">
+        <div class="hero-text">
+            <span class="hero-subtitle">ARTISTA • PITTRICE • RICERCATRICE SPIRITUALE</span>
+            <h1>CORTONA<br><span>FRANCESCA</span></h1>
+            <p class="hero-quote">«L'Essenza sta nell'Unione dello Spirito nella Materia. <span class="nb">L'Essenza nel TUTTO.»</span></p>
+            <p class="hero-lead">Ritratti a olio con pigmenti fotoluminescenti: di giorno il colore resta nascosto, al buio la pittura si accende.</p>
+            <div class="hero-buttons">
+                <a href="arcani.html" class="btn-gold-outline">IL COFANETTO DEGLI ARCANI&nbsp;&rarr;</a>
+                <a href="opere.html" class="btn-dark-outline">SCOPRI LE OPERE</a>
+            </div>
         </div>
+        <figure class="glow" data-state="luce">
+            <div class="glow-frame">
+                <img class="glow-day" src="images/hero-luce.jpg" width="1200" height="1038" alt="Ritratto di bambino dipinto a olio su lamiera zincata da Cortona Francesca, alla luce del giorno" fetchpriority="high">
+                <img class="glow-dark" src="images/hero-buio.jpg" width="1200" height="1038" alt="" aria-hidden="true">
+            </div>
+            <figcaption>
+                <button class="glow-toggle" type="button" aria-pressed="false">Spegni la luce</button>
+                <span class="glow-state" aria-live="polite">Alla luce il pigmento è neutro.</span>
+                <span class="glow-cap"><a href="opere.html#innocence-2">Innocence, Serie II</a> · olio e pigmento fotoluminescente celeste su lamiera zincata, 29×25 cm</span>
+            </figcaption>
+        </figure>
         <div class="scroll-down">
             SCORRI
             <div class="scroll-line"></div>
@@ -634,14 +706,14 @@
                 <img src="images/foto.jpg" alt="Francesca Cortona mentre lavora nel suo studio" loading="eager" decoding="async">
             </div>
             <div class="bio-text">
+                <p>Nata a Roma nel 1984 e specializzatasi alla Central Saint Martins di Londra nel 2008, Francesca si distingue nel panorama contemporaneo per l'utilizzo innovativo di pigmenti fotoluminescenti combinati con la pittura a olio classica. Questi materiali generano luce nel buio, diventando metafora della bellezza interiore che si espande. Premiata nel 2021 da Vittorio Sgarbi, ha allargato la sua ricerca alla Crypto Arte lanciando la collezione NFT '7CHAKRA COLLECTION' a scopo umanitario.</p>
+
                 <p>L'espressione artistica di Cortona è intrinsecamente di natura Spirituale. Attraverso una comunicazione olistica ed esoterica, si impegna a trasmettere con la pittura un messaggio più profondo, spingendo chi osserva a rivolgere lo sguardo verso il proprio IO interiore. La sua ricerca si concentra sulla Conoscenza e la Consapevolezza del Sé e dei Sensi, per riconnettere alla propria Luce interiore: per Cortona l'arte è Guarigione.</p>
-                
+
                 <div class="quote-box">
                     <p>"Un'Arte che non serve a Guarire non è Arte"</p>
                     <span>— Alejandro Jodorowsky</span>
                 </div>
-
-                <p>Nata a Roma nel 1984 e specializzatasi alla Central Saint Martins di Londra nel 2008, Francesca si distingue nel panorama contemporaneo per l'utilizzo innovativo di pigmenti fotoluminescenti combinati con la pittura a olio classica. Questi materiali generano luce nel buio, diventando metafora della bellezza interiore che si espande. Premiata nel 2021 da Vittorio Sgarbi, ha allargato la sua ricerca alla Crypto Arte lanciando la collezione NFT '7CHAKRA COLLECTION' a scopo umanitario.</p>
             </div>
         </div>
     </section>
@@ -709,12 +781,12 @@
             <div class="footer-col">
                 <h4>SEGUIMI</h4>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/cortona.francesca" target="_blank" class="social-btn" title="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14C11.8 4.5 10 6.3 10 8.5V11H7.5v3.5H10V21h3.5v-6.5H16l.5-3.5h-3V8.8c0-.5.3-.8.5-.8Z"/></svg></a>
-                    <a href="https://www.instagram.com/cortona.francesca.arcani/" target="_blank" class="social-btn" title="Instagram"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a>
-                    <a href="https://www.tiktok.com/@cortona.francesca" target="_blank" class="social-btn" title="TikTok"><svg viewBox="0 0 24 24"><path d="M13.5 3.5v11.2a3.3 3.3 0 1 1-3.3-3.3"/><path d="M13.5 3.5c.4 2.6 2.2 4.4 4.8 4.7"/></svg></a>
-                    <a href="https://wa.me/393922731473" target="_blank" class="social-btn" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5Z"/></svg></a>
-                    <a href="mailto:cortonaitalianpainter@gmail.com" class="social-btn" title="Email"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg></a>
-<a href="https://it.pinterest.com/cortonafrancesca/" target="_blank" rel="noopener" class="social-btn" title="Pinterest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M11 20.3l1.7-7.3"/><path d="M10.2 14.4c-.9-.5-1.3-1.4-1.3-2.6 0-2.3 1.7-3.9 3.9-3.9 2.1 0 3.4 1.4 3.4 3.3 0 2.2-1.2 3.8-2.9 3.8-.8 0-1.4-.5-1.2-1.3l.6-2.5"/></svg></a>
+                    <a href="https://www.facebook.com/cortona.francesca" target="_blank" rel="noopener" class="social-btn" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14C11.8 4.5 10 6.3 10 8.5V11H7.5v3.5H10V21h3.5v-6.5H16l.5-3.5h-3V8.8c0-.5.3-.8.5-.8Z"/></svg></a>
+                    <a href="https://www.instagram.com/cortona.francesca.arcani/" target="_blank" rel="noopener" class="social-btn" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a>
+                    <a href="https://www.tiktok.com/@cortona.francesca" target="_blank" rel="noopener" class="social-btn" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M13.5 3.5v11.2a3.3 3.3 0 1 1-3.3-3.3"/><path d="M13.5 3.5c.4 2.6 2.2 4.4 4.8 4.7"/></svg></a>
+                    <a href="https://wa.me/393922731473" target="_blank" rel="noopener" class="social-btn" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5Z"/></svg></a>
+                    <a href="mailto:cortonaitalianpainter@gmail.com" class="social-btn" title="Email" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg></a>
+<a href="https://it.pinterest.com/cortonafrancesca/" target="_blank" rel="noopener" class="social-btn" title="Pinterest" aria-label="Pinterest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M11 20.3l1.7-7.3"/><path d="M10.2 14.4c-.9-.5-1.3-1.4-1.3-2.6 0-2.3 1.7-3.9 3.9-3.9 2.1 0 3.4 1.4 3.4 3.3 0 2.2-1.2 3.8-2.9 3.8-.8 0-1.4-.5-1.2-1.3l.6-2.5"/></svg></a>
                 </div>
                 <p class="footer-email">cortonaitalianpainter@gmail.com</p>
             </div>
