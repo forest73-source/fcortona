@@ -592,10 +592,10 @@
 .hero--glow .hero-quote{font-size:1.45rem}
 .hero-lead{font-size:1.02rem;line-height:1.7;color:var(--text-light);max-width:34em;margin:1.4rem 0 2.6rem}
 .glow{margin:0;justify-self:center;width:min(100%,600px)}
-.glow-frame{position:relative;aspect-ratio:1200/1038;border:1px solid rgba(197,160,89,.35);box-shadow:0 30px 80px rgba(0,0,0,.7);transition:box-shadow 2.4s ease}
+.glow-frame{position:relative;aspect-ratio:1200/1038;border:1px solid rgba(197,160,89,.35);box-shadow:0 30px 80px rgba(0,0,0,.7);transition:box-shadow 1.2s ease}
 .glow-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.glow-day{transition:opacity 2.4s ease,filter 2.4s ease}
-.glow-dark{opacity:0;transition:opacity 2.4s ease}
+.glow-day{transition:opacity 1.2s ease,filter 1.2s ease}
+.glow-dark{opacity:0;transition:opacity 1.2s ease}
 .glow[data-state="buio"] .glow-day{opacity:0;filter:brightness(.3)}
 .glow[data-state="buio"] .glow-dark{opacity:1}
 .glow[data-state="buio"] .glow-frame{box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 90px rgba(110,205,235,.28)}
@@ -625,19 +625,21 @@ document.addEventListener('DOMContentLoaded',function(){
     bs.forEach(function(x){ x.setAttribute('aria-pressed',(x.dataset.v==='notte')===dark?'true':'false'); });
     st.textContent=dark?'Di notte il pigmento si illumina.':'Di giorno il pigmento è neutro.';
   }
-  var auto=null;
-  bs.forEach(function(x){ x.addEventListener('click',function(){ clearTimeout(auto); set(x.dataset.v==='notte'); }); });
-  // Una sola volta, all'apertura: dopo un attimo passa da sola a "Di notte".
-  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var dark=g.querySelector('.glow-dark');
-    var loaded=new Promise(function(r){ if(dark.complete) r(); else dark.addEventListener('load',r); });
-    // Parte quando il ritratto è ben visibile (su telefono è più in basso).
-    var io=new IntersectionObserver(function(es){
-      if(!es[0].isIntersecting) return; io.disconnect();
-      loaded.then(function(){ auto=setTimeout(function(){ set(true); },1400); });
-    },{threshold:.6});
-    io.observe(g.querySelector('.glow-frame'));
+  // Ogni 3 secondi alterna giorno e notte, finché il ritratto è sullo schermo.
+  // Se qualcuno tocca "Di giorno" o "Di notte", decide lui e il ciclo si ferma.
+  // Uscendo e rientrando nella pagina il ciclo riparte da capo.
+  var timer=null, manual=false, visible=false;
+  var calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function stop(){ clearInterval(timer); timer=null; }
+  function start(){
+    if(manual||calm||timer||!visible||document.hidden) return;
+    timer=setInterval(function(){ set(g.dataset.state!=='buio'); },3000);
   }
+  bs.forEach(function(x){ x.addEventListener('click',function(){ manual=true; stop(); set(x.dataset.v==='notte'); }); });
+  new IntersectionObserver(function(es){ visible=es[0].isIntersecting; if(visible) start(); else stop(); },{threshold:.5})
+    .observe(g.querySelector('.glow-frame'));
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) stop(); else start(); });
+  window.addEventListener('pageshow',function(e){ if(e.persisted){ manual=false; stop(); set(false); start(); } });
 });
 </script>
 
