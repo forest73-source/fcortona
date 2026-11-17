@@ -607,3 +607,11 @@ a.link-lie:hover,a.link-lie:focus-visible{color:#e2bd62}
 :is(.site-footer .social,.social-icons) a[href*="wa.me"]:is(:hover,:focus-visible,:active){background:#25D366}
 :is(.site-footer .social,.social-icons) a[href*="pinterest."]:is(:hover,:focus-visible,:active){background:#E60023}
 :is(.site-footer .social,.social-icons) a[href^="mailto:"]:is(:hover,:focus-visible,:active){background:#C5A059;color:#0b0c10}
+
+/* Selettore "Di giorno / Di notte" (home e Innocence II) */
+.dn-switch{display:inline-flex;border:1px solid rgba(197,160,89,.55)}
+.dn-switch button{font-family:'Montserrat',sans-serif;font-size:.85rem;letter-spacing:.02em;color:#e0e0e0;background:transparent;border:0;padding:.6rem 1.1rem;cursor:pointer;transition:background .3s,color .3s}
+.dn-switch button+button{border-left:1px solid rgba(197,160,89,.55)}
+.dn-switch button[aria-pressed="true"]{background:#C5A059;color:#0b0c10}
+.dn-switch button:hover:not([aria-pressed="true"]){background:rgba(197,160,89,.15)}
+.dn-switch button:focus-visible{outline:2px solid #e6ca85;outline-offset:2px}

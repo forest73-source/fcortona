@@ -584,7 +584,7 @@
             .hero-subtitle::after { display: none; }
         }
     </style>
-<link rel="stylesheet" href="site.css?v=20261117s">
+<link rel="stylesheet" href="site.css?v=20261117dn">
 <style>
 /* Hero luce / buio */
 .hero.hero--glow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);align-items:center;gap:clamp(2rem,5vw,5rem);background:radial-gradient(ellipse at 75% 50%,#15171d 0%,var(--bg-dark) 65%);padding:8rem 3rem 6rem}
@@ -600,9 +600,7 @@
 .glow[data-state="buio"] .glow-dark{opacity:1}
 .glow[data-state="buio"] .glow-frame{box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 90px rgba(110,205,235,.28)}
 .glow figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem;margin-top:1.2rem}
-.glow-toggle{font-family:var(--font-sans);font-size:.9rem;color:var(--text-white);background:transparent;border:1px solid rgba(197,160,89,.6);padding:.65rem 1.3rem;cursor:pointer;transition:background .3s,color .3s}
-.glow-toggle:hover{background:var(--gold-primary);color:var(--bg-dark)}
-.glow-toggle:focus-visible,.hero a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.hero a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
 .glow-state{font-family:var(--font-quote);font-style:italic;font-size:1.1rem;color:var(--text-light)}
 .glow-cap{flex-basis:100%;font-size:.8rem;color:var(--text-muted)}
 .glow-cap a{color:var(--gold-primary);text-decoration:none;border-bottom:1px solid rgba(197,160,89,.4)}
@@ -621,16 +619,15 @@
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   var g=document.querySelector('.glow'); if(!g) return;
-  var b=g.querySelector('.glow-toggle'), st=g.querySelector('.glow-state');
+  var bs=g.querySelectorAll('.dn-switch button'), st=g.querySelector('.glow-state');
   function set(dark){
     g.dataset.state=dark?'buio':'luce';
-    b.textContent=dark?'Accendi la luce':'Spegni la luce';
-    b.setAttribute('aria-pressed',dark?'true':'false');
-    st.textContent=dark?'Al buio il pigmento si illumina.':'Alla luce il pigmento è neutro.';
+    bs.forEach(function(x){ x.setAttribute('aria-pressed',(x.dataset.v==='notte')===dark?'true':'false'); });
+    st.textContent=dark?'Di notte il pigmento si illumina.':'Di giorno il pigmento è neutro.';
   }
   var auto=null;
-  b.addEventListener('click',function(){ clearTimeout(auto); set(g.dataset.state!=='buio'); });
-  // Una sola volta, all'apertura: la luce si spegne da sola dopo un attimo.
+  bs.forEach(function(x){ x.addEventListener('click',function(){ clearTimeout(auto); set(x.dataset.v==='notte'); }); });
+  // Una sola volta, all'apertura: dopo un attimo passa da sola a "Di notte".
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     var dark=g.querySelector('.glow-dark');
     var loaded=new Promise(function(r){ if(dark.complete) r(); else dark.addEventListener('load',r); });
@@ -686,8 +683,8 @@ document.addEventListener('DOMContentLoaded',function(){
                 <img class="glow-dark" src="images/hero-buio.jpg" width="1200" height="1038" alt="" aria-hidden="true">
             </div>
             <figcaption>
-                <button class="glow-toggle" type="button" aria-pressed="false">Spegni la luce</button>
-                <span class="glow-state" aria-live="polite">Alla luce il pigmento è neutro.</span>
+                <span class="dn-switch" role="group" aria-label="Guarda l'opera"><button type="button" data-v="giorno" aria-pressed="true">Di giorno</button><button type="button" data-v="notte" aria-pressed="false">Di notte</button></span>
+                <span class="glow-state" aria-live="polite">Di giorno il pigmento è neutro.</span>
                 <span class="glow-cap"><a href="opere.html#innocence-2">Innocence, Serie II</a> · olio e pigmento fotoluminescente celeste su lamiera zincata, 29×25 cm</span>
             </figcaption>
         </figure>
