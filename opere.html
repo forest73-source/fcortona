@@ -55,15 +55,17 @@ li.dn[data-state="notte"] .dn-notte{opacity:1}
 .lightbox .lb-ask:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .lightbox img{max-height:calc(100vh - 15rem);max-height:calc(100dvh - 15rem)}
 .lightbox.has-dn img{max-height:calc(100vh - 18rem);max-height:calc(100dvh - 18rem)}
-@media (max-width:760px){.lightbox img{max-height:calc(100vh - 16rem);max-height:calc(100dvh - 16rem)}
-  .lightbox.has-dn img{max-height:calc(100vh - 19rem);max-height:calc(100dvh - 19rem)}
+@media (max-width:760px){.lightbox img{max-height:calc(100vh - 20rem);max-height:calc(100dvh - 20rem)}
+  .lightbox.has-dn img{max-height:calc(100vh - 23rem);max-height:calc(100dvh - 23rem)}
   /* Telefono: in fondo una riga sola  ‹  Chiedi informazioni  ›  */
   .lightbox .lb-prev,.lightbox .lb-next{position:fixed;z-index:3;bottom:1.2rem;width:2.8rem;height:2.8rem;background:rgba(11,11,16,.92)}
   .lightbox .lb-prev{left:.8rem}.lightbox .lb-next{right:.8rem}
-  .lightbox .lb-ask{position:fixed;z-index:3;bottom:1.2rem;left:4.2rem;right:4.2rem;height:2.8rem;margin:0;padding:0 .6rem;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.85rem;line-height:1.2;background:rgba(11,11,16,.85)}
-  .lightbox:not(.has-text){padding-bottom:5rem}
+  .lightbox .lb-ask{position:fixed;z-index:3;bottom:1.2rem;left:4.2rem;right:4.2rem;height:2.8rem;margin:0;padding:0 .6rem;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.8rem;line-height:1.2;background:rgba(11,11,16,.85)}
+  .lightbox:not(.has-text){padding-bottom:5.6rem}
   .lightbox.has-text{padding-bottom:6rem}
-  .lightbox .lb-close{position:fixed;z-index:3;background:rgba(11,11,16,.92)}
+  .lightbox .lb-close{position:fixed;z-index:3;top:.7rem;right:.7rem;background:rgba(11,11,16,.92)}
+  /* spazio sopra l'opera per la × (non ci va più sopra) */
+  .lightbox{padding-top:4.4rem}
   .lightbox::after{content:"";position:fixed;left:0;right:0;bottom:0;height:5rem;background:linear-gradient(transparent,rgba(6,6,10,.97) 35%);pointer-events:none;z-index:2}}
 </style>
 </head>
