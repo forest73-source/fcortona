@@ -33,7 +33,22 @@
       reserve: 'Prenota il cofanetto', site: 'Visita cortonafrancesca.it',
       iosInstall: '<strong>Tienila come un’app:</strong> tocca Condividi e poi «Aggiungi alla schermata Home».',
       androidInstall: '<strong>Tienila come un’app</strong> sul telefono, con la sua icona.', installBtn: 'Installa', close: 'Chiudi',
-      skip: 'Vai al contenuto', langLabel: 'Lingua'
+      skip: 'Vai al contenuto', langLabel: 'Lingua',
+      tabSpread: 'Stesa', spreadTitle: 'La stesa', spreadIntro: 'I metodi di lettura dal libro «Arcani».',
+      methodsTitle: 'I quattro metodi', allMethods: 'Tutti i metodi', layoutTitle: 'Lo schema', positionsTitle: 'Significato delle posizioni',
+      howtoTitle: 'Come usarla', beforeTitle: 'Prima di iniziare', doVirtual: 'Fai la stesa con l’app', doReal: 'Ho le carte vere',
+      question: 'La tua domanda (facoltativa)', shuffle: 'Mescola e disponi le carte',
+      tapToTurn: function (n) { return 'Tocca le carte per girarle, dalla 1 alla ' + n + '.'; },
+      turnAll: 'Gira tutte', newSpread: 'Nuova stesa', saveSpread: 'Salva nel diario', spreadNote: 'Una nota sulla stesa (facoltativa)',
+      spreadSaved: 'Stesa salvata nel diario.', pickCards: 'Fai la stesa con il tuo mazzo, poi scegli la carta uscita in ogni posizione.',
+      read: 'Leggi la stesa', choose: 'Scegli…', missing: 'Scegli una carta per ogni posizione.', dup: 'Ogni carta può comparire una sola volta.',
+      position: 'Posizione', reading: 'La lettura', extRhythm: 'Ritmo esterno', intRhythm: 'Ritmo interno', hidden: 'Numero nascosto',
+      track: 'Traccia ritmica', noCenter: 'Nessun numero al centro: anche il vuoto è ritmo.',
+      repeat: function (n) { return n === 1 ? 'Ripeti il ritmo una volta.' : 'Ripeti il ritmo ' + n + ' volte.'; },
+      listen: 'Ascolta il ritmo', stop: 'Ferma', silence: 'silenzio', seeArcano: 'Vedi l’Arcano',
+      offline: 'Per aprire la stesa la prima volta serve la connessione a internet.', lockedSpread: 'I metodi di lettura si sbloccano con il codice del cofanetto.',
+      stepOf: 'Tappa', yourQuestion: 'La tua domanda', spreadLabel: 'Stesa', loading: 'Un momento…',
+      audioList: 'Sequenza 3 6 9 – Unione · 3 9 6 – Spirito · 9 6 3 – Materia'
     },
     en: {
       tabToday: 'Today', tabArcani: 'Arcana', tabDiary: 'Journal', tabBox: 'Box set',
@@ -59,7 +74,22 @@
       reserve: 'Pre-order the box set', site: 'Visit cortonafrancesca.it',
       iosInstall: '<strong>Keep it as an app:</strong> tap Share, then «Add to Home Screen».',
       androidInstall: '<strong>Keep it as an app</strong> on your phone, with its own icon.', installBtn: 'Install', close: 'Close',
-      skip: 'Skip to content', langLabel: 'Language'
+      skip: 'Skip to content', langLabel: 'Language',
+      tabSpread: 'Spread', spreadTitle: 'The spread', spreadIntro: 'The reading methods from the book «Arcani».',
+      methodsTitle: 'The four methods', allMethods: 'All the methods', layoutTitle: 'The layout', positionsTitle: 'Meaning of the positions',
+      howtoTitle: 'How to use it', beforeTitle: 'Before starting', doVirtual: 'Do the spread in the app', doReal: 'I have the real cards',
+      question: 'Your question (optional)', shuffle: 'Shuffle and lay out the cards',
+      tapToTurn: function (n) { return 'Tap the cards to turn them, from 1 to ' + n + '.'; },
+      turnAll: 'Turn all', newSpread: 'New spread', saveSpread: 'Save to journal', spreadNote: 'A note on the spread (optional)',
+      spreadSaved: 'Spread saved to your journal.', pickCards: 'Lay out the spread with your deck, then choose the card that came out in each position.',
+      read: 'Read the spread', choose: 'Choose…', missing: 'Choose a card for every position.', dup: 'Each card can appear only once.',
+      position: 'Position', reading: 'The reading', extRhythm: 'External rhythm', intRhythm: 'Internal rhythm', hidden: 'Hidden number',
+      track: 'Rhythmic track', noCenter: 'No number at the center: even emptiness is rhythm.',
+      repeat: function (n) { return n === 1 ? 'Repeat the rhythm once.' : 'Repeat the rhythm ' + n + ' times.'; },
+      listen: 'Listen to the rhythm', stop: 'Stop', silence: 'silence', seeArcano: 'See the Arcanum',
+      offline: 'You need an internet connection to open the spread the first time.', lockedSpread: 'The reading methods are unlocked with the box set code.',
+      stepOf: 'Step', yourQuestion: 'Your question', spreadLabel: 'Spread', loading: 'One moment…',
+      audioList: 'Sequence 3 6 9 – Unity · 3 9 6 – Spirit · 9 6 3 – Matter'
     }
   };
 
@@ -103,6 +133,8 @@
   function entries() { var e = get(K.diary, []); return Array.isArray(e) ? e : []; }
   function saveEntries(e) { return set(K.diary, e); }
   function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+
+  var MNAME = { aspirale: { it: 'Aspirale', en: 'Aspiral' }, antenna: { it: 'Antenna', en: 'Antenna' }, ritmo: { it: 'Ritmo', en: 'Rhythm' }, frequenza: { it: 'Frequenza', en: 'Frequency' } };
 
   /* ——— Viste ——— */
   function viewToday() {
@@ -186,19 +218,23 @@
     var preN = editing ? editing.n : (+arg || todayDraw().n || 1);
     var form = showForm ? (
       '<form class="form" id="f">' +
+        (editing && editing.spread ? '<input type="hidden" name="n" value="' + editing.n + '">' :
         '<label>' + t('arcano') + '<select name="n">' + A.map(function (a) {
           return '<option value="' + a.n + '"' + (a.n === preN ? ' selected' : '') + '>' + (numLabel(a) ? numLabel(a) + ' · ' : '') + esc(a.name) + '</option>';
-        }).join('') + '</select></label>' +
+        }).join('') + '</select></label>') +
         '<label>' + t('yourNote') + '<textarea name="text" placeholder="' + esc(t('placeholder')) + '">' + (editing ? esc(editing.text) : '') + '</textarea></label>' +
         '<div class="row"><button class="btn solid" type="submit">' + t('save') + '</button><a class="btn quiet" href="#diario">' + t('cancel') + '</a></div>' +
       '</form>') : '<div class="row" style="margin-bottom:1.4rem"><a class="btn solid" href="#diario/nuova">' + t('newNote') + '</a></div>';
     main.innerHTML = '<section class="view">' +
       '<div class="head"><h1>' + t('diaryTitle') + '</h1><p class="info">' + t('localInfo') + '</p></div>' + form +
       (list.length ? '<ul class="entries">' + list.map(function (e) {
-        var a = byN(e.n) || A[0];
-        return '<li class="entry"><img src="' + img(a, true) + '" alt="" loading="lazy"><div>' +
-          '<p class="meta">' + esc(fmtDate(e.day)) + '</p><h3>' + (numLabel(a) ? numLabel(a) + ' · ' : '') + esc(a.name) + '</h3>' +
-          '<p>' + esc(e.text) + '</p>' +
+        var a = byN(e.n) || A[0], sp = e.spread && MNAME[e.spread.m] ? e.spread : null;
+        var head = sp ? t('spreadLabel') + ' · ' + MNAME[sp.m][lang] : (numLabel(a) ? numLabel(a) + ' · ' : '') + esc(a.name);
+        var extra = sp ? (sp.q ? '<p class="meta">“' + esc(sp.q) + '”</p>' : '') +
+          '<div class="minis">' + sp.cards.map(function (c, i) { var b2 = byN(c); return b2 ? '<a href="#arcano/' + c + '" title="' + (i + 1) + ' · ' + esc(b2.name) + '"><img src="' + img(b2, true) + '" alt="' + (i + 1) + ' · ' + esc(b2.name) + '" loading="lazy"><small>' + (i + 1) + '</small></a>' : ''; }).join('') + '</div>' : '';
+        return '<li class="entry' + (sp ? ' is-spread' : '') + '"><img src="' + img(a, true) + '" alt="" loading="lazy"><div>' +
+          '<p class="meta">' + esc(fmtDate(e.day)) + '</p><h3>' + head + '</h3>' + extra +
+          (e.text ? '<p>' + esc(e.text) + '</p>' : '') +
           '<div class="row"><a class="btn quiet" href="#diario/modifica/' + e.id + '">' + t('edit') + '</a><button class="btn quiet" type="button" data-del="' + e.id + '">' + t('del') + '</button></div>' +
         '</div></li>';
       }).join('') + '</ul>' : '<p class="empty">' + t('empty') + '</p>') +
@@ -212,7 +248,7 @@
       if (!editing) f.text.focus();
       f.addEventListener('submit', function (ev) {
         ev.preventDefault();
-        var txt = f.text.value.trim(); if (!txt) { toast(t('emptyNote')); return; }
+        var txt = f.text.value.trim(); if (!txt && !(editing && editing.spread)) { toast(t('emptyNote')); return; }
         var all = entries();
         if (editing) { all.forEach(function (e) { if (e.id === editing.id) { e.text = txt; e.n = +f.n.value; } }); }
         else { var now = new Date(); all.push({ id: uid(), date: now.toISOString(), day: dayKey(now), n: +f.n.value, text: txt }); }
@@ -254,7 +290,11 @@
       var added = 0;
       d.entries.forEach(function (e) {
         if (!e || typeof e.text !== 'string' || !e.id || ids[e.id] || !(e.n >= 1 && e.n <= A.length)) return;
-        all.push({ id: String(e.id), date: String(e.date || ''), day: String(e.day || dayKey()), n: +e.n, text: e.text }); ids[e.id] = 1; added++;
+        var item = { id: String(e.id), date: String(e.date || ''), day: String(e.day || dayKey()), n: +e.n, text: e.text };
+        var s = e.spread;
+        if (s && MNAME[s.m] && Array.isArray(s.cards) && s.cards.every(function (c) { return c >= 1 && c <= A.length; }))
+          item.spread = { m: s.m, cards: s.cards.map(Number), q: typeof s.q === 'string' ? s.q : '' };
+        all.push(item); ids[e.id] = 1; added++;
       });
       saveEntries(all); toast(added ? t('restored')(added) : t('nothingNew')); route();
     };
@@ -267,12 +307,279 @@
       '<div class="box-hero" aria-hidden="true"><img src="' + img(A[0], true) + '" alt=""><img src="' + img(A[1], true) + '" alt=""><img src="' + img(A[2], true) + '" alt=""></div>' +
       '<ul class="locked">' +
         '<li><span class="lockicon">' + lockSvg + '</span><div><h3>' + t('bookTitle') + '</h3><p>' + t('bookDesc') + '</p><span class="tag">' + t('lockTag') + '</span></div></li>' +
-        '<li><span class="lockicon">' + lockSvg + '</span><div><h3>' + t('audioTitle') + '</h3><p>' + t('audioDesc') + '</p><span class="tag">' + t('lockTag') + '</span></div></li>' +
+        '<li><span class="lockicon">' + lockSvg + '</span><div><h3>' + t('audioTitle') + '</h3><p>' + t('audioDesc') + '</p><p>' + t('audioList') + '</p><span class="tag">' + t('lockTag') + '</span></div></li>' +
       '</ul>' +
       '<p class="soon">' + t('soon') + '</p>' +
       '<div class="row"><a class="btn solid" href="' + reservePath() + '">' + t('reserve') + '</a></div>' +
       '<p class="foot"><a href="' + (lang === 'en' ? '../en/' : '../') + '">' + t('site') + '</a><br>© Cortona Francesca</p>' +
     '</section>';
+  }
+
+  /* ——— Stesa: i testi arrivano dal servizio privato su Cloudflare, mai dal sito pubblico ——— */
+  var API = 'https://arcani.forest73.workers.dev';
+  var stesaCache = {};
+  function loadStesa() {
+    if (stesaCache[lang]) return Promise.resolve(stesaCache[lang]);
+    var l = lang;
+    return fetch(API + '/stesa?lang=' + l, { cache: 'no-store' }).then(function (r) {
+      if (r.status === 401) return { locked: true };
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.json();
+    }).then(function (d) {
+      if (d.locked) return 'locked';
+      stesaCache[l] = d.content; set('arcani.stesa.' + l, d.content); return d.content;
+    }).catch(function () {
+      var c = get('arcani.stesa.' + l, null); if (c) { stesaCache[l] = c; return c; }
+      return 'offline';
+    });
+  }
+
+  /* Schemi come stampati nel libro (unità del disegno: larghezza w, altezza h, carta larga cw) */
+  var LAYOUTS = {
+    aspirale: { w: 100, h: 170, cw: 16, slots: [[1, 50, 158], [2, 50, 135], [3, 50, 112], [4, 30, 92], [5, 70, 76], [6, 30, 60], [7, 70, 44], [8, 30, 28], [9, 70, 12]],
+      lines: [[1, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]] },
+    antenna: { w: 100, h: 172, cw: 16, slots: [[1, 30, 160], [2, 70, 144], [3, 30, 128], [4, 70, 112], [5, 30, 96], [6, 70, 80], [7, 50, 58], [8, 50, 35], [9, 50, 12]],
+      lines: [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 9]] },
+    ritmo: { w: 100, h: 46, cw: 19, slots: [[1, 10.25, 30], [2, 29.75, 30], [3, 50, 30], [4, 69.75, 30], [5, 89.25, 30]], lines: [] },
+    frequenza: { w: 100, h: 40, cw: 11, wide: true, slots: [[1, 7, 20], [2, 19, 20], [3, 31, 20], [4, 45, 9], [5, 52, 31], [6, 62, 9], [7, 69, 31], [8, 79, 9], [9, 86, 31]],
+      lines: [[1, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]] }
+  };
+  var ORDER = ['aspirale', 'antenna', 'ritmo', 'frequenza'];
+  var FREQ_GROUP = { 1: 0, 2: 0, 3: 0, 4: 2, 6: 2, 8: 2, 5: 1, 7: 1, 9: 1 }; // indice in groups: presente, ottava bassa, ottava alta
+
+  /* Ritmo: numeri romani sui margini (sinistra–centro–destra), come nell'esempio del libro.
+     Da verificare sulle carte stampate: numeri di una lettera (I, V, X) e di 4–5 lettere (VIII, XIII, XVII, XVIII). */
+  var ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
+  function split(n) {
+    var a = byN(n); if (!a || a.noNumber) return ['', '', ''];
+    var r = ROMAN[n];
+    if (r.length === 1) return ['', r, ''];
+    if (r.length === 2) return [r[0], '', r[1]];
+    if (r.length === 3) return [r[0], r[1], r[2]];
+    return [r[0], r.slice(1, -1), r[r.length - 1]];
+  }
+  function romanVal(s) { var v = { I: 1, V: 5, X: 10 }, t = 0; for (var i = 0; i < s.length; i++) { var c = v[s[i]], nx = v[s[i + 1]] || 0; t += c < nx ? -c : c; } return t; }
+  function reduce(n) { while (n > 9) n = String(n).split('').reduce(function (a, d) { return a + +d; }, 0); return n; }
+  function calcRitmo(cards) {
+    var p = cards.map(split), edges = [p[0][0]];
+    for (var i = 0; i < 4; i++) edges.push(p[i][2] + p[i + 1][0]);
+    edges.push(p[4][2]);
+    var beats = edges.map(function (s) { var v = s ? romanVal(s) : 0; return { r: s, v: v, d: reduce(v) }; });
+    var centers = p.map(function (x) { return x[1]; }).filter(Boolean).map(function (s) { var v = romanVal(s); return { r: s, v: v, d: reduce(v) }; });
+    var sum = centers.reduce(function (a, c) { return a + c.d; }, 0);
+    return { parts: p, beats: beats, centers: centers, sum: sum, hidden: sum ? reduce(sum) : 0 };
+  }
+
+  /* Suono del ritmo: 1 = DO … 7 = SI (accordatura La = 432 Hz); 8 e 9 un tocco, 0 silenzio */
+  var audioCtx = null, playing = null;
+  function stopRhythm() { if (playing) { playing.forEach(function (o) { try { o.stop(); } catch (e) {} }); playing = null; } }
+  function playRhythm(beats, times, onEnd) {
+    stopRhythm();
+    try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
+    var ctx = audioCtx, t = ctx.currentTime + .15, step = .5, nodes = [];
+    var midi = [0, 60, 62, 64, 65, 67, 69, 71];
+    for (var r = 0; r < Math.max(1, times); r++) {
+      beats.forEach(function (b) {
+        if (b.d >= 1) {
+          var o = ctx.createOscillator(), g = ctx.createGain();
+          if (b.d <= 7) { o.type = 'sine'; o.frequency.value = 432 * Math.pow(2, (midi[b.d] - 69) / 12); }
+          else { o.type = 'triangle'; o.frequency.value = 160; }
+          g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(b.d <= 7 ? .25 : .18, t + .02); g.gain.exponentialRampToValueAtTime(.001, t + (b.d <= 7 ? .42 : .12));
+          o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + .45); nodes.push(o);
+        }
+        t += step;
+      });
+      t += .7;
+    }
+    playing = nodes;
+    var last = nodes[nodes.length - 1]; if (last) last.onended = function () { if (playing === nodes) { playing = null; onEnd && onEnd(); } }; else onEnd && onEnd();
+  }
+
+  var cur = null; // stesa in corso: { m, cards, open:{}, q, real }
+  function newSpread(m, real) { return { m: m, cards: [], open: {}, q: '', real: !!real }; }
+  function shuffleCards(k) { var a = A.map(function (x) { return x.n; }); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t2 = a[i]; a[i] = a[j]; a[j] = t2; } return a.slice(0, k); }
+
+  function layoutHtml(m, cards, open, interactive) {
+    var L = LAYOUTS[m], ch = L.cw * 1128 / 825, P = {};
+    L.slots.forEach(function (s) { P[s[0]] = s; });
+    var lines = L.lines.map(function (l) { var a = P[l[0]], b = P[l[1]]; return '<line x1="' + a[1] + '" y1="' + a[2] + '" x2="' + b[1] + '" y2="' + b[2] + '"/>'; }).join('');
+    var rit = (m === 'ritmo' && cards.length === 5 && L.slots.every(function (s) { return open[s[0]]; })) ? calcRitmo(cards) : null;
+    var html = '<div class="layout' + (L.wide ? ' wide' : '') + '" style="aspect-ratio:' + L.w + '/' + L.h + '">' +
+      '<svg class="ly-lines" viewBox="0 0 ' + L.w + ' ' + L.h + '" preserveAspectRatio="none" aria-hidden="true">' + lines + '</svg>';
+    L.slots.forEach(function (s, i) {
+      var n = s[0], c = cards[i], up = !!(c && open[n]), a = up ? byN(c) : null;
+      var style = 'left:' + ((s[1] - L.cw / 2) / L.w * 100) + '%;top:' + ((s[2] - ch / 2) / L.h * 100) + '%;width:' + (L.cw / L.w * 100) + '%';
+      var inner = up ? '<img src="' + img(a, true) + '" alt="' + esc(a.name) + '">' : '<span class="slot-back"></span>';
+      if (up && m === 'ritmo') { var sp = split(c); inner += '<span class="rl"><i>' + sp[0] + '</i><i>' + sp[1] + '</i><i>' + sp[2] + '</i></span>'; }
+      html += (interactive && c && !up)
+        ? '<button class="slot" type="button" data-p="' + n + '" style="' + style + '" aria-label="' + t('position') + ' ' + n + '">' + inner + '<span class="slot-n">' + n + '</span></button>'
+        : (up && interactive
+          ? '<button class="slot up" type="button" data-go="' + n + '" style="' + style + '" aria-label="' + t('position') + ' ' + n + ': ' + esc(a.name) + '">' + inner + '<span class="slot-n">' + n + '</span></button>'
+          : '<span class="slot' + (up ? ' up' : ' empty') + '" style="' + style + '">' + inner + '<span class="slot-n">' + n + '</span></span>');
+    });
+    if (rit) {
+      var xs = [0].concat(L.slots.slice(0, 4).map(function (s) { return s[1] + L.cw / 2; })).concat([100]);
+      xs[0] = L.slots[0][1] - L.cw / 2; xs[5] = L.slots[4][1] + L.cw / 2;
+      rit.beats.forEach(function (b, i) {
+        html += '<span class="beat" style="left:' + xs[i] + '%">' + (b.r || '·') + '</span>';
+      });
+    }
+    return html + '</div>';
+  }
+
+  function stesaShell(inner) { return '<section class="view stesa">' + inner + '</section>'; }
+  function para(arr) { return arr.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join(''); }
+
+  function viewStesa(m, mode) {
+    main.innerHTML = stesaShell('<p class="hint" style="padding:2rem 0">' + t('loading') + '</p>');
+    var want = location.hash;
+    loadStesa().then(function (C) {
+      if (location.hash !== want) return;
+      if (C === 'locked') { main.innerHTML = stesaShell('<div class="head"><h1>' + t('spreadTitle') + '</h1></div><a class="locked-note" href="#cofanetto">' + lockSvg + '<span>' + t('lockedSpread') + '</span></a>'); return; }
+      if (C === 'offline') { main.innerHTML = stesaShell('<div class="head"><h1>' + t('spreadTitle') + '</h1><p class="info">' + t('offline') + '</p></div>'); return; }
+      if (!m || !C.methods[m]) return stesaHome(C);
+      if (mode === 'fai' || mode === 'vere') return stesaDo(C, m, mode === 'vere');
+      return stesaMethod(C, m);
+    });
+  }
+
+  function stesaHome(C) {
+    var R = C.recommended, P = C.prep;
+    main.innerHTML = stesaShell(
+      '<div class="head"><h1>' + t('spreadTitle') + '</h1><p class="intro">' + t('spreadIntro') + '</p></div>' +
+      '<details class="box" open><summary>' + esc(P.title) + '</summary>' +
+        '<p class="lead">' + esc(P.levelsLead) + '</p><ul class="levels">' + P.levels.map(function (l) { return '<li><b>' + esc(l[0]) + '</b>: ' + esc(l[1]) + '</li>'; }).join('') + '</ul>' +
+        para(P.paras) + '</details>' +
+      '<h2 class="h2">' + esc(R.title) + '</h2><p class="sub">' + esc(R.sub) + '</p><p class="body">' + esc(R.intro) + '</p>' +
+      '<ol class="steps">' + R.steps.map(function (s, i) {
+        var mm = C.methods[s.method];
+        return '<li><a href="#stesa/' + s.method + '"><span class="step-n">' + (i + 1) + '</span><span><b>' + esc(s.name) + '</b> <em>(' + esc(mm.name) + ')</em><br>' + esc(s.text) + '</span></a></li>';
+      }).join('') + '</ol>' +
+      '<p class="motto">' + esc(R.motto) + '</p>' +
+      '<h2 class="h2">' + t('methodsTitle') + '</h2>' +
+      '<ul class="methods">' + ORDER.map(function (k) { var mm = C.methods[k]; return '<li><a href="#stesa/' + k + '"><b>' + esc(mm.name) + '</b><span>' + esc(mm.short) + '</span><i>›</i></a></li>'; }).join('') + '</ul>'
+    );
+  }
+
+  function positionsList(M, m) {
+    if (M.positions) return '<ol class="poslist">' + M.positions.map(function (p) { return '<li><span class="pn">' + p.n + '</span><div><b>' + esc(p.title) + '</b><p>' + esc(p.q) + '</p></div></li>'; }).join('') + '</ol>';
+    return '';
+  }
+  function groupsList(M) {
+    return (M.groups || []).map(function (g) { return '<div class="grp"><span class="range">' + esc(g.range) + '</span><div><b>' + esc(g.title) + '</b><p>' + esc(g.text) + '</p></div></div>'; }).join('');
+  }
+
+  function stesaMethod(C, m) {
+    var M = C.methods[m], L = LAYOUTS[m], n = L.slots.length, h = '';
+    h += '<a class="back-link" href="#stesa">‹ ' + t('allMethods') + '</a>';
+    h += '<div class="head"><h1>' + esc(M.name) + '</h1><p class="intro">' + esc(M.short) + '</p></div>';
+    h += '<div class="body">' + para(M.intro) + '</div>';
+    if (M.before) h += '<div class="box"><h3>' + t('beforeTitle') + '</h3><p>' + esc(M.before.lead) + '</p><ul class="qs">' + M.before.questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul></div>';
+    if (M.rule) h += '<div class="box"><h3>' + esc(M.rule.title) + '</h3><p>' + esc(M.rule.text) + '</p></div>';
+    if (M.steps) h += M.steps.map(function (s, i) { return '<div class="box"><h3>' + (i + 1) + ') ' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p></div>'; }).join('');
+    h += '<h2 class="h2">' + t('layoutTitle') + '</h2>' + (L.wide ? '<div class="ly-scroll">' : '') + layoutHtml(m, [], {}, false) + (L.wide ? '</div>' : '');
+    h += '<div class="row cta"><a class="btn solid" href="#stesa/' + m + '/fai">' + t('doVirtual') + '</a><a class="btn" href="#stesa/' + m + '/vere">' + t('doReal') + '</a></div>';
+    if (M.groups) h += '<h2 class="h2">' + t('positionsTitle') + '</h2>' + groupsList(M);
+    h += positionsList(M, m);
+    if (M.remember) h += '<p class="motto">' + esc(M.remember) + '</p>';
+    if (M.howto) h += '<h2 class="h2">' + t('howtoTitle') + '</h2><ul class="howto">' + M.howto.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+    if (M.melodies) h += '<h2 class="h2">' + esc(M.melodies.title) + '</h2><div class="body">' + para(M.melodies.paras) + '</div>' +
+      '<ul class="seqs">' + M.melodies.sequences.map(function (s) { return '<li><span class="code">' + esc(s.code) + '</span><div><b>' + esc(s.name) + '</b><p>' + esc(s.text) + '</p><a class="tag" href="#cofanetto">' + lockSvg + t('lockTag') + '</a></div></li>'; }).join('') + '</ul>';
+    main.innerHTML = stesaShell(h);
+  }
+
+  function stesaDo(C, m, real) {
+    var M = C.methods[m], L = LAYOUTS[m], k = L.slots.length;
+    if (!cur || cur.m !== m || cur.real !== real) cur = newSpread(m, real);
+    var h = '<a class="back-link" href="#stesa/' + m + '">‹ ' + esc(M.name) + '</a>';
+    h += '<div class="head"><h1>' + esc(M.name) + '</h1></div>';
+    if (!cur.cards.length) {
+      if (real) {
+        h += '<p class="body">' + t('pickCards') + '</p><form class="form" id="pick">' +
+          '<label>' + t('question') + '<textarea name="q" rows="2" style="min-height:4rem"></textarea></label>' +
+          L.slots.map(function (s) {
+            var p = M.positions ? M.positions[s[0] - 1] : null;
+            return '<label>' + t('position') + ' ' + s[0] + (p ? ' — ' + esc(p.title) : '') + '<select name="c' + s[0] + '"><option value="">' + t('choose') + '</option>' +
+              A.map(function (a) { return '<option value="' + a.n + '">' + (numLabel(a) ? numLabel(a) + ' · ' : '') + esc(a.name) + '</option>'; }).join('') + '</select></label>';
+          }).join('') +
+          '<button class="btn solid" type="submit">' + t('read') + '</button></form>';
+      } else {
+        h += (M.before ? '<p class="body">' + esc(M.before.lead) + '</p>' : '<div class="body">' + para(M.intro.slice(0, 1)) + '</div>') +
+          '<form class="form" id="go"><label>' + t('question') + '<textarea name="q" rows="2" style="min-height:4rem"></textarea></label>' +
+          '<button class="btn solid" type="submit">' + t('shuffle') + '</button></form>';
+      }
+      main.innerHTML = stesaShell(h);
+      var f = document.getElementById(real ? 'pick' : 'go');
+      f.addEventListener('submit', function (ev) {
+        ev.preventDefault(); cur.q = f.q.value.trim();
+        if (real) {
+          var cs = L.slots.map(function (s) { return +f['c' + s[0]].value; });
+          if (cs.some(function (x) { return !x; })) { toast(t('missing')); return; }
+          if (new Set(cs).size !== cs.length) { toast(t('dup')); return; }
+          cur.cards = cs; L.slots.forEach(function (s) { cur.open[s[0]] = true; });
+        } else cur.cards = shuffleCards(k);
+        stesaDo(C, m, real); window.scrollTo(0, 0);
+      });
+      return;
+    }
+    var allOpen = L.slots.every(function (s) { return cur.open[s[0]]; });
+    if (cur.q) h += '<p class="myq"><span>' + t('yourQuestion') + '</span>“' + esc(cur.q) + '”</p>';
+    if (!allOpen) h += '<p class="hint">' + t('tapToTurn')(k) + '</p>';
+    h += (L.wide ? '<div class="ly-scroll">' : '') + layoutHtml(m, cur.cards, cur.open, true) + (L.wide ? '</div>' : '');
+    h += '<div class="row cta">' + (!allOpen ? '<button class="btn" type="button" id="all">' + t('turnAll') + '</button>' : '') +
+      '<button class="btn quiet" type="button" id="again">' + t('newSpread') + '</button></div>';
+    // lettura
+    var items = L.slots.filter(function (s) { return cur.open[s[0]]; }).map(function (s) {
+      var i = L.slots.indexOf(s), a = byN(cur.cards[i]), p = M.positions ? M.positions[s[0] - 1] : null, g = m === 'frequenza' ? M.groups[FREQ_GROUP[s[0]]] : null;
+      return '<li class="read-item" id="pos-' + s[0] + '"><span class="pn">' + s[0] + '</span><div>' +
+        (p ? '<b class="ptitle">' + esc(p.title) + '</b><p class="pq">' + esc(p.q) + '</p>' : (g ? '<b class="ptitle">' + esc(g.title) + '</b>' : '')) +
+        '<a class="read-card" href="#arcano/' + a.n + '"><img src="' + img(a, true) + '" alt=""><span>' + (numLabel(a) ? '<small>' + numLabel(a) + '</small> ' : '') + '<b>' + esc(a.name) + '</b><em>' + esc(a.kw[lang]) + '</em><q>' + esc(a.line[lang]) + '</q></span></a>' +
+      '</div></li>';
+    });
+    if (items.length) h += '<h2 class="h2">' + t('reading') + '</h2><ol class="reading">' + items.join('') + '</ol>';
+    if (m === 'ritmo' && allOpen) h += ritmoBox(calcRitmo(cur.cards));
+    if (allOpen && M.howto) h += '<div class="box"><h3>' + t('howtoTitle') + '</h3><ul class="howto">' + M.howto.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
+    if (allOpen && M.remember) h += '<p class="motto">' + esc(M.remember) + '</p>';
+    if (allOpen) h += '<form class="form" id="save"><label>' + t('spreadNote') + '<textarea name="note" rows="3" style="min-height:5rem" placeholder="' + esc(t('placeholder')) + '"></textarea></label><button class="btn solid" type="submit">' + t('saveSpread') + '</button></form>';
+    main.innerHTML = stesaShell(h);
+
+    main.querySelectorAll('button.slot[data-p]').forEach(function (b) {
+      b.addEventListener('click', function () { cur.open[+b.getAttribute('data-p')] = true; var y = window.scrollY; stesaDo(C, m, real); window.scrollTo(0, y); });
+    });
+    main.querySelectorAll('button.slot[data-go]').forEach(function (b) {
+      b.addEventListener('click', function () { var el = document.getElementById('pos-' + b.getAttribute('data-go')); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    });
+    var all = document.getElementById('all'); if (all) all.addEventListener('click', function () { L.slots.forEach(function (s) { cur.open[s[0]] = true; }); var y = window.scrollY; stesaDo(C, m, real); window.scrollTo(0, y); });
+    document.getElementById('again').addEventListener('click', function () { stopRhythm(); cur = newSpread(m, real); stesaDo(C, m, real); window.scrollTo(0, 0); });
+    var lis = document.getElementById('listen');
+    if (lis) lis.addEventListener('click', function () {
+      if (playing) { stopRhythm(); lis.textContent = t('listen'); return; }
+      var r = calcRitmo(cur.cards); lis.textContent = t('stop');
+      playRhythm(r.beats, r.hidden || 1, function () { lis.textContent = t('listen'); });
+    });
+    var sv = document.getElementById('save');
+    if (sv) sv.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var now = new Date(), all2 = entries();
+      all2.push({ id: uid(), date: now.toISOString(), day: dayKey(now), n: cur.cards[0], text: sv.note.value.trim(), spread: { m: m, cards: cur.cards.slice(), q: cur.q } });
+      saveEntries(all2); toast(t('spreadSaved')); location.hash = '#diario';
+    });
+  }
+
+  function ritmoBox(r) {
+    var notes = ['', 'DO', 'RE', 'MI', 'FA', 'SOL', 'LA', 'SI'];
+    var beats = r.beats.map(function (b) {
+      return '<li><span class="rn">' + (b.r || '·') + '</span><span class="rv">' + (b.r ? b.v + (b.v > 9 ? ' → ' + b.d : '') : t('silence')) + '</span>' +
+        '<span class="dots">' + (b.d ? new Array(b.d + 1).join('•') : '') + '</span>' + (notes[b.d] ? '<span class="note">' + notes[b.d] + '</span>' : '') + '</li>';
+    }).join('');
+    var trk = r.beats.map(function (b) { return b.d || '·'; }).join(' – ');
+    var cen = r.centers.length ? r.centers.map(function (c) { return c.r + ' = ' + c.v + (c.v > 9 ? ' → ' + c.d : ''); }).join(' · ') + ' → ' + r.centers.map(function (c) { return c.d; }).join(' + ') + ' = ' + r.sum + (r.sum > 9 ? ' → ' + r.hidden : '') : t('noCenter');
+    var ha = r.hidden ? byN(r.hidden) : null;
+    return '<div class="box ritmo"><h3>' + t('extRhythm') + '</h3><ol class="beats">' + beats + '</ol>' +
+      '<p class="trk"><span>' + t('track') + '</span>' + trk + '</p>' +
+      '<h3>' + t('intRhythm') + '</h3><p>' + cen + '</p>' +
+      (r.hidden ? '<p class="hid"><span>' + t('hidden') + '</span><b>' + r.hidden + '</b> <a href="#arcano/' + ha.n + '">' + t('seeArcano') + ': ' + esc(ha.name) + '</a></p><p>' + t('repeat')(r.hidden) + '</p>' : '') +
+      '<button class="btn" type="button" id="listen">' + t('listen') + '</button></div>';
   }
 
   /* ——— Installazione sul telefono ——— */
@@ -308,6 +615,7 @@
     if (tab === 'arcano') { viewArcano(+h[1]); tab = 'arcani'; }
     else if (tab === 'arcani') viewArcani();
     else if (tab === 'diario') viewDiary(h[1], h[2]);
+    else if (tab === 'stesa') { if (!h[2]) stopRhythm(); viewStesa(h[1], h[2]); }
     else if (tab === 'cofanetto') viewBox();
     else { tab = 'oggi'; viewToday(); }
     document.querySelectorAll('.tabs a').forEach(function (a) {
