@@ -109,7 +109,34 @@
     try { return new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric' }).format(d); } catch (e) { return iso; }
   }
   function byN(n) { return A[n - 1]; }
-  function numLabel(a) { return a.noNumber ? '' : pad(a.n); }
+  var ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
+  function numLabel(a) { return a.noNumber ? '' : ROMAN[a.n]; }
+
+  /* Aura: i colori dell'acquerello della carta si diffondono sullo schermo */
+  var rootStyle = document.documentElement.style;
+  function rgba(hex, al) { var h = hex.replace('#', ''); return 'rgba(' + parseInt(h.slice(0, 2), 16) + ',' + parseInt(h.slice(2, 4), 16) + ',' + parseInt(h.slice(4, 6), 16) + ',' + al + ')'; }
+  function setAura(a, strong) {
+    if (a && a.aura) { rootStyle.setProperty('--a1', rgba(a.aura[0], strong ? .34 : .24)); rootStyle.setProperty('--a2', rgba(a.aura[1], strong ? .26 : .18)); }
+    else { rootStyle.setProperty('--a1', 'rgba(197,160,89,.10)'); rootStyle.setProperty('--a2', 'rgba(74,86,150,.12)'); }
+  }
+
+  /* Dorso della carta: geometria 3–6–9 (triangolo, esagono, stella a nove punte) */
+  function poly(k, r, rot, step) {
+    var pts = [], cx = 50, cy = 64; step = step || 1;
+    for (var i = 0; i < k; i++) { var an = (rot + i * step * 360 / k) * Math.PI / 180; pts.push((cx + r * Math.sin(an)).toFixed(2) + ',' + (cy - r * Math.cos(an)).toFixed(2)); }
+    return pts.join(' ');
+  }
+  var BACK_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 137" fill="none" stroke="#C5A059">' +
+    '<rect x="5" y="5" width="90" height="127" rx="3" stroke-opacity=".55" stroke-width=".6"/>' +
+    '<rect x="8" y="8" width="84" height="121" rx="2" stroke-opacity=".25" stroke-width=".4"/>' +
+    '<circle cx="50" cy="64" r="30" stroke-opacity=".35" stroke-width=".4"/>' +
+    '<polygon points="' + poly(9, 30, 0, 4) + '" stroke-opacity=".32" stroke-width=".4"/>' +
+    '<polygon points="' + poly(6, 21, 30) + '" stroke-opacity=".5" stroke-width=".5"/>' +
+    '<polygon points="' + poly(3, 21, 0) + '" stroke-opacity=".75" stroke-width=".6"/>' +
+    '<circle cx="50" cy="64" r="10.5" stroke-opacity=".4" stroke-width=".4"/>' +
+    '<path d="M50 56.5 51.6 62.4 57.5 64 51.6 65.6 50 71.5 48.4 65.6 42.5 64 48.4 62.4Z" fill="#E6CA85" stroke="none"/>' +
+    '</svg>';
+  rootStyle.setProperty('--back', 'url("data:image/svg+xml,' + encodeURIComponent(BACK_SVG) + '")');
   function img(a, small) { return 'img/' + pad(a.n) + (small ? '-s' : '') + '.webp'; }
   function reservePath() { return lang === 'en' ? '../en/arcani.html#edizioni' : '../arcani.html#edizioni'; }
   var toastEl = document.getElementById('toast'), toastT;
@@ -141,11 +168,11 @@
     var s = todayDraw(), a = s.n ? byN(s.n) : null, opened = !!a;
     main.innerHTML =
       '<section class="view today">' +
-        '<h1>' + t('todayTitle') + '</h1>' +
         '<p class="date">' + esc(fmtDate(s.day)) + '</p>' +
+        '<h1>' + t('todayTitle') + '</h1>' +
         '<button class="flip' + (opened ? ' open' : '') + '" type="button" id="card"' + (opened ? ' disabled' : '') + ' aria-label="' + esc(t('open')) + '">' +
           '<span class="flip-in">' +
-            '<span class="face back">' + starSvg + '<b>ARCANI</b><i>' + t('cardBackBy') + '</i></span>' +
+            '<span class="face back"><span class="back-art"></span><b>ARCANI</b><i>' + t('cardBackBy') + '</i></span>' +
             '<span class="face front">' + (a ? '<img src="' + img(a) + '" alt="' + esc(a.name) + '">' : '') + '</span>' +
           '</span>' +
         '</button>' +
@@ -153,12 +180,14 @@
         installBox() +
       '</section>';
     var card = document.getElementById('card');
+    setAura(a, true);
     if (!opened) card.addEventListener('click', function () {
       var r = draw(), b = byN(r.n);
       card.querySelector('.front').innerHTML = '<img src="' + img(b) + '" alt="' + esc(b.name) + '">';
       var im = card.querySelector('.front img');
       function go() {
         card.classList.add('open'); card.disabled = true;
+        setTimeout(function () { setAura(b, true); }, 450);
         document.getElementById('txt').innerHTML = cardText(b, false);
         requestAnimationFrame(function () { requestAnimationFrame(function () { var rv = document.querySelector('.reveal'); if (rv) rv.classList.add('on'); }); });
       }
@@ -188,6 +217,7 @@
 
   function viewArcano(n) {
     var a = byN(n); if (!a) { location.hash = '#arcani'; return; }
+    setAura(a, true);
     var p = byN(n === 1 ? A.length : n - 1), x = byN(n === A.length ? 1 : n + 1);
     main.innerHTML = '<section class="view detail">' +
       '<a class="back-link" href="#arcani">‹ ' + t('all') + '</a>' +
@@ -349,7 +379,6 @@
 
   /* Ritmo: numeri romani sui margini (sinistra–centro–destra), come nell'esempio del libro.
      Da verificare sulle carte stampate: numeri di una lettera (I, V, X) e di 4–5 lettere (VIII, XIII, XVII, XVIII). */
-  var ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
   function split(n) {
     var a = byN(n); if (!a || a.noNumber) return ['', '', ''];
     var r = ROMAN[n];
@@ -408,7 +437,8 @@
       '<svg class="ly-lines" viewBox="0 0 ' + L.w + ' ' + L.h + '" preserveAspectRatio="none" aria-hidden="true">' + lines + '</svg>';
     L.slots.forEach(function (s, i) {
       var n = s[0], c = cards[i], up = !!(c && open[n]), a = up ? byN(c) : null;
-      var style = 'left:' + ((s[1] - L.cw / 2) / L.w * 100) + '%;top:' + ((s[2] - ch / 2) / L.h * 100) + '%;width:' + (L.cw / L.w * 100) + '%';
+      var style = 'left:' + ((s[1] - L.cw / 2) / L.w * 100) + '%;top:' + ((s[2] - ch / 2) / L.h * 100) + '%;width:' + (L.cw / L.w * 100) + '%' +
+        (up && a.aura ? ';--glow:' + rgba(a.aura[0], .5) : '');
       var inner = up ? '<img src="' + img(a, true) + '" alt="' + esc(a.name) + '">' : '<span class="slot-back"></span>';
       if (up && m === 'ritmo') { var sp = split(c); inner += '<span class="rl"><i>' + sp[0] + '</i><i>' + sp[1] + '</i><i>' + sp[2] + '</i></span>'; }
       html += (interactive && c && !up)
@@ -612,6 +642,7 @@
   var lastTab = null;
   function route() {
     var h = (location.hash || '#oggi').slice(1).split('/'), tab = h[0] || 'oggi';
+    setAura(null);
     if (tab === 'arcano') { viewArcano(+h[1]); tab = 'arcani'; }
     else if (tab === 'arcani') viewArcani();
     else if (tab === 'diario') viewDiary(h[1], h[2]);

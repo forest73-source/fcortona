@@ -1,13 +1,13 @@
 /* Arcani: funziona anche senza rete dopo la prima apertura.
    Pagine e codice: prima la rete (così gli aggiornamenti arrivano subito), poi la copia salvata.
    Immagini e caratteri: prima la copia salvata. Cambiare VERSION a ogni pubblicazione. */
-var VERSION = 'arcani-v2';
+var VERSION = 'arcani-v3';
 var PRECACHE = [
  "./",
  "index.html",
- "app.css?v=2",
- "app.js?v=2",
- "data.js?v=2",
+ "app.css?v=3",
+ "app.js?v=3",
+ "data.js?v=3",
  "manifest.webmanifest",
  "icons/icon-192.png",
  "icons/apple-180.png",
