@@ -5,7 +5,7 @@
   'use strict';
   var A = window.ARCANI;
   var main = document.getElementById('main');
-  var K = { lang: 'arcani.lang', today: 'arcani.oggi.v1', diary: 'arcani.diario.v1', noInstall: 'arcani.noinstall' };
+  var K = { lang: 'arcani.lang', today: 'arcani.oggi.v1', diary: 'arcani.diario.v1', noInstall: 'arcani.noinstall', code: 'arcani.codice' };
 
   /* ——— Testi ——— */
   var T = {
@@ -48,7 +48,12 @@
       listen: 'Ascolta il ritmo', stop: 'Ferma', silence: 'silenzio', seeArcano: 'Vedi l’Arcano',
       offline: 'Per aprire la stesa la prima volta serve la connessione a internet.', lockedSpread: 'I metodi di lettura si sbloccano con il codice del cofanetto.',
       stepOf: 'Tappa', yourQuestion: 'La tua domanda', spreadLabel: 'Stesa', loading: 'Un momento…',
-      audioList: 'Sequenza 3 6 9 – Unione · 3 9 6 – Spirito · 9 6 3 – Materia'
+      audioList: 'Sequenza 3 6 9 – Unione · 3 9 6 – Spirito · 9 6 3 – Materia',
+      codeLabel: 'Hai il codice?', unlock: 'Sblocca', checking: 'Controllo il codice…',
+      badCode: 'Codice non valido. Controlla le lettere e riprova.', netErr: 'Serve la connessione a internet per aprire il cofanetto.',
+      openIntro: 'Il cofanetto è aperto su questo telefono: qui trovi il libro e gli ascolti.',
+      readIt: 'Leggi in italiano', readEn: 'Read in English', bookNote: 'Il libro si apre in una nuova pagina; da lì puoi anche salvarlo.',
+      onYouTube: 'Apri su YouTube', listen: 'Ascolto', relock: 'Blocca di nuovo su questo telefono', retry: 'Riprova'
     },
     en: {
       tabToday: 'Today', tabArcani: 'Arcana', tabDiary: 'Journal', tabBox: 'Box set',
@@ -89,7 +94,12 @@
       listen: 'Listen to the rhythm', stop: 'Stop', silence: 'silence', seeArcano: 'See the Arcanum',
       offline: 'You need an internet connection to open the spread the first time.', lockedSpread: 'The reading methods are unlocked with the box set code.',
       stepOf: 'Step', yourQuestion: 'Your question', spreadLabel: 'Spread', loading: 'One moment…',
-      audioList: 'Sequence 3 6 9 – Unity · 3 9 6 – Spirit · 9 6 3 – Matter'
+      audioList: 'Sequence 3 6 9 – Unity · 3 9 6 – Spirit · 9 6 3 – Matter',
+      codeLabel: 'Do you have the code?', unlock: 'Unlock', checking: 'Checking the code…',
+      badCode: 'Invalid code. Check the letters and try again.', netErr: 'You need an internet connection to open the box set.',
+      openIntro: 'The box set is open on this phone: here are the book and the recordings.',
+      readIt: 'Leggi in italiano', readEn: 'Read in English', bookNote: 'The book opens in a new page; from there you can also save it.',
+      onYouTube: 'Open on YouTube', listen: 'Recording', relock: 'Lock again on this phone', retry: 'Try again'
     }
   };
 
@@ -331,18 +341,83 @@
     r.readAsText(file);
   }
 
-  function viewBox() {
-    main.innerHTML = '<section class="view">' +
-      '<div class="head"><h1>' + t('boxTitle') + '</h1><p class="intro">' + t('boxIntro') + '</p></div>' +
+  /* ——— Cofanetto: libro e ascolti si aprono con il codice; il codice resta solo su questo telefono ——— */
+  var BOX_API = 'https://arcani.forest73.workers.dev';
+  var boxData = null;
+  function boxHead(intro) {
+    return '<div class="head"><h1>' + t('boxTitle') + '</h1><p class="intro">' + intro + '</p></div>';
+  }
+  function boxFoot() {
+    return '<p class="foot"><a href="' + (lang === 'en' ? '../en/' : '../') + '">' + t('site') + '</a><br>© Cortona Francesca</p>';
+  }
+  function checkCode(code) {
+    return fetch(BOX_API + '/cofanetto', { headers: { 'X-Arcani-Code': code }, cache: 'no-store' }).then(function (r) {
+      if (r.status === 401) return 'bad';
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.json();
+    });
+  }
+  function audioName(a, i) {
+    var parts = String(a.title || '').replace(/[\s-]+$/, '').split(/\s+-\s+/).filter(Boolean);
+    if (parts.length < 2) return { name: a.title || (t('listen') + ' ' + (i + 1)), sub: '' };
+    var name = parts[0].charAt(0) + parts[0].slice(1).toLowerCase() + ' · ' + parts[1].charAt(0) + parts[1].slice(1).toLowerCase();
+    return { name: name, sub: parts[lang === 'en' ? 3 : 2] || '' };
+  }
+  function viewBoxOpen(code, d) {
+    var k = encodeURIComponent(code);
+    var book = '<div class="open-box"><h2>' + t('bookTitle') + '</h2><p>' + t('bookDesc') + '</p><div class="row">' +
+      (d.book.it ? '<a class="btn solid" href="' + BOX_API + '/libro?lang=it&k=' + k + '" target="_blank" rel="noopener">' + t('readIt') + '</a>' : '') +
+      (d.book.en ? '<a class="btn" href="' + BOX_API + '/libro?lang=en&k=' + k + '" target="_blank" rel="noopener">' + t('readEn') + '</a>' : '') +
+      '</div><p class="small">' + t('bookNote') + '</p></div>';
+    var audio = '<div class="open-box"><h2>' + t('audioTitle') + '</h2><p>' + t('audioDesc') + '</p>' + d.audio.map(function (a, i) {
+      var n = audioName(a, i), id = encodeURIComponent(a.id);
+      return '<figure class="yt"><figcaption><b>' + esc(n.name) + '</b>' + (n.sub ? '<span>' + esc(n.sub) + '</span>' : '') + '</figcaption>' +
+        '<div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '?rel=0&playsinline=1" title="' + esc(n.name) + '" loading="lazy" ' +
+        'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>' +
+        '<a href="https://youtu.be/' + id + '" target="_blank" rel="noopener">' + t('onYouTube') + '</a></figure>';
+    }).join('') + '</div>';
+    main.innerHTML = '<section class="view">' + boxHead(t('openIntro')) + book + audio +
+      '<p class="relock"><button type="button" class="linkish" id="relock">' + t('relock') + '</button></p>' + boxFoot() + '</section>';
+    document.getElementById('relock').addEventListener('click', function () { set(K.code, ''); boxData = null; viewBox(); });
+  }
+  function viewBoxLocked(msg, isErr) {
+    main.innerHTML = '<section class="view">' + boxHead(t('boxIntro')) +
       '<div class="box-hero" aria-hidden="true"><img src="' + img(A[0], true) + '" alt=""><img src="' + img(A[1], true) + '" alt=""><img src="' + img(A[2], true) + '" alt=""></div>' +
+      '<form class="unlock" id="unlock" novalidate><label for="boxcode">' + t('codeLabel') + '</label>' +
+        '<div class="unlock-row"><input id="boxcode" name="boxcode" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="XXXX-XXXX" maxlength="24">' +
+        '<button class="btn solid" type="submit">' + t('unlock') + '</button></div>' +
+        '<p class="unlock-msg' + (isErr ? ' err' : '') + '" id="unlockmsg" role="status">' + (msg || '') + '</p></form>' +
       '<ul class="locked">' +
         '<li><span class="lockicon">' + lockSvg + '</span><div><h3>' + t('bookTitle') + '</h3><p>' + t('bookDesc') + '</p><span class="tag">' + t('lockTag') + '</span></div></li>' +
         '<li><span class="lockicon">' + lockSvg + '</span><div><h3>' + t('audioTitle') + '</h3><p>' + t('audioDesc') + '</p><p>' + t('audioList') + '</p><span class="tag">' + t('lockTag') + '</span></div></li>' +
       '</ul>' +
-      '<p class="soon">' + t('soon') + '</p>' +
-      '<div class="row"><a class="btn solid" href="' + reservePath() + '">' + t('reserve') + '</a></div>' +
-      '<p class="foot"><a href="' + (lang === 'en' ? '../en/' : '../') + '">' + t('site') + '</a><br>© Cortona Francesca</p>' +
-    '</section>';
+      '<div class="row"><a class="btn" href="' + reservePath() + '">' + t('reserve') + '</a></div>' + boxFoot() + '</section>';
+    var form = document.getElementById('unlock'), input = document.getElementById('boxcode'), out = document.getElementById('unlockmsg');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var code = input.value.trim();
+      if (!code) { input.focus(); return; }
+      out.className = 'unlock-msg'; out.textContent = t('checking');
+      checkCode(code).then(function (d) {
+        if (d === 'bad') { out.className = 'unlock-msg err'; out.textContent = t('badCode'); input.select(); return; }
+        set(K.code, code); boxData = d; viewBoxOpen(code, d);
+      }).catch(function () { out.className = 'unlock-msg err'; out.textContent = t('netErr'); });
+    });
+  }
+  function viewBox() {
+    var code = get(K.code, '');
+    if (!code) { viewBoxLocked(); return; }
+    if (boxData) { viewBoxOpen(code, boxData); return; }
+    main.innerHTML = '<section class="view">' + boxHead(t('loading')) + '</section>';
+    checkCode(code).then(function (d) {
+      if (location.hash !== '#cofanetto') return;
+      if (d === 'bad') { set(K.code, ''); viewBoxLocked(t('badCode'), true); return; }
+      boxData = d; viewBoxOpen(code, d);
+    }).catch(function () {
+      if (location.hash !== '#cofanetto') return;
+      main.innerHTML = '<section class="view">' + boxHead(t('netErr')) + '<div class="row"><button type="button" class="btn" id="boxretry">' + t('retry') + '</button></div>' + boxFoot() + '</section>';
+      document.getElementById('boxretry').addEventListener('click', viewBox);
+    });
   }
 
   /* ——— Stesa: i testi arrivano dal servizio privato su Cloudflare, mai dal sito pubblico ——— */

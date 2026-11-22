@@ -377,3 +377,28 @@ button.slot:not(.up){box-shadow:0 8px 18px rgba(0,0,0,.55),0 0 0 1px rgba(230,20
   .today .btn{min-height:40px;padding:.45rem 1rem}
   .tomorrow{margin-top:.6rem}
 }
+
+/* Cofanetto: sblocco con il codice, libro e ascolti */
+.unlock{display:grid;gap:.55rem;margin:1.4rem 0 1rem;padding:1.05rem;background:var(--surface);border:1px solid var(--gold-dim)}
+.unlock label{font-family:var(--display);letter-spacing:.05em;color:var(--text)}
+.unlock-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.unlock input{flex:1 1 9rem;min-width:0;min-height:46px;padding:.55rem .85rem;background:var(--bg);border:1px solid var(--gold-dim);border-radius:0;
+  color:var(--text);font:inherit;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase}
+.unlock input::placeholder{color:var(--muted);opacity:.6}
+.unlock input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.unlock-msg{min-height:1.3em;font-size:.86rem;color:var(--muted)}
+.unlock-msg.err{color:#e8a08f}
+.open-box{display:grid;gap:.7rem;margin:1.2rem 0;padding:1.1rem;background:var(--surface);border:1px solid rgba(197,160,89,.22)}
+.open-box h2{font-family:var(--display);font-weight:400;font-size:1.08rem;letter-spacing:.05em;color:var(--text)}
+.open-box > p{font-size:.88rem;color:var(--muted)}
+.open-box .small{font-size:.78rem}
+.yt{display:grid;gap:.45rem;margin:.5rem 0 .3rem}
+.yt figcaption{display:grid;gap:.1rem}
+.yt figcaption b{font-family:var(--display);font-weight:400;letter-spacing:.05em;color:var(--gold-soft)}
+.yt figcaption span{font-family:var(--serif);font-style:italic;color:var(--muted)}
+.yt-frame{position:relative;width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--gold-dim)}
+.yt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt > a{font-size:.8rem;color:var(--gold-soft)}
+.relock{margin-top:1.4rem;text-align:center}
+.linkish{background:none;border:0;padding:.4rem;color:var(--muted);font:inherit;font-size:.82rem;text-decoration:underline;cursor:pointer}
+.linkish:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
