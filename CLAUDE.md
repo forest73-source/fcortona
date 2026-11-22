@@ -63,6 +63,10 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
   strategia, calendario, analisi dei video virali.
 - Abracadabrax: musica di sottofondo (usa i suoi crediti: chiedere prima). Nell'ambiente cloud
   la rete lo blocca: va abilitato l'host nelle impostazioni dell'ambiente.
+- vidIQ (collegato, piano gratuito: 150 crediti al mese, si rinnovano il 22 di ogni mese): tendenze
+  TikTok/Instagram, suoni di tendenza, parole chiave, titoli, miniature. Controllare il costo di ogni
+  strumento (vidiq_balance è gratis) e spendere solo i crediti gratuiti.
+- ElevenLabs: consigliato ma non indispensabile (creative-claw usa già i modelli ElevenLabs).
 - Genere musicale preferito: non ancora indicato, chiederlo ogni volta (Francesca risponderà).
 - Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
 
