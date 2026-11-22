@@ -41,7 +41,8 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
    - Prima bozze economiche, poi la versione finale in alta qualità.
    - Controlla il risultato (estrai fotogrammi e guardali) prima di consegnarlo e di' onestamente
      cosa non va.
-4. Crediti: prima di spenderli di' quanto costano e aspetta l'OK. Usa solo quelli gratuiti.
+4. Per adesso SOLO COSE GRATUITE: usa strumenti locali o piani/crediti gratuiti. Se qualcosa
+   costa (crediti a pagamento, abbonamenti), non usarlo: di' quanto costa e aspetta l'OK.
 5. Stile: formato TikTok verticale 9:16, tono caldo, colori vivaci, voce in italiano,
    durata tipica circa 20 secondi, brand cortonafrancesca.it. Genere musicale: da chiedere.
 6. Stile grafico già usato nei lavori: fondo scuro, oro (#C5A059 / #e6ca85), font Cinzel,
