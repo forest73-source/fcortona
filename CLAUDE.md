@@ -49,3 +49,15 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
    Instagram @cortona.francesca.arcani.
 7. Foto con persone estranee o scritte da togliere: ritocco fatto localmente, senza inviare le foto
    a servizi esterni se non richiesto.
+
+## Strumenti installati (aggiornare a ogni nuova installazione)
+
+- video-shotcraft: libreria di 157 effetti/transizioni professionali (usata per «L'Infinito»:
+  luce calda, zoom dall'interno, cornice/lampo sull'opera).
+- creative-claw, ai-video-editor (ManyMotions), cinematic-video, animation-studio, video-cleanup.
+- Adobe, Canva, Metricool (pubblicazione).
+- Consigliati da installare: Remotion (video programmati), Social Media Skills (script TikTok/Reels,
+  hook, didascalie), un generatore di musica (es. Abracadabrax) — da usare quando installati.
+- Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
+
+Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
