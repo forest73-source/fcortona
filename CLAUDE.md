@@ -44,7 +44,8 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
 4. Per adesso SOLO COSE GRATUITE: usa strumenti locali o piani/crediti gratuiti. Se qualcosa
    costa (crediti a pagamento, abbonamenti), non usarlo: di' quanto costa e aspetta l'OK.
 5. Stile: formato TikTok verticale 9:16, tono caldo, colori vivaci, voce in italiano,
-   durata tipica circa 20 secondi, brand cortonafrancesca.it. Genere musicale: da chiedere.
+   durata tipica circa 20 secondi, brand cortonafrancesca.it. Musica: NON chiederla; sceglila tu
+   adatta al video (gratuita e libera da diritti) e lascia la possibilità di cambiarla.
 6. Stile grafico già usato nei lavori: fondo scuro, oro (#C5A059 / #e6ca85), font Cinzel,
    Cormorant Garamond e Montserrat (in `fonts/`). Profili: TikTok @cortona.francesca,
    Instagram @cortona.francesca.arcani.
@@ -67,7 +68,6 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
   TikTok/Instagram, suoni di tendenza, parole chiave, titoli, miniature. Controllare il costo di ogni
   strumento (vidiq_balance è gratis) e spendere solo i crediti gratuiti.
 - ElevenLabs: consigliato ma non indispensabile (creative-claw usa già i modelli ElevenLabs).
-- Genere musicale preferito: non ancora indicato, chiederlo ogni volta (Francesca risponderà).
 - Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
 
 Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
