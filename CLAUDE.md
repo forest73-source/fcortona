@@ -56,8 +56,13 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
   luce calda, zoom dall'interno, cornice/lampo sull'opera).
 - creative-claw, ai-video-editor (ManyMotions), cinematic-video, animation-studio, video-cleanup.
 - Adobe, Canva, Metricool (pubblicazione).
-- Consigliati da installare: Remotion (video programmati), Social Media Skills (script TikTok/Reels,
-  hook, didascalie), un generatore di musica (es. Abracadabrax) — da usare quando installati.
+- Remotion: video programmati (animazioni, sottotitoli sincronizzati, audio a tempo, render).
+- Social Media Skills (106 skill): script TikTok/Reels (tiktok-script, reels-script, hook-writer),
+  didascalie e hashtag, musica sicura (ai-music-and-sound), voce (ai-voiceover), editing foto,
+  strategia, calendario, analisi dei video virali.
+- Abracadabrax: musica di sottofondo (usa i suoi crediti: chiedere prima). Nell'ambiente cloud
+  la rete lo blocca: va abilitato l'host nelle impostazioni dell'ambiente.
+- Genere musicale preferito: non ancora indicato, chiederlo ogni volta (Francesca risponderà).
 - Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
 
 Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
