@@ -358,8 +358,8 @@ TIMELINE = [
 ]
 
 if __name__ == "__main__":
-    # ordine scelto: 2-4, 0-2, 14-16, 6-8, 4-6, 10-12, 8-10, 18-20 (tolti i doppioni 12-14 e 16-18)
-    ORDER = [1, 0, 7, 3, 2, 5, 4, 9]
+    # ordine: alternanza volto/grafica, chiusura con Roma + cartello finale
+    ORDER = [1, 0, 7, 2, 3, 4, 5, 9]
     segs = ONLY if ONLY is not None else ORDER
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
                             "-r", str(FPS), "-i", "-", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
