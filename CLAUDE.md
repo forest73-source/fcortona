@@ -71,6 +71,9 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
   TikTok/Instagram, suoni di tendenza, parole chiave, titoli, miniature. Controllare il costo di ogni
   strumento (vidiq_balance è gratis) e spendere solo i crediti gratuiti.
 - ElevenLabs: consigliato ma non indispensabile (creative-claw usa già i modelli ElevenLabs).
+- Ruflo Ai Team (plugin di ruvnet): squadra di assistenti (ricercatore, costruttore, verificatore,
+  coordinatore) per progetti lunghi, con memoria del contesto. Serve l'accesso al suo servizio
+  (team.ruv.io) dalle impostazioni dei connettori di claude.ai; verificare i costi prima di usarlo.
 - Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
 
 Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
