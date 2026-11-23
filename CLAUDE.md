@@ -74,6 +74,10 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
 - Ruflo Ai Team (plugin di ruvnet): squadra di assistenti (ricercatore, costruttore, verificatore,
   coordinatore) per progetti lunghi, con memoria del contesto. Serve l'accesso al suo servizio
   (team.ruv.io) dalle impostazioni dei connettori di claude.ai; verificare i costi prima di usarlo.
+- brag (plugin GitHub latent-spaces/brag, gratuito, MIT): /brag e /brag-slim creano un video di lancio
+  di ~20 s con musica, movimento e testi da condividere, partendo da un sito o progetto (es. il sito
+  di Francesca). /brag-slim usa solo strumenti locali; /brag classico usa Hyperframes (npx).
+  Installato a livello di progetto in `.claude/settings.json`.
 - Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
 
 Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
