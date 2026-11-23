@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 
 S = "/tmp/claude-0/-home-user-fcortona/8166632e-ec4f-537c-b290-cfe1ba6e000c/scratchpad"
 SRC = "/root/.claude/uploads/8166632e-ec4f-537c-b290-cfe1ba6e000c/18cbd433-video-infinito-instagram-reel.mp4"
-OUT = sys.argv[1] if len(sys.argv) > 1 else f"{S}/reel_infinito_motion.mp4"
+OUT = sys.argv[1] if len(sys.argv) > 1 else "reel_infinito_motion.mp4"
 ONLY = [int(x) for x in sys.argv[2].split(",")] if len(sys.argv) > 2 else None  # preview subset
 W, H, FPS, SEG = 1080, 1920, 30, 60
 SW, SH = 1440, 2560
@@ -358,14 +358,16 @@ TIMELINE = [
 ]
 
 if __name__ == "__main__":
-    segs = ONLY if ONLY is not None else range(len(TIMELINE))
+    # ordine scelto: 2-4, 0-2, 14-16, 6-8, 4-6, 10-12, 8-10, 18-20 (tolti i doppioni 12-14 e 16-18)
+    ORDER = [1, 0, 7, 3, 2, 5, 4, 9]
+    segs = ONLY if ONLY is not None else ORDER
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
                             "-r", str(FPS), "-i", "-", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
                             "-shortest", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
                             "-profile:v", "high", "-movflags", "+faststart", "-c:a", "aac", "-b:a", "128k", OUT],
                            stdin=subprocess.PIPE)
-    for si in segs:
-        for fr in TIMELINE[si](si * 2.0):
+    for pos, si in enumerate(segs):
+        for fr in TIMELINE[si](pos * 2.0):
             enc.stdin.write(fr.tobytes())
         print("segment", si, "done", flush=True)
     enc.stdin.close(); enc.wait()
