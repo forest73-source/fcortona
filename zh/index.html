@@ -584,6 +584,99 @@
         }
     </style>
 <link rel="stylesheet" href="../site.css?v=20261117ar3">
+<style>
+/* Hero luce / buio */
+.hero.hero--glow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);align-items:center;gap:clamp(2rem,5vw,5rem);background:radial-gradient(ellipse at 75% 50%,#15171d 0%,var(--bg-dark) 65%);padding:8rem 3rem 6rem}
+.hero--glow .hero-text{max-width:640px}
+.hero--glow .hero-quote{font-size:clamp(1.55rem,2.4vw,2.2rem);line-height:1.4;max-width:22em;margin:1.8rem 0 2.8rem}
+.glow{margin:0;justify-self:center;width:min(100%,600px)}
+.glow-frame{position:relative;aspect-ratio:1200/1038;border:1px solid rgba(197,160,89,.35);box-shadow:0 30px 80px rgba(0,0,0,.7);transition:box-shadow 1.2s ease}
+.glow-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.glow-day{transition:opacity 1.2s ease,filter 1.2s ease}
+.glow-dark{opacity:0;transition:opacity 1.2s ease}
+.glow[data-state="buio"] .glow-day{opacity:0;filter:brightness(.3)}
+.glow[data-state="buio"] .glow-dark{opacity:1}
+.glow[data-state="buio"] .glow-frame{box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 90px rgba(110,205,235,.28)}
+.glow figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem;margin-top:1.2rem}
+.hero a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.glow-state{font-family:var(--font-quote);font-style:italic;font-size:1.1rem;color:var(--text-light)}
+.glow-cap{flex-basis:100%;margin:.3rem 0 0;font-family:var(--font-quote);font-style:italic;font-size:1.2rem;line-height:1.45;color:var(--text-light);max-width:34em}
+.glow-cap a{color:var(--gold-primary);text-decoration:none;border-bottom:1px solid rgba(197,160,89,.45)}
+.glow-cap a:hover{border-bottom-color:var(--gold-primary)}
+.hero--glow .scroll-down{left:50%;right:auto;transform:translateX(-50%)}
+@media (max-width:900px){
+  .hero.hero--glow{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:7rem 1.5rem 4rem;min-height:auto}
+  .hero--glow .hero-text{display:contents}
+  .hero--glow .hero-subtitle{order:1}.hero--glow h1{order:2;margin-bottom:1.6rem}
+  .glow{order:3;width:100%;margin-bottom:2.2rem}
+  .hero--glow .hero-quote{order:4}.hero--glow .hero-buttons{order:6}
+}
+@media (prefers-reduced-motion:reduce){
+  .glow-day,.glow-dark,.glow-frame{transition:none}
+}
+
+/* Rifinitura home: la notte spegne la stanza, entrata dell'hero, Arcani come carte */
+.hero.hero--glow{isolation:isolate}
+.hero--glow::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 60% 70% at 74% 50%,rgba(110,205,235,.09),transparent 70%),rgba(3,4,7,.6);-webkit-mask-image:linear-gradient(180deg,#000 75%,transparent);mask-image:linear-gradient(180deg,#000 75%,transparent);opacity:0;transition:opacity 1.4s ease}
+.hero--glow:has(.glow[data-state="buio"])::before{opacity:1}
+.glow-frame::before{content:"";position:absolute;inset:-16%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(110,205,235,.45),rgba(110,205,235,.12) 60%,transparent);filter:blur(36px);opacity:0;transform:scale(.82);transition:opacity 1.2s ease,transform 1.8s cubic-bezier(.16,1,.3,1)}
+.glow[data-state="buio"] .glow-frame::before{opacity:1;transform:scale(1)}
+.glow[data-state="buio"] .glow-frame{box-shadow:0 30px 80px rgba(0,0,0,.75)}
+.dn-switch button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){
+  .hero--glow .hero-subtitle,.hero--glow h1,.hero--glow .hero-quote,.hero--glow .hero-buttons{animation:cf-rise 1.1s cubic-bezier(.16,1,.3,1) backwards}
+  .hero--glow h1{animation-delay:.12s}
+  .hero--glow .hero-quote{animation-delay:.28s}
+  .hero--glow .hero-buttons{animation-delay:.42s}
+  .glow-frame{animation:cf-develop 1.8s cubic-bezier(.16,1,.3,1) .2s backwards}
+  .glow figcaption{animation:cf-rise 1.1s cubic-bezier(.16,1,.3,1) .7s backwards}
+}
+@keyframes cf-rise{from{opacity:0;transform:translateY(18px)}}
+@keyframes cf-develop{from{opacity:0;filter:blur(14px) brightness(.6);transform:scale(.97)}}
+@media (prefers-reduced-motion:reduce){.hero--glow::before,.glow-frame::before{transition:none}}
+
+/* Citazione: niente barra laterale, la frase parla da sola */
+.quote-box{border:0;padding:0;margin:3rem 0 0}
+.quote-box p{font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.3;color:var(--gold-light);margin-bottom:.8rem;text-wrap:balance}
+
+/* Anteprima Arcani: l'opera è la carta, niente riquadro attorno */
+.arcani-preview-grid .arcanum-card{display:block;background:none;border:0;border-radius:0;padding:0;text-decoration:none;color:inherit;overflow:visible}
+.arcani-preview-grid .arcanum-card img{height:auto;aspect-ratio:825/1130;object-fit:cover;border:1px solid rgba(197,160,89,.28);box-shadow:0 18px 40px -16px rgba(0,0,0,.8);transition:transform .7s cubic-bezier(.16,1,.3,1),box-shadow .7s cubic-bezier(.16,1,.3,1),border-color .4s ease}
+.arcani-preview-grid .arcanum-card h3{transition:color .4s ease}
+.arcani-preview-grid .arcanum-card:focus-visible{outline:2px solid var(--gold-light);outline-offset:6px}
+@media (hover:hover){
+  .arcani-preview-grid .arcanum-card:hover{transform:none;box-shadow:none;z-index:auto}
+  .arcani-preview-grid .arcanum-card:hover img{transform:translateY(-8px);border-color:var(--gold-primary);box-shadow:0 34px 60px -18px rgba(0,0,0,.9)}
+  .arcani-preview-grid .arcanum-card:hover h3{color:var(--gold-light)}
+}
+@media (prefers-reduced-motion:reduce){.arcani-preview-grid .arcanum-card img{transition:none}.arcani-preview-grid .arcanum-card:hover img{transform:none}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var g=document.querySelector('.glow'); if(!g) return;
+  var bs=g.querySelectorAll('.dn-switch button'), st=g.querySelector('.glow-state');
+  function set(dark){
+    g.dataset.state=dark?'buio':'luce';
+    bs.forEach(function(x){ x.setAttribute('aria-pressed',(x.dataset.v==='notte')===dark?'true':'false'); });
+    st.textContent=dark?'夜晚，颜料会发光。':'白天，颜料呈中性。';
+  }
+  // Ogni 3 secondi alterna giorno e notte, finché il ritratto è sullo schermo.
+  // Se qualcuno tocca "Di giorno" o "Di notte", decide lui e il ciclo si ferma.
+  // Uscendo e rientrando nella pagina il ciclo riparte da capo.
+  var timer=null, manual=false, visible=false;
+  var calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function stop(){ clearInterval(timer); timer=null; }
+  function start(){
+    if(manual||calm||timer||!visible||document.hidden) return;
+    timer=setInterval(function(){ set(g.dataset.state!=='buio'); },3000);
+  }
+  bs.forEach(function(x){ x.addEventListener('click',function(){ manual=true; stop(); set(x.dataset.v==='notte'); }); });
+  new IntersectionObserver(function(es){ visible=es[0].isIntersecting; if(visible) start(); else stop(); },{threshold:.5})
+    .observe(g.querySelector('.glow-frame'));
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) stop(); else start(); });
+  window.addEventListener('pageshow',function(e){ if(e.persisted){ manual=false; stop(); set(false); start(); } });
+});
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://cortonafrancesca.it/#artist", "name": "Cortona Francesca", "alternateName": "Francesca Cortona", "jobTitle": "画家", "birthPlace": {"@type": "Place", "name": "Roma"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Central Saint Martins"}, "url": "https://cortonafrancesca.it/", "image": ["https://cortonafrancesca.it/images/foto.jpg", "https://cortonafrancesca.it/images/og-foto.jpg"], "email": "mailto:cortonaitalianpainter@gmail.com", "description": "Cortona Francesca，生于罗马、毕业于伦敦中央圣马丁的画家：以夜光颜料结合古典油画，创作在黑暗中发光的作品、阿卡纳系列与灵性艺术。", "sameAs": ["https://www.instagram.com/cortona.francesca.arcani/", "https://www.facebook.com/cortona.francesca"], "sibling": {"@type": "Person", "name": "Lié Larousse", "url": "https://lielarousse.it/", "jobTitle": "Scrittrice e poetessa"}}, {"@type": "WebSite", "@id": "https://cortonafrancesca.it/#website", "url": "https://cortonafrancesca.it/", "name": "Cortona Francesca", "inLanguage": "zh", "publisher": {"@id": "https://cortonafrancesca.it/#artist"}}, {"@type": "WebPage", "@id": "https://cortonafrancesca.it/zh/#webpage", "url": "https://cortonafrancesca.it/zh/", "name": "CORTONA FRANCESCA | 艺术家 • 画家 • 灵性探索者", "inLanguage": "zh", "isPartOf": {"@id": "https://cortonafrancesca.it/#website"}, "about": {"@id": "https://cortonafrancesca.it/#artist"}, "primaryImageOfPage": {"@type": "ImageObject", "url": "https://cortonafrancesca.it/images/foto.jpg", "contentUrl": "https://cortonafrancesca.it/images/foto.jpg", "width": 1520, "height": 1034, "caption": "Francesca Cortona 在工作室中"}}]}</script>
 </head>
 <body>
@@ -609,15 +702,27 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section class="hero">
-        <span class="hero-subtitle">艺术家 • 画家 • 灵性探索者</span>
-        <h1>CORTONA<br><span>FRANCESCA</span></h1>
-        <p class="hero-quote">「本质在于精神与物质的合一。本质即在万有之中。」</p>
-        <p class="hero-author">Cortona</p>
-        <div class="hero-buttons">
+    <section class="hero hero--glow">
+        <div class="hero-text">
+            <span class="hero-subtitle">艺术家 • 画家 • 灵性探索者</span>
+            <h1>CORTONA<br><span>FRANCESCA</span></h1>
+            <p class="hero-quote">「本质在于精神与物质的合一。本质即在万有之中。」</p>
+            <div class="hero-buttons">
             <a href="arcani.html" class="btn-gold-outline">阿卡纳珍藏礼盒&nbsp;&rarr;</a>
             <a href="opere.html" class="btn-dark-outline">探索作品</a>
         </div>
+        </div>
+        <figure class="glow" data-state="luce">
+            <div class="glow-frame">
+                <img class="glow-day" src="../images/hero-luce.jpg" width="1200" height="1038" alt="Cortona Francesca 在镀锌钢板上以油彩绘制的儿童肖像，日光下" fetchpriority="high">
+                <img class="glow-dark" src="../images/hero-buio.jpg" width="1200" height="1038" alt="" aria-hidden="true">
+            </div>
+            <figcaption>
+                <span class="dn-switch" role="group" aria-label="观看作品"><button type="button" data-v="giorno" aria-pressed="true">白天</button><button type="button" data-v="notte" aria-pressed="false">夜晚</button></span>
+                <span class="glow-state" aria-live="polite">白天，颜料呈中性。</span>
+                <p class="glow-cap"><a href="opere.html#innocence-2">纯真，系列 II</a> · 镀锌钢板上的油彩与天蓝色光致发光颜料肖像，29×25 厘米</p>
+            </figcaption>
+        </figure>
         <div class="scroll-down">
             向下滚动
             <div class="scroll-line"></div>
@@ -626,7 +731,6 @@
 
     <!-- BIOGRAFIA SECTION -->
     <section id="biografia">
-        <span class="section-tag">艺术家简介</span>
         <h2 class="section-title section-title--sm">艺术及其本质</h2>
         <div class="bio-container">
             <div class="bio-img">
@@ -636,7 +740,7 @@
                 <p>Cortona 的艺术表达本质上是灵性的。她以整体而深奥的语言，通过绘画传递更深层的讯息，引导观者将目光转向内在的自我。她的探索聚焦于对自我与感官的认知与觉察，以重新连接内在之光：对 Cortona 而言，艺术即疗愈。</p>
                 
                 <div class="quote-box">
-                    <p>"不能疗愈的艺术，不是艺术"</p>
+                    <p>「不能疗愈的艺术，不是艺术」</p>
                     <span>— 亚历杭德罗·佐杜洛夫斯基（Alejandro Jodorowsky）</span>
                 </div>
 
@@ -647,24 +751,23 @@
 
     <!-- ANTEPRIMA ARCANI SECTION -->
     <section id="arcani-preview">
-        <span class="section-tag">珍藏礼盒</span>
         <h2 class="section-title section-title--sm">大阿卡纳</h2>
         <div class="arcani-preview-grid">
-            <div class="arcanum-card">
-                <img src="../images/1-unitas.jpg?w=2" alt="I. UNITAS（合一）">
+            <a class="arcanum-card" href="opere.html#arcani-maggiori">
+                <img src="../images/1-unitas.jpg?w=2" width="825" height="1128" alt="I. UNITAS（合一）, 原初之一" loading="lazy" decoding="async">
                 <h3>I. UNITAS（合一）</h3>
                 <p>原初之一</p>
-            </div>
-            <div class="arcanum-card">
-                <img src="../images/2-mater.jpg?w=2" alt="II. MATER（母亲）">
+            </a>
+            <a class="arcanum-card" href="opere.html#arcani-maggiori">
+                <img src="../images/2-mater.jpg?w=2" width="825" height="1140" alt="II. MATER（母亲）, 宇宙之母" loading="lazy" decoding="async">
                 <h3>II. MATER（母亲）</h3>
                 <p>宇宙之母</p>
-            </div>
-            <div class="arcanum-card">
-                <img src="../images/3-creatio.jpg?w=2" alt="III. CREATIO（创造）">
+            </a>
+            <a class="arcanum-card" href="opere.html#arcani-maggiori">
+                <img src="../images/3-creatio.jpg?w=2" width="829" height="1134" alt="III. CREATIO（创造）, 创造之源" loading="lazy" decoding="async">
                 <h3>III. CREATIO（创造）</h3>
                 <p>创造之源</p>
-            </div>
+            </a>
         </div>
         <div class="center-btn">
             <a href="opere.html#arcani-maggiori" class="btn-gold-outline">探索全部 22 张阿卡纳&nbsp;&rarr;</a>

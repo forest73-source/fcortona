@@ -616,6 +616,42 @@
 @media (prefers-reduced-motion:reduce){
   .glow-day,.glow-dark,.glow-frame{transition:none}
 }
+
+/* Rifinitura home: la notte spegne la stanza, entrata dell'hero, Arcani come carte */
+.hero.hero--glow{isolation:isolate}
+.hero--glow::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 60% 70% at 74% 50%,rgba(110,205,235,.09),transparent 70%),rgba(3,4,7,.6);-webkit-mask-image:linear-gradient(180deg,#000 75%,transparent);mask-image:linear-gradient(180deg,#000 75%,transparent);opacity:0;transition:opacity 1.4s ease}
+.hero--glow:has(.glow[data-state="buio"])::before{opacity:1}
+.glow-frame::before{content:"";position:absolute;inset:-16%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(110,205,235,.45),rgba(110,205,235,.12) 60%,transparent);filter:blur(36px);opacity:0;transform:scale(.82);transition:opacity 1.2s ease,transform 1.8s cubic-bezier(.16,1,.3,1)}
+.glow[data-state="buio"] .glow-frame::before{opacity:1;transform:scale(1)}
+.glow[data-state="buio"] .glow-frame{box-shadow:0 30px 80px rgba(0,0,0,.75)}
+.dn-switch button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){
+  .hero--glow .hero-subtitle,.hero--glow h1,.hero--glow .hero-quote,.hero--glow .hero-buttons{animation:cf-rise 1.1s cubic-bezier(.16,1,.3,1) backwards}
+  .hero--glow h1{animation-delay:.12s}
+  .hero--glow .hero-quote{animation-delay:.28s}
+  .hero--glow .hero-buttons{animation-delay:.42s}
+  .glow-frame{animation:cf-develop 1.8s cubic-bezier(.16,1,.3,1) .2s backwards}
+  .glow figcaption{animation:cf-rise 1.1s cubic-bezier(.16,1,.3,1) .7s backwards}
+}
+@keyframes cf-rise{from{opacity:0;transform:translateY(18px)}}
+@keyframes cf-develop{from{opacity:0;filter:blur(14px) brightness(.6);transform:scale(.97)}}
+@media (prefers-reduced-motion:reduce){.hero--glow::before,.glow-frame::before{transition:none}}
+
+/* Citazione: niente barra laterale, la frase parla da sola */
+.quote-box{border:0;padding:0;margin:3rem 0 0}
+.quote-box p{font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.3;color:var(--gold-light);margin-bottom:.8rem;text-wrap:balance}
+
+/* Anteprima Arcani: l'opera è la carta, niente riquadro attorno */
+.arcani-preview-grid .arcanum-card{display:block;background:none;border:0;border-radius:0;padding:0;text-decoration:none;color:inherit;overflow:visible}
+.arcani-preview-grid .arcanum-card img{height:auto;aspect-ratio:825/1130;object-fit:cover;border:1px solid rgba(197,160,89,.28);box-shadow:0 18px 40px -16px rgba(0,0,0,.8);transition:transform .7s cubic-bezier(.16,1,.3,1),box-shadow .7s cubic-bezier(.16,1,.3,1),border-color .4s ease}
+.arcani-preview-grid .arcanum-card h3{transition:color .4s ease}
+.arcani-preview-grid .arcanum-card:focus-visible{outline:2px solid var(--gold-light);outline-offset:6px}
+@media (hover:hover){
+  .arcani-preview-grid .arcanum-card:hover{transform:none;box-shadow:none;z-index:auto}
+  .arcani-preview-grid .arcanum-card:hover img{transform:translateY(-8px);border-color:var(--gold-primary);box-shadow:0 34px 60px -18px rgba(0,0,0,.9)}
+  .arcani-preview-grid .arcanum-card:hover h3{color:var(--gold-light)}
+}
+@media (prefers-reduced-motion:reduce){.arcani-preview-grid .arcanum-card img{transition:none}.arcani-preview-grid .arcanum-card:hover img{transform:none}}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
@@ -698,7 +734,6 @@ document.addEventListener('DOMContentLoaded',function(){
 
     <!-- BIOGRAFIA SECTION -->
     <section id="biografia">
-        <span class="section-tag">LA BIOGRAFIA</span>
         <h2 class="section-title section-title--sm">L'Arte e la sua Essenza</h2>
         <div class="bio-container">
             <div class="bio-img">
@@ -710,7 +745,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 <p>L'espressione artistica di Cortona è intrinsecamente di natura Spirituale. Attraverso una comunicazione olistica ed esoterica, si impegna a trasmettere con la pittura un messaggio più profondo, spingendo chi osserva a rivolgere lo sguardo verso il proprio IO interiore. La sua ricerca si concentra sulla Conoscenza e la Consapevolezza del Sé e dei Sensi, per riconnettere alla propria Luce interiore: per Cortona l'arte è Guarigione.</p>
 
                 <div class="quote-box">
-                    <p>"Un'Arte che non serve a Guarire non è Arte"</p>
+                    <p>«Un'Arte che non serve a Guarire non è Arte»</p>
                     <span>— Alejandro Jodorowsky</span>
                 </div>
             </div>
@@ -719,24 +754,23 @@ document.addEventListener('DOMContentLoaded',function(){
 
     <!-- ANTEPRIMA ARCANI SECTION -->
     <section id="arcani-preview">
-        <span class="section-tag">IL COFANETTO</span>
         <h2 class="section-title section-title--sm">Gli Arcani Maggiori</h2>
         <div class="arcani-preview-grid">
-            <div class="arcanum-card">
-                <img src="images/1-unitas.jpg?w=2" alt="I. UNITAS">
+            <a class="arcanum-card" href="opere.html#arcani-maggiori">
+                <img src="images/1-unitas.jpg?w=2" width="825" height="1128" alt="I. UNITAS, L'Uno Primordiale" loading="lazy" decoding="async">
                 <h3>I. UNITAS</h3>
                 <p>L'Uno Primordiale</p>
-            </div>
-            <div class="arcanum-card">
-                <img src="images/2-mater.jpg?w=2" alt="II. MATER">
+            </a>
+            <a class="arcanum-card" href="opere.html#arcani-maggiori">
+                <img src="images/2-mater.jpg?w=2" width="825" height="1140" alt="II. MATER, La Madre Cosmica" loading="lazy" decoding="async">
                 <h3>II. MATER</h3>
                 <p>La Madre Cosmica</p>
-            </div>
-            <div class="arcanum-card">
-                <img src="images/3-creatio.jpg?w=2" alt="III. CREATIO">
+            </a>
+            <a class="arcanum-card" href="opere.html#arcani-maggiori">
+                <img src="images/3-creatio.jpg?w=2" width="829" height="1134" alt="III. CREATIO, Il Principio Creativo" loading="lazy" decoding="async">
                 <h3>III. CREATIO</h3>
                 <p>Il Principio Creativo</p>
-            </div>
+            </a>
         </div>
         <div class="center-btn">
             <a href="opere.html#arcani-maggiori" class="btn-gold-outline">ESPLORA TUTTI I 22 ARCANI&nbsp;&rarr;</a>

@@ -439,7 +439,7 @@ html,body{overflow-x:clip}
 .newsletter-section p{max-width:none;margin:.8rem 0 2rem;color:var(--muted,#b9b4a8);font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;font-weight:400}
 .newsletter-form{max-width:none;margin:0;gap:1rem}
 .newsletter-form input[type="email"]{background:transparent;padding:1rem 1.2rem;font-family:'Jost',system-ui,sans-serif;font-size:1rem}
-.newsletter-form input[type="email"]::placeholder{color:#6f6c80}
+.newsletter-form input[type="email"]::placeholder{color:#8e8b9c}
 .newsletter-form .btn-subscribe{font-family:'Jost',system-ui,sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.22em;padding:1.1rem 1.6rem;color:#e0c47a}
 html[lang="zh"] .newsletter-section h2{letter-spacing:.08em;font-variant:normal}
 
@@ -622,3 +622,11 @@ a.link-lie:hover,a.link-lie:focus-visible{color:#e2bd62}
 
 .site-footer .social,.social-icons{flex-wrap:wrap}
 @media (max-width:900px){.site-footer .social,.social-icons{gap:.6rem}.site-footer .social a,.social-icons .social-btn{width:2.75rem;height:2.75rem}}
+
+/* Superfici del browser nei colori del sito: selezione, barra di scorrimento, cursore, focus */
+::selection{background:rgba(197,160,89,.38);color:#fff}
+html{scrollbar-color:rgba(197,160,89,.45) #0b0c10;accent-color:#C5A059}
+input,textarea{caret-color:#C5A059}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #e6ca85;outline-offset:3px}
+/* Newsletter: al passaggio del mouse la scritta "Iscriviti" resta leggibile sul fondo oro */
+.newsletter-form .btn-subscribe:hover,.newsletter-form .btn-subscribe:focus-visible{color:#0b0c10}
