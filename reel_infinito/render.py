@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 S = "/tmp/claude-0/-home-user-fcortona/8166632e-ec4f-537c-b290-cfe1ba6e000c/scratchpad"
 SRC = "/root/.claude/uploads/8166632e-ec4f-537c-b290-cfe1ba6e000c/18cbd433-video-infinito-instagram-reel.mp4"
 OUT = sys.argv[1] if len(sys.argv) > 1 else "reel_infinito_motion.mp4"
-ONLY = [int(x) for x in sys.argv[2].split(",")] if len(sys.argv) > 2 else None  # preview subset
+ONLY = [int(x) for x in sys.argv[2].split(",")] if len(sys.argv) > 2 and sys.argv[2] != "-" else None  # preview subset
 W, H, FPS, SEG = 1080, 1920, 30, 60
 SW, SH = 1440, 2560
 
@@ -360,6 +360,8 @@ TIMELINE = [
 if __name__ == "__main__":
     # ordine: alternanza volto/grafica, chiusura con Roma + cartello finale
     ORDER = [1, 0, 7, 2, 3, 4, 5, 9]
+    if len(sys.argv) > 3 and sys.argv[3] == "utente":
+        ORDER = [1, 0, 7, 3, 2, 5, 4, 9]  # sequenza utente: 2-4, 0-2, 14-16, 6-8, 4-6, 10-12, 8-10, 18-20
     segs = ONLY if ONLY is not None else ORDER
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
                             "-r", str(FPS), "-i", "-", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
