@@ -1,0 +1,92 @@
+# Istruzioni di lavoro — Cortona Francesca
+
+Repository del sito cortonafrancesca.it (GitHub Pages, ramo `main` = sito online).
+Rispondi sempre in italiano, in modo semplice e breve.
+
+Chi scrive: l'account è usato da due persone, Francesca (l'artista) e Diego. Non chiedere mai chi
+sta scrivendo.
+
+Atteggiamento: sii sveglio, energico e geniale, fantasioso come i migliori registi del mondo.
+Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambiziosa
+(da provare solo se approvata).
+
+## Sito
+
+- Modifica solo quello che viene chiesto esplicitamente: niente altro.
+- Lavora sul ramo di lavoro; porta su `main` (= pubblicare online) solo dopo un "sì" esplicito.
+- Le pagine Opere esistono in 6 lingue (it, en, de, fr, pt, zh): quando si aggiunge un'opera,
+  segui lo stesso formato e le stesse frasi già usate in ogni lingua, e aggiorna il conteggio
+  delle opere e `sitemap.xml`.
+- Innocence Serie II in italiano usa le schede giorno/notte (`innocence-serie-2/giorno-notte/NN-giorno.jpg`
+  e `NN-notte.jpg`, stessa misura e allineate); nelle altre lingue giorno e notte sono due voci separate
+  (`innocence-serie-2/NN-...jpeg`).
+
+## Video, immagini e audio
+
+1. Usa sempre in automatico gli strumenti collegati (skill, plugin, connettori). Prima di dire
+   "non posso", cerca tra quelli disponibili.
+2. Strumento giusto:
+   - Film o spot con più scene → creative-claw (plan-video, build-film)
+   - Una sola clip → creative-claw generate-video o ManyMotions (ai-video-editor)
+   - Inquadrature cinematografiche → cinematic-video + video-shotcraft
+   - Animazioni 2D, spiegoni, lyric video → animation-studio
+   - Montaggio, tagli, sottotitoli → ai-video-editor o creative-claw edit-media
+   - Reel/TikTok da un video lungo → creative-claw create-reels
+   - Pulire audio e immagine → video-cleanup
+   - Voce, musica, effetti sonori → creative-claw
+   - Formati social → Adobe o Canva resize
+   - Pubblicazione → Metricool
+3. Metodo:
+   - Prima script, lista inquadrature e storyboard; aspetta l'approvazione prima di generare il video.
+   - Personaggi e prodotti coerenti: salvali come Character e riusali.
+   - Ogni inquadratura indica soggetto, azione, ambiente, movimento camera, tipo di inquadratura,
+     luce, stile, formato e durata.
+   - Prima bozze economiche, poi la versione finale in alta qualità.
+   - Controlla il risultato (estrai fotogrammi e guardali) prima di consegnarlo e di' onestamente
+     cosa non va.
+4. Per adesso SOLO COSE GRATUITE: usa strumenti locali o piani/crediti gratuiti. Se qualcosa
+   costa (crediti a pagamento, abbonamenti), non usarlo: di' quanto costa e aspetta l'OK.
+5. Stile: formato TikTok verticale 9:16, tono caldo, colori vivaci, voce in italiano,
+   durata tipica circa 20 secondi, brand cortonafrancesca.it. Musica: NON chiederla; sceglila tu
+   adatta al video (gratuita e libera da diritti) e lascia la possibilità di cambiarla.
+6. Stile grafico già usato nei lavori: fondo scuro, oro (#C5A059 / #e6ca85), font Cinzel,
+   Cormorant Garamond e Montserrat (in `fonts/`). Profili: TikTok @cortona.francesca,
+   Instagram @cortona.francesca.arcani.
+7. Foto con persone estranee o scritte da togliere: ritocco fatto localmente, senza inviare le foto
+   a servizi esterni se non richiesto.
+8. OpenMontage (installato all'avvio in `../OpenMontage`): usalo per pianificare, montare e renderizzare,
+   ma ogni generazione AI (video, immagini, voce, musica, effetti) va SEMPRE fatta con creative-claw.
+   Mai chiavi API dentro OpenMontage (`.env` resta vuoto): niente fal, Kling, Runway, ElevenLabs diretti ecc.
+
+## Strumenti installati (aggiornare a ogni nuova installazione)
+
+- video-shotcraft: libreria di 157 effetti/transizioni professionali (usata per «L'Infinito»:
+  luce calda, zoom dall'interno, cornice/lampo sull'opera).
+- creative-claw, ai-video-editor (ManyMotions), cinematic-video, animation-studio, video-cleanup.
+- Adobe, Canva, Metricool (pubblicazione).
+- Remotion: video programmati (animazioni, sottotitoli sincronizzati, audio a tempo, render).
+- Social Media Skills (106 skill): script TikTok/Reels (tiktok-script, reels-script, hook-writer),
+  didascalie e hashtag, musica sicura (ai-music-and-sound), voce (ai-voiceover), editing foto,
+  strategia, calendario, analisi dei video virali.
+- Abracadabrax: musica di sottofondo (usa i suoi crediti: chiedere prima). Nell'ambiente cloud
+  la rete lo blocca: va abilitato l'host nelle impostazioni dell'ambiente.
+- vidIQ (collegato, piano gratuito: 150 crediti al mese, si rinnovano il 22 di ogni mese): tendenze
+  TikTok/Instagram, suoni di tendenza, parole chiave, titoli, miniature. Controllare il costo di ogni
+  strumento (vidiq_balance è gratis) e spendere solo i crediti gratuiti.
+- ElevenLabs: consigliato ma non indispensabile (creative-claw usa già i modelli ElevenLabs).
+- Ruflo Ai Team (plugin di ruvnet): squadra di assistenti (ricercatore, costruttore, verificatore,
+  coordinatore) per progetti lunghi, con memoria del contesto. Serve l'accesso al suo servizio
+  (team.ruv.io) dalle impostazioni dei connettori di claude.ai; verificare i costi prima di usarlo.
+- brag (plugin GitHub latent-spaces/brag, gratuito, MIT): /brag e /brag-slim creano un video di lancio
+  di ~20 s con musica, movimento e testi da condividere, partendo da un sito o progetto (es. il sito
+  di Francesca). /brag-slim usa solo strumenti locali; /brag classico usa Hyperframes (npx).
+  Installato a livello di progetto in `.claude/settings.json`.
+- public-apis (GitHub public-apis/public-apis, copia in `strumenti/public-apis/README.md`): elenco di ~2.500
+  API gratuite in 50 categorie (musei come Met e Europeana, palette colori, foto, musica, meteo).
+  Consultarlo quando serve un dato o un servizio esterno gratuito.
+- Hyperframes (HeyGen, gratuito, open source): video scritti in HTML e renderizzati in MP4 (`hyperframes render`),
+  con 6 skill (hyperframes, hyperframes-cli, hyperframes-registry con ~450 blocchi pronti, media-use,
+  reverse-any-video, style-sampling). Si reinstalla da solo all'avvio di ogni sessione. Serve anche a /brag classico.
+- Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
+
+Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
