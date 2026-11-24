@@ -54,6 +54,9 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
    Instagram @cortona.francesca.arcani.
 7. Foto con persone estranee o scritte da togliere: ritocco fatto localmente, senza inviare le foto
    a servizi esterni se non richiesto.
+8. OpenMontage (installato all'avvio in `../OpenMontage`): usalo per pianificare, montare e renderizzare,
+   ma ogni generazione AI (video, immagini, voce, musica, effetti) va SEMPRE fatta con creative-claw.
+   Mai chiavi API dentro OpenMontage (`.env` resta vuoto): niente fal, Kling, Runway, ElevenLabs diretti ecc.
 
 ## Strumenti installati (aggiornare a ogni nuova installazione)
 
