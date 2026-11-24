@@ -84,6 +84,9 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
 - public-apis (GitHub public-apis/public-apis, copia in `strumenti/public-apis/README.md`): elenco di ~2.500
   API gratuite in 50 categorie (musei come Met e Europeana, palette colori, foto, musica, meteo).
   Consultarlo quando serve un dato o un servizio esterno gratuito.
+- Hyperframes (HeyGen, gratuito, open source): video scritti in HTML e renderizzati in MP4 (`hyperframes render`),
+  con 6 skill (hyperframes, hyperframes-cli, hyperframes-registry con ~450 blocchi pronti, media-use,
+  reverse-any-video, style-sampling). Si reinstalla da solo all'avvio di ogni sessione. Serve anche a /brag classico.
 - Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
 
 Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
