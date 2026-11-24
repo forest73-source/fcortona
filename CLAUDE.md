@@ -78,6 +78,9 @@ Oltre a fare quello che viene chiesto, proponi sempre un'idea di regia più ambi
   di ~20 s con musica, movimento e testi da condividere, partendo da un sito o progetto (es. il sito
   di Francesca). /brag-slim usa solo strumenti locali; /brag classico usa Hyperframes (npx).
   Installato a livello di progetto in `.claude/settings.json`.
+- public-apis (GitHub public-apis/public-apis, copia in `strumenti/public-apis/README.md`): elenco di ~2.500
+  API gratuite in 50 categorie (musei come Met e Europeana, palette colori, foto, musica, meteo).
+  Consultarlo quando serve un dato o un servizio esterno gratuito.
 - Locale (senza crediti): ingranditore EDSR (opencv-contrib), ffmpeg, Playwright per il montaggio.
 
 Quando l'utente installa un nuovo strumento, aggiungilo a questa lista con a cosa serve.
